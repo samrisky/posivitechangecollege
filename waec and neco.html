@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WAEC Registration Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            /* background: #f4f6f8; */
+                background: radial-gradient(circle at 10% 20%, rgba(10, 25, 47, 0.98), rgba(2, 12, 27, 1));
+
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+                background: rgba(0, 255, 195, 0.15);
+                color: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, .08);
+            max-width: 900px;
+            width: 100%;
+            margin: 20px;
+            padding: 30px;
+        }
+
+        h1 {
+            margin-top: 0;
+            color: white;
+            text-align: center;
+        }
+
+        .form-grid {
+            display: grid;
+            gap: 18px;
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .form-grid.full {
+            grid-column: span 2;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: white;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="date"],
+        input[type="tel"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #ccd3db;
+            border-radius: 8px;
+            font-size: 14px;
+            background: #f9fbfd;
+            box-sizing: border-box;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .photo-upload {
+            border: 1px dashed #8fa5b6;
+            border-radius: 10px;
+            padding: 18px;
+            text-align: center;
+            color: #5b6b7b;
+        }
+
+        .photo-upload input {
+            margin-top: 12px;
+        }
+
+        .photo-preview {
+            margin-top: 12px;
+            max-width: 160px;
+            max-height: 200px;
+            border-radius: 8px;
+            border: 1px solid #d4dae1;
+        }
+
+        .notice {
+            background: #00ffc3;
+            border-left: 4px solid  rgba(2, 12, 27, 1);
+            padding: 14px 16px;
+            margin-bottom: 18px;
+            color: black;
+        }
+
+        .submit-row {
+            text-align: right;
+            grid-column: span 2;
+        }
+
+        button {
+            background: linear-gradient(95deg, #00ffc3, #00b38f);
+            color: #041c1a;
+    box-shadow: 0 8px 20px rgba(0, 255, 195, 0.3);
+            border: none;
+            border-radius: 8px;
+            padding: 12px 24px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+             transform: translateY(-3px);
+    box-shadow: 0 18px 30px rgba(0, 255, 195, 0.4);
+    filter: brightness(1.05);
+        }
+
+        @media (max-width: 720px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .submit-row {
+                text-align: left;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Positive Change Secondary College</h1>
+        <h1>WAEC & NECO Registration Form</h1>
+        <p>Please complete your registration details and upload a passport photo.</p>
+
+        <div class="notice">
+            <strong>Note:</strong> Fields marked with an asterisk (*) are required. Use a recent passport photograph and
+            ensure all information is accurate.
+        </div>
+
+        <form>
+            <div class="form-grid">
+                <div>
+                    <label for="surname">Surname *</label>
+                    <input type="text" id="surname" name="surname" placeholder="Enter your surname" required>
+                </div>
+                <div>
+                    <label for="firstname">First Name *</label>
+                    <input type="text" id="firstname" name="firstname" placeholder="Enter your first name" required>
+                </div>
+                <div>
+                    <label for="othername">Other Name</label>
+                    <input type="text" id="othername" name="othername" placeholder="Enter other names">
+                </div>
+                <div>
+                    <label for="gender">Gender *</label>
+                    <select id="gender" name="gender" required>
+                        <option value="">Select gender</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="dob">Date of Birth *</label>
+                    <input type="date" id="dob" name="dob" required>
+                </div>
+                <div>
+                    <label for="placeOfBirth">Place of Birth *</label>
+                    <input type="text" id="placeOfBirth" name="placeOfBirth" placeholder="City, State" required>
+                </div>
+                <div>
+                    <label for="lga">Local Government Area *</label>
+                    <input type="text" id="lga" name="lga" placeholder="Enter your LGA" required>
+                </div>
+                <div>
+                    <label for="state">State *</label>
+                    <input type="text" id="state" name="state" placeholder="Enter your state" required>
+                </div>
+                <div class="full">
+                    <label for="address">Home Address *</label>
+                    <textarea id="address" name="address" placeholder="Enter your full home address"
+                        required></textarea>
+                </div>
+                <div>
+                    <label for="phone">Phone Number *</label>
+                    <input type="tel" id="phone" name="phone" placeholder="08012345678" required>
+                </div>
+                <div>
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" placeholder="example@mail.com">
+                </div>
+                <div>
+                    <label for="examYear">Exam Year *</label>
+                    <select id="examYear" name="examYear" required>
+                        <option value="">Select year</option>
+                        <option value="2026">2026</option>
+                        <option value="2027">2027</option>
+                        <option value="2028">2028</option>
+                        <option value="2029">2029</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="examType">Exam Type *</label>
+                    <select id="examType" name="examType" required>
+                        <option value="">Select exam</option>
+                        <option value="waec">WAEC</option>
+                        <option value="neco">NECO</option>
+                    </select>
+                </div>
+                <div class="full photo-upload">
+                    <label for="photo">Passport Photograph *</label>
+                    <p>Upload a recent passport photo (max 2MB).</p>
+                    <input type="file" id="photo" name="photo" accept="image/*" required>
+                    <img id="photoPreview" class="photo-preview" alt="Photo preview" style="display:none;" />
+                </div>
+                <div class="full">
+                    <label for="subjects">Subjects to Register *</label>
+                    <textarea id="subjects" name="subjects" placeholder="List the subjects you are registering for"
+                        required></textarea>
+                </div>
+                <div class="submit-row">
+                    <button type="submit">Submit Registration</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        const photoInput = document.getElementById('photo');
+        const photoPreview = document.getElementById('photoPreview');
+
+        photoInput.addEventListener('change', () => {
+            const file = photoInput.files[0];
+            if (!file) {
+                photoPreview.style.display = 'none';
+                photoPreview.src = '';
+                return;
+            }
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                photoPreview.src = e.target.result;
+                photoPreview.style.display = 'block';
+            };
+            reader.readAsDataURL(file);
+        });
+    </script>
+</body>
+
+</html>

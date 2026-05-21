@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Student Information Table</title>
+
+  <style>
+    body {
+      font-family: Arial;
+      background: linear-gradient(to right, #74ebd5, #9face6);
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+    }
+
+    h1, h3 {
+      text-align: center;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background: #3498db;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    table {
+      width: 100%;
+      margin-top: 20px;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+
+    th, td {
+      padding: 8px;
+      text-align: center;
+    }
+
+    th {
+      background: #3498db;
+      color: white;
+    }
+
+    tr:nth-child(even) {
+      background: #f2f2f2;
+    }
+
+    .delete-btn {
+      background: red;
+      color: white;
+      border: none;
+      padding: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+  <h1>Positive Change College</h1>
+  <h3>Student Information Table</h3>
+
+  <!-- FORM -->
+  <input type="text" id="name" placeholder="Full Name">
+  <input type="number" id="number" placeholder="Student Number / ID">
+  <input type="number" id="age" placeholder="Age">
+
+  <select id="gender">
+    <option value="">Select Gender</option>
+    <option>Male</option>
+    <option>Female</option>
+  </select>
+
+  <select id="class">
+    <option value="">Select Class</option>
+    <option>JSS 1</option>
+    <option>JSS 2</option>
+    <option>JSS 3</option>
+    <option>SSS 1</option>
+    <option>SSS 2</option>
+    <option>SSS 3</option>
+
+
+  </select>
+
+  <input type="text" id="department" placeholder="Department (e.g Computer Science)">
+
+  <button onclick="addStudent()">Add Student</button>
+
+  <!-- SEARCH -->
+  <input type="text" id="search" placeholder="Search by name" onkeyup="searchStudent()">
+
+  <!-- TABLE -->
+  <table id="table">
+    <thead>
+      <tr>
+        <th>S/N</th>
+        <th>Name</th>
+        <th>ID</th>
+        <th>Age</th>
+        <th>Gender</th>
+        <th>Class</th>
+        <th>Department</th>
+        <th>Date Added</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+</div>
+
+<script>
+let count = 1;
+
+function addStudent() {
+  let name = document.getElementById("name").value;
+  let number = document.getElementById("number").value;
+  let age = document.getElementById("age").value;
+  let gender = document.getElementById("gender").value;
+  let studentClass = document.getElementById("class").value;
+  let department = document.getElementById("department").value;
+
+  if (!name || !number || !age || !gender || !studentClass || !department) {
+    alert("Fill all fields!");
+    return;
+  }
+
+  let table = document.querySelector("#table tbody");
+  let row = table.insertRow();
+
+  let date = new Date().toLocaleDateString();
+
+  row.innerHTML = `
+    <td>${count++}</td>
+    <td>${name}</td>
+    <td>${number}</td>
+    <td>${age}</td>
+    <td>${gender}</td>
+    <td>${studentClass}</td>
+    <td>${department}</td>
+    <td>${date}</td>
+    <td><button class="delete-btn" onclick="deleteRow(this)">Delete</button></td>
+  `;
+
+  // Clear fields
+  document.getElementById("name").value = "";
+  document.getElementById("number").value = "";
+  document.getElementById("age").value = "";
+  document.getElementById("gender").value = "";
+  document.getElementById("class").value = "";
+  document.getElementById("department").value = "";
+}
+
+function deleteRow(btn) {
+  btn.parentElement.parentElement.remove();
+}
+
+function searchStudent() {
+  let input = document.getElementById("search").value.toLowerCase();
+  let rows = document.querySelectorAll("#table tbody tr");
+
+  rows.forEach(row => {
+    let name = row.cells[1].textContent.toLowerCase();
+    row.style.display = name.includes(input) ? "" : "none";
+  });
+}
+</script>
+
+</body>
+</html>
