@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Positive Change College | Exam Information</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: #f5f7fa;
+      line-height: 1.6;
+      background: radial-gradient(circle at 10% 20%, rgba(10, 25, 47, 0.98), rgba(2, 12, 27, 1));
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 28px 48px;
+    }
+
+
+
+
+    .navbar {
+    position: sticky;
+    top: 0;
+    /* background: rgba(255, 255, 255, 0.97); */
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    padding: 16px 0;
+    border-radius: 25px;
+    border-bottom: 3px solid #00ffc3;
+
+  }
+
+  .nav-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .logo {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: white;
+    text-decoration: none;
+  }
+
+  .logo span {
+    color: #00ffc3;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 1.8rem;
+    list-style: none;
+  }
+
+  .nav-links li {
+    list-style: none;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    font-weight: 500;
+    color: #00ffc3;
+    transition: 0.2s;
+  }
+
+  .nav-links a:hover {
+    color: #00b38f;
+  }
+
+  .nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: #00ffc3;
+    font-size: 1.8rem;
+    cursor: pointer;
+  }
+
+  .navbar .container {
+    position: relative;
+  }
+
+
+    /* .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      padding: 18px 0;
+      background: rgba(3, 14, 27, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0, 255, 195, 0.18);
+      border-radius: 0 0 24px 24px;
+    }
+
+    .nav-flex {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      color: #ffffff;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 1.55rem;
+      font-weight: 800;
+      text-decoration: none;
+    }
+
+    .logo span {
+      color: #00ffc3;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.75rem;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: #a8d7f9;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: #00ffc3;
+    }
+
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: #00ffc3;
+      font-size: 1.8rem;
+      cursor: pointer;
+    } */
+
+    .hero {
+      padding: 72px 0 40px;
+      display: grid;
+      gap: 24px;
+    }
+
+    .hero-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: clamp(2.5rem, 4vw, 3.4rem);
+      line-height: 1.05;
+      color: #00ffc3;
+      max-width: 760px;
+    }
+
+    .hero-text {
+      max-width: 760px;
+      color: #d1e7f5;
+      font-size: 1rem;
+    }
+
+    .hero-text strong {
+      color: #ffffff;
+    }
+
+    .grid-two {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 26px;
+      margin-top: 32px;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(0, 255, 195, 0.16);
+      border-radius: 28px;
+      padding: 28px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+    }
+
+    .section-title {
+      font-size: 2.1rem;
+      color: #ffffff;
+      margin-bottom: 1rem;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    .section-subtitle {
+      font-size: 1rem;
+      color: #b5d3ef;
+      max-width: 680px;
+      margin-bottom: 24px;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+      margin-top: 28px;
+    }
+
+    .info-card {
+      padding: 22px;
+      border-radius: 22px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .info-card h3 {
+      color: #00ffc3;
+      font-size: 1.2rem;
+      margin-bottom: 14px;
+    }
+
+    .info-card p,
+    .info-card li {
+      color: #c8dcef;
+      font-size: 0.97rem;
+    }
+
+    .info-card ul {
+      padding-left: 18px;
+      margin-top: 10px;
+      list-style: disc;
+    }
+
+    .key-facts {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 32px;
+    }
+
+    .fact {
+      padding: 22px;
+      border-radius: 22px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(0, 255, 195, 0.14);
+      text-align: center;
+    }
+
+    .fact strong {
+      display: block;
+      font-size: 1.6rem;
+      margin-bottom: 8px;
+      color: #ffffff;
+    }
+
+    .fact span {
+      display: block;
+      color: #b8d4e7;
+      font-size: 0.95rem;
+    }
+
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 32px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 28px;
+      border-radius: 999px;
+      border: none;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.2s ease, filter 0.2s ease;
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background: linear-gradient(95deg, #00ffc3, #00b38f);
+      color: #041c1a;
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(0,255,195,0.18);
+      color: #e5f4ff;
+    }
+
+    .btn-primary:hover,
+    .btn-secondary:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.05);
+    }
+
+    .timeline {
+      margin-top: 28px;
+      border-left: 3px solid rgba(0, 255, 195, 0.28);
+      padding-left: 24px;
+      display: grid;
+      gap: 22px;
+    }
+
+    .timeline-item {
+      position: relative;
+      padding-left: 22px;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -11px;
+      top: 8px;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: #00ffc3;
+      border: 3px solid rgba(255,255,255,0.2);
+    }
+
+    .timeline-item h4 {
+      color: #ffffff;
+      margin-bottom: 8px;
+      font-size: 1.1rem;
+    }
+
+    .timeline-item p {
+      color: #c8dcef;
+      font-size: 0.96rem;
+    }
+
+    .highlight-box {
+      margin-top: 36px;
+      padding: 26px;
+      border-radius: 26px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(0, 255, 195, 0.15);
+      color: #d1e7f5;
+    }
+
+    .highlight-box strong {
+      color: #00ffc3;
+    }
+
+    @media (max-width: 960px) {
+      .grid-two,
+      .info-grid,
+      .key-facts {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .nav-toggle {
+        display: inline-flex;
+      }
+
+      .nav-links.show {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        gap: 0;
+        background: rgba(3, 14, 27, 0.98);
+        border-radius: 20px;
+        padding: 16px 0;
+        margin-top: 12px;
+      }
+
+      .nav-links a {
+        padding: 14px 24px;
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- <nav class="navbar">
+      <div class="nav-flex">
+        <a href="index.html" class="logo">Positive <span>Change</span></a>
+        <button class="nav-toggle" id="navToggle"><i class="bi bi-list"></i></button>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="school gallery.html">Gallery</a></li>
+          <li><a href="parent potal.html">Parent Portal</a></li>
+          <li><a href="studient potal.html">Student Portal</a></li>
+          <li><a href="exam info.html" class="active">Exam Info</a></li>
+        </ul>
+      </div>
+    </nav> -->
+
+
+
+<nav class="navbar">
+    <div class="container nav-flex">
+      <div class="nav-brand">
+        <a href="#home" class="logo">Positive Change College <span>Secondary School</span></a>
+        <p>Motto: We Teach, God Give Understanding</p>
+      </div>
+      <button class="nav-toggle" aria-expanded="false" aria-label="Open navigation">
+        <i class="bi bi-list"></i>
+      </button>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#classes">Classes</a></li>
+        <li><a href="#exams">WAEC/NECO</a></li>
+        <li><a href="#register">Register</a></li>
+        <li><a href="#portal">Portal</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#Gallery">Gallery</a></li>
+      </ul>
+    </div></nav>
+  
+  
+
+
+
+
+    <section class="hero">
+      <h1 class="hero-title">Secondary School Exam Information</h1>
+      <p class="hero-text">Everything Positive Change College students and parents need to know about WAEC and NECO exam registration, preparation, exam day expectations, and school support for JSS1 through SS3.</p>
+
+      <div class="card">
+        <div class="section-title">Exam season made clear</div>
+        <p class="section-subtitle">Prepare early, stay informed, and use the school’s exam resources to make your WAEC and NECO journey more successful.</p>
+        <div class="cta-row">
+          <a href="studient potal.html" class="btn btn-primary"><i class="bi bi-journal-bookmark-fill"></i>Student Portal</a>
+          <a href="parent potal.html" class="btn btn-secondary"><i class="bi bi-people-fill"></i>Parent Portal</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="grid-two">
+      <div class="card">
+        <div class="section-title">WAEC & NECO at Positive Change</div>
+        <p>Our secondary school offers structured exam preparation for Junior Secondary and Senior Secondary classes. Students receive guidance in subject registration, revision planning, mock exams, and official entry procedures.</p>
+
+        <div class="info-grid">
+          <div class="info-card">
+            <h3>Eligibility</h3>
+            <p>All registered JSS3 and SS3 students who meet classroom attendance and continuous assessment standards are eligible to register for WAEC and NECO.</p>
+          </div>
+          <div class="info-card">
+            <h3>Exam Support</h3>
+            <p>Our school provides revision lessons, practice tests, marking clinics, and subject mentoring in English, Mathematics, Sciences, and Arts.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="section-title">Registration Checklist</div>
+        <ul>
+          <li>Valid school ID card and birth certificate</li>
+          <li>Completed WAEC / NECO registration form</li>
+          <li>Correct subject combination approved by school counselor</li>
+          <li>Paid exam fees and necessary school charges</li>
+          <li>Signed parental authorization</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="section-title">Exam Timeline</div>
+      <div class="timeline">
+        <div class="timeline-item">
+          <h4>6–8 Weeks Before</h4>
+          <p>Confirm subject registration, collect exam notices, and begin weekly revision blocks.</p>
+        </div>
+        <div class="timeline-item">
+          <h4>4 Weeks Before</h4>
+          <p>Take school mock exams, review past papers, and attend extra tutorial sessions.</p>
+        </div>
+        <div class="timeline-item">
+          <h4>2 Weeks Before</h4>
+          <p>Complete final topic reviews, practice exam pacing, and meet with teachers about weak areas.</p>
+        </div>
+        <div class="timeline-item">
+          <h4>Exam Week</h4>
+          <p>Arrive early with all materials, stay calm, follow instructions, and use good exam time management.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="section-title">Exam Preparation Resources</div>
+      <div class="info-grid">
+        <div class="info-card">
+          <h3>Past Questions</h3>
+          <p>Students practice with past WAEC and NECO papers to learn question formats and exam techniques.</p>
+        </div>
+        <div class="info-card">
+          <h3>Revision Classes</h3>
+          <p>Extra classes are available after school and on weekends for core subjects and exam writing strategies.</p>
+        </div>
+        <div class="info-card">
+          <h3>Exam Counseling</h3>
+          <p>Our guidance team helps students choose the right subject combination and manage exam stress.</p>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="section-title">Important Notes for Parents</div>
+      <p class="section-subtitle">Your support makes a big difference. Encourage attendance, provide a quiet revision space, and keep track of exam fees and school deadlines.</p>
+
+      <div class="highlight-box">
+        <p><strong>Key reminder:</strong> Exam details are published by WAEC and NECO each year. Positive Change College will share all official registration deadlines, exam schedules, and admission numbers with every student.</p>
+      </div>
+    </section>
+
+    <section class="key-facts">
+      <div class="fact">
+        <strong>WAEC</strong>
+        <span>Senior school certificate exams for SS3.</span>
+      </div>
+      <div class="fact">
+        <strong>NECO</strong>
+        <span>National exams that support diploma and university entry.</span>
+      </div>
+      <div class="fact">
+        <strong>Mock Series</strong>
+        <span>School mocks help students build confidence before the main exams.</span>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    navToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('show');
+    });
+  </script>
+</body>
+</html>

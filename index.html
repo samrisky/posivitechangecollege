@@ -456,9 +456,9 @@
 
   /* campus + immersive */
   .immersive-grid {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     gap: 2rem;
-    flex-wrap: wrap;
   }
 
   .immersive-card {
@@ -467,20 +467,19 @@
     backdrop-filter: blur(8px);
     border-radius: 2rem;
     padding: 2rem;
-    flex: 1;
     text-align: center;
     border-bottom: 2px solid #00ffc3;
   }
 
   /* about + experience */
   .about-wrap {
-    display: flex;
+    display: grid;
+    grid-template-columns: minmax(280px, 1.4fr) minmax(280px, 1fr);
     gap: 3rem;
-    flex-wrap: wrap;
   }
 
   .about-text {
-    flex: 1.4;
+    color: white;
   }
 
   .about-text p {
@@ -489,7 +488,6 @@
   }
 
   .exp-box {
-    flex: 1;
     background: rgba(0, 255, 195, 0.1);
     border-radius: 28px;
     padding: 1.8rem;
@@ -524,14 +522,14 @@
   }
 
   .registration-grid {
-    display: flex;
-    gap: 3rem;
-    flex-wrap: wrap;
-    align-items: center;
+    display: grid;
+    grid-template-columns: minmax(300px, 1fr) minmax(380px, 1.25fr);
+    gap: 2rem;
+    align-items: start;
   }
 
   .reg-info {
-    flex: 1;
+    flex: unset;
   }
 
   .reg-info h2 {
@@ -606,14 +604,14 @@
   }
 
   .portal-flex {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 2rem;
-    flex-wrap: wrap;
   }
 
   .portal-create-grid {
     display: grid;
-    grid-template-columns: repeat(2, minmax(240px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     gap: 1.5rem;
     margin-top: 2rem;
   }
@@ -770,6 +768,27 @@
       gap: 1rem;
       margin-top: 0.5rem;
     }
+
+    .about-wrap,
+    .registration-grid,
+    .portal-flex,
+    .portal-create-grid,
+    .testimonial-flex {
+      grid-template-columns: 1fr;
+    }
+
+    .about-wrap,
+    .registration-grid {
+      gap: 1.5rem;
+    }
+
+    .hero-grid {
+      gap: 2rem;
+    }
+
+    .hero-image {
+      order: -1;
+    }
   }
 </style>
 
@@ -801,6 +820,7 @@
       <div class="container hero-grid">
         <div class="hero-content">
           <span class="hero-badge"><i class="bi bi-eye"></i> Excellence in Education Since 2010</span>
+          <h1>Positive Change College </h1>
           <h1>Shaping Futures from <span class="hero-highlight">JSS1 to SS3</span></h1>
           <p>Positive Change Secondary School provides quality education, character development, and exam success. We
             prepare students for WAEC, NECO, and life beyond.</p>
@@ -822,7 +842,7 @@
           </div>
           <div style="display: flex; gap: 1rem; margin-top: 1rem;">
             <a href="#register" class="btn btn-primary"><i class="bi bi-person-plus"></i> Register Now</a>
-            <a href="#exams" class="btn btn-outline"><i class="bi bi-book"></i> Exam Info</a>
+            <a href="exam info.html" class="btn btn-outline"><i class="bi bi-book"></i> Exam Info</a>
           </div>
         </div>
         <div class="hero-image">
@@ -857,7 +877,7 @@
         </div>
 
         <div class="view-more">
-          <a href="#">
+          <a href="school gallery.html">
             View More Photos <i class="bi bi-arrow-right"></i>
           </a>
         </div>
@@ -963,34 +983,30 @@
     <section id="about">
       <div class="container about-wrap">
         <div class="about-text">
-          <h2 class="section-title" style="margin-bottom: 2rem;">About me</h2>
-          <p>I'm Samuel, a creative web developer with a passion for clean interfaces and robust backends. Over the past
-            5 years, I've collaborated with startups, agencies, and global brands to bring ideas to life. My approach
-            merges design thinking with engineering excellence.</p>
-          <p>Outside coding, I'm an open-source contributor and mentor at coding bootcamps. I believe in building
-            inclusive, fast, and future-proof web experiences that serve real people.</p>
-          <p><i class="bi bi-geo-alt" style="color:#2c7da0; margin-right: 8px;"></i> Based in Austin, TX ·
-            Remote worldwide</p>
+          <h2 class="section-title" style="margin-bottom: 2rem;">About Our School</h2>
+          <p>Positive Change College is a leading secondary school dedicated to academic excellence, character formation, and high-stakes exam success. We support students from JSS1 through SS3 with a caring, disciplined learning environment.</p>
+          <p>Our school blends strong classroom instruction with practical guidance for WAEC and NECO preparation, leadership development, and community service. We are committed to helping every student reach their highest potential.</p>
+          <p><i class="bi bi-geo-alt" style="color:#00ffc3; margin-right: 8px;"></i> Located in Abuja, Nigeria · Serving students across the region</p>
           <div style="margin-top: 1.5rem;">
-            <a href="#" class="btn btn-outline"><i class="bi bi-file-pdf"></i> Download resume</a>
+            <a href="#contact" class="btn btn-outline"><i class="bi bi-telephone"></i> Contact Admissions</a>
           </div>
         </div>
         <div class="exp-box">
-          <h3 style="font-size: 1.6rem; margin-bottom: 1.2rem;"><i class="bi bi-briefcase"></i> Experience</h3>
+          <h3 style="font-size: 1.6rem; margin-bottom: 1.2rem;"><i class="bi bi-building"></i> School Strengths</h3>
           <div class="exp-item">
-            <h4>Senior Frontend Engineer · Stellar Studio</h4>
-            <div class="exp-date">2022 – present</div>
-            <p>Lead frontend architecture, design systems and mentoring junior devs.</p>
+            <h4>Strong Exam Results</h4>
+            <div class="exp-date">Consistent top performers</div>
+            <p>Students regularly achieve high credit passes in WAEC and NECO exams.</p>
           </div>
           <div class="exp-item">
-            <h4>Full-Stack Developer · CreativEdge</h4>
-            <div class="exp-date">2019 – 2022</div>
-            <p>Built 10+ production apps using React, Node, and GraphQL.</p>
+            <h4>Qualified Teaching Staff</h4>
+            <div class="exp-date">Experienced educators</div>
+            <p>Our teachers combine exam expertise with supportive classroom mentoring.</p>
           </div>
           <div class="exp-item">
-            <h4>Freelance Web Developer</h4>
-            <div class="exp-date">2018 – 2019</div>
-            <p>Custom websites, e-commerce solutions for small businesses.</p>
+            <h4>Student Support</h4>
+            <div class="exp-date">Holistic care</div>
+            <p>We provide guidance, counseling, and after-school tutorials for every learner.</p>
           </div>
         </div>
       </div>
@@ -1132,38 +1148,16 @@
         <div class="portal-flex">
           <div class="portal-card">
             <i class="bi bi-mortarboard" style="font-size: 2.5rem; color:  #00ffc3;"></i>
-            <h3 style="margin: 1rem 0;">Student Login</h3>
-            <p>Check results, download timetables, and access learning materials.</p>
-            <form id="studentLoginForm" style="margin-top: 1.5rem;">
-              <input type="text" id="studentID" placeholder="Student ID" required
-                style="width:100%; padding: 10px; border-radius: 30px; border:1px solid #ddd; margin-bottom: 10px;">
-              <div style="position: relative; margin-bottom: 15px;">
-                <input type="password" id="studentPassword" placeholder="Password" required
-                  style="width:100%; padding: 10px 40px 10px 15px; border-radius: 30px; border:1px solid #ddd;">
-                <button type="button" class="pwd-toggle" data-target="studentPassword" style="position: absolute; right: 15px; top: 50%; transform: translateY(-50%); background: none; border: none; color: #00ffc3; cursor: pointer; font-size: 18px;">
-                  <i class="bi bi-eye"></i>
-                </button>
-              </div>
-              <button type="submit" class="btn btn-primary" style="width:100%; margin-top: 1rem;">Login to Portal</button>
-            </form>
+            <h3 style="margin: 1rem 0;">Student Portal</h3>
+            <p>Check results, download timetables, and access learning materials on the dedicated portal page.</p>
+            <button class="btn btn-primary" style="width:100%; margin-top: 1rem;" onclick="window.location.href='studient potal.html'">Go to Student Portal</button>
           </div>
           <div class="portal-card">
             <i class="bi bi-person-video2" style="font-size: 2.5rem; color:  #00ffc3;"></i>
             <h3 style="margin: 1rem 0;">Parent Portal</h3>
-            <p>Monitor academic progress, fee payments, and school events.</p>
-            <form id="parentLoginForm" style="margin-top: 1.5rem;">
-              <input type="text" id="parentPortalEmail" placeholder="Parent Email/ID" required
-                style="width:100%; padding: 10px; border-radius: 30px; border:1px solid #ddd; margin-bottom: 10px;">
-              <div style="position: relative; margin-bottom: 15px;">
-                <input type="password" id="parentPassword" placeholder="Password" required
-                  style="width:100%; padding: 10px 40px 10px 15px; border-radius: 30px; border:1px solid #ddd;">
-                <button type="button" class="pwd-toggle" data-target="parentPassword" style="position: absolute; right: 15px; top: 50%; transform: translateY(-50%); background: none; border: none; color: #00ffc3; cursor: pointer; font-size: 18px;">
-                  <i class="bi bi-eye"></i>
-                </button>
-              </div>
-              <button type="submit" class="btn btn-outline" style="width:100%; margin-top: 1rem;  ">Parent Login</button>
-            </form>
-            <a href="#" style="display: block; margin-top: 1rem; font-size: 0.85rem;">Forgot Password? Contact Admin</a>
+            <p>Monitor academic progress, fee payments, and school events on the parent portal page.</p>
+            <button class="btn btn-outline" style="width:100%; margin-top: 1rem;" onclick="window.location.href='parent potal.html'">Open Parent Portal</button>
+            <a href="#" style="display: block; margin-top: 1rem; font-size: 0.85rem;">Need help? Contact Admin</a>
           </div>
           <div class="portal-card">
             <i class="bi bi-download" style="font-size: 2.5rem; color:  #00ffc3;"></i>
@@ -1178,29 +1172,13 @@
             <i class="bi bi-person-plus" style="font-size: 2.5rem; color:  #00ffc3;"></i>
             <h3 style="margin: 1rem 0;">Student Account</h3>
             <p>Create a portal account to access student results, schedules and learning resources.</p>
-            <form id="studentSignupForm" style="margin-top: 1.5rem;">
-              <input type="text" id="studentSignupID" placeholder="Student Email or ID" required
-                style="width:100%; padding: 10px; border-radius: 30px; border:1px solid #ddd; margin-bottom: 10px;">
-              <input type="password" id="studentSignupPassword" placeholder="Password" required
-                style="width:100%; padding: 10px; border-radius: 30px; border:1px solid #ddd; margin-bottom: 10px;">
-              <input type="password" id="studentSignupConfirm" placeholder="Confirm Password" required
-                style="width:100%; padding: 10px; border-radius: 30px; border:1px solid #ddd; margin-bottom: 10px;">
-              <button type="submit" class="btn btn-primary" style="width:100%; margin-top: 1rem;">Create Student Account</button>
-            </form>
+            <button class="btn btn-primary" style="width:100%; margin-top: 1rem;" onclick="window.location.href='studient potal.html'">Create Student Account</button>
           </div>
           <div class="portal-card">
             <i class="bi bi-person-plus-fill" style="font-size: 2.5rem; color:  #00ffc3;"></i>
             <h3 style="margin: 1rem 0;">Parent Account</h3>
             <p>Create a parent portal account to follow your child’s progress and receive school updates.</p>
-            <form id="parentSignupForm" style="margin-top: 1.5rem;">
-              <input type="text" id="parentSignupEmail" placeholder="Parent Email or ID" required
-                style="width:100%; padding: 10px; border-radius: 30px; border:1px solid #ddd; margin-bottom: 10px;">
-              <input type="password" id="parentSignupPassword" placeholder="Password" required
-                style="width:100%; padding: 10px; border-radius: 30px; border:1px solid #ddd; margin-bottom: 10px;">
-              <input type="password" id="parentSignupConfirm" placeholder="Confirm Password" required
-                style="width:100%; padding: 10px; border-radius: 30px; border:1px solid #ddd; margin-bottom: 10px;">
-              <button type="submit" class="btn btn-outline" style="width:100%; margin-top: 1rem;">Create Parent Account</button>
-            </form>
+            <button class="btn btn-outline" style="width:100%; margin-top: 1rem;" onclick="window.location.href='parent potal.html'">Create Parent Account</button>
           </div>
         </div>
       </div>
@@ -1219,24 +1197,20 @@
     <!-- Testimonials / success stories -->
     <section id="testimonials">
       <div class="container">
-        <h2 class="section-title">Real voices, real impact</h2>
-        <div class="section-sub"><span class="jjc"> Our alumni are making waves across industries and
-            communities.</span></div>
+        <h2 class="section-title">School Voices, Real Impact</h2>
+        <div class="section-sub"><span class="jjc"> Parents, students, and alumni share why Positive Change College is their trusted school.</span></div>
         <div class="testimonial-flex">
           <div class="testimonial"><i class="bi bi-quote" style="color: #00ffc3; font-size: 1.8rem;"></i>
-            <p style="margin: 1rem 0;">"Positive Change College gave me the tools and network to launch my nonprofit.
-              The mentorship is unparalleled."</p>
-            <h4>— Maya Rodriguez</h4><span>Social entrepreneur</span>
+            <p style="margin: 1rem 0;">"My child’s grades improved quickly after joining Positive Change College. The teachers are supportive and the school is focused on exam success."</p>
+            <h4>— Mrs. Adeola</h4><span>Parent</span>
           </div>
           <div class="testimonial"><i class="bi bi-quote" style="color: #00ffc3; font-size: 1.8rem;"></i>
-            <p style="margin: 1rem 0;">"The tech program landed me a role at a Fortune 500. Hands-on projects made all
-              the difference."</p>
-            <h4>— James Liu</h4><span>Software engineer</span>
+            <p style="margin: 1rem 0;">"The school keeps parents informed and helps us stay involved in our student’s education every step of the way."</p>
+            <h4>— Mr. Chukwu</h4><span>Parent</span>
           </div>
           <div class="testimonial"><i class="bi bi-quote" style="color: #00ffc3; font-size: 1.8rem;"></i>
-            <p style="margin: 1rem 0;">"I found my purpose here. The inclusive community and professors truly care about
-              student success."</p>
-            <h4>— Amina Diallo</h4><span>Policy analyst</span>
+            <p style="margin: 1rem 0;">"I passed WAEC and NECO with confidence because of the extra tutorials and exam preparation at school."</p>
+            <h4>— Blessing</h4><span>Alumnus</span>
           </div>
         </div>
       </div>
@@ -1293,7 +1267,7 @@
           <a href="#classes">Classes (JSS1-SS3)</a>
           <a href="#exams">WAEC/NECO Info</a>
           <a href="#register">Register Online</a>
-          <a href="#portal">Student Portal</a>
+          <a href="studient potal.html">Student Portal</a>
         </div>
         <div class="footer-col">
           <h4>Resources</h4>

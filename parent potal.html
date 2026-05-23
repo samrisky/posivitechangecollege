@@ -454,9 +454,10 @@
         </div>
       </div>
       <div class="topbar-links">
+        <a href="index.html"><i class="bi bi-box-arrow-in-right"></i> Main Sign In</a>
         <a href="#dashboard"><i class="bi bi-speedometer2"></i> Dashboard</a>
         <a href="#activities"><i class="bi bi-calendar-event"></i> Activities</a>
-        <button type="button" onclick="document.getElementById('loginForm').scrollIntoView({ behavior: 'smooth' })"><i class="bi bi-box-arrow-in-right"></i> Login</button>
+        <button type="button" onclick="document.getElementById('loginForm').scrollIntoView({ behavior: 'smooth' })"><i class="bi bi-lock-fill"></i> Portal Login</button>
       </div>
     </header>
 
@@ -522,7 +523,7 @@
               <input id="parentLoginPassword" type="password" placeholder="Password" required>
             </div>
             <div class="form-actions">
-              <button type="submit" class="btn-primary">Login to Portal</button>
+              <button type="button" class="btn-primary" onclick="window.location.href='index.html'">Go to Main Sign In</button>
               <button type="button" class="btn-secondary" onclick="showModal('forgot')">Forgot Password</button>
             </div>
           </form>
@@ -549,7 +550,7 @@
               <input id="signupConfirm" type="password" placeholder="Confirm Password" required>
             </div>
             <div class="form-actions">
-              <button type="submit" class="btn-primary">Create Account</button>
+              <button type="button" class="btn-primary" onclick="window.location.href='index.html'">Go to Main Sign In</button>
             </div>
           </form>
         </div>

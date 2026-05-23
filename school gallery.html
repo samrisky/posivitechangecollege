@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Positive Change College Gallery</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #081b2e;
+      color: #f5f7fa;
+      min-height: 100vh;
+    }
+
+    .page {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 18px;
+      margin-bottom: 28px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .brand-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, #00ffc3, #12a68a);
+      display: grid;
+      place-items: center;
+      color: #041c16;
+      font-weight: 800;
+      font-size: 1.2rem;
+    }
+
+    .brand-text h1 {
+      font-size: 1.6rem;
+      letter-spacing: -0.02em;
+    }
+
+    .brand-text p {
+      color: #a3c7dd;
+      font-size: 0.95rem;
+      margin-top: 4px;
+    }
+
+    .breadcrumb {
+      color: #9ecaea;
+      font-size: 0.95rem;
+    }
+
+    .hero {
+      background: radial-gradient(circle at top left, rgba(0, 255, 195, 0.18), transparent 35%),
+                  linear-gradient(180deg, rgba(1, 18, 39, 0.95), rgba(3, 17, 34, 1));
+      border: 1px solid rgba(0, 255, 195, 0.16);
+      border-radius: 28px;
+      padding: 32px;
+      margin-bottom: 32px;
+    }
+
+    .hero h2 {
+      font-size: clamp(2rem, 3vw, 2.8rem);
+      margin-bottom: 14px;
+    }
+
+    .hero p {
+      font-size: 1rem;
+      color: #c7d9ec;
+      max-width: 760px;
+      line-height: 1.8;
+    }
+
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .filter-tag {
+      border: 1px solid rgba(0, 255, 195, 0.26);
+      color: #c9e3f5;
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: rgba(0, 255, 195, 0.06);
+      cursor: pointer;
+      font-size: 0.95rem;
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+
+    .filter-tag.active,
+    .filter-tag:hover {
+      background: rgba(0, 255, 195, 0.2);
+      transform: translateY(-1px);
+      color: #ffffff;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+      margin-top: 28px;
+    }
+
+    .gallery-card {
+      border-radius: 24px;
+      overflow: hidden;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.10);
+      transition: transform 0.25s ease, border-color 0.25s ease;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .gallery-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(0, 255, 195, 0.3);
+    }
+
+    .gallery-card img {
+      width: 100%;
+      display: block;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+    }
+
+    .gallery-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 60%, rgba(2, 12, 27, 0.92));
+      opacity: 0;
+      transition: opacity 0.25s ease;
+    }
+
+    .gallery-card:hover .gallery-overlay {
+      opacity: 1;
+    }
+
+    .gallery-info {
+      padding: 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .gallery-info h3 {
+      margin-bottom: 10px;
+      font-size: 1.2rem;
+      color: #e7fff8;
+    }
+
+    .gallery-info p {
+      margin-bottom: 12px;
+      color: #b9d4e6;
+      line-height: 1.7;
+      font-size: 0.95rem;
+    }
+
+    .gallery-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      color: #8db9d8;
+      font-size: 0.92rem;
+    }
+
+    .gallery-meta i {
+      color: #00ffc3;
+    }
+
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-top: 36px;
+    }
+
+    .stat-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 20px;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .stat-card h4 {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+      color: #e7fff8;
+    }
+
+    .stat-card p {
+      color: #b9d4e6;
+      line-height: 1.7;
+      font-size: 0.95rem;
+    }
+
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 36px;
+    }
+
+    .button-row a {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 18px;
+      border-radius: 999px;
+      border: 1px solid rgba(0, 255, 195, 0.22);
+      background: rgba(0, 255, 195, 0.08);
+      color: #e7fff8;
+      font-weight: 600;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .button-row a:hover {
+      background: rgba(0, 255, 195, 0.14);
+      transform: translateY(-1px);
+    }
+
+    .footer-note {
+      margin-top: 40px;
+      padding: 22px 24px;
+      border-radius: 22px;
+      background: rgba(0, 255, 195, 0.08);
+      border: 1px solid rgba(0, 255, 195, 0.14);
+      color: #c8e5f6;
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(1, 10, 24, 0.92);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      z-index: 999;
+    }
+
+    .lightbox.show {
+      display: flex;
+    }
+
+    .lightbox-card {
+      max-width: 960px;
+      width: 100%;
+      border-radius: 28px;
+      overflow: hidden;
+      background: #071821;
+      border: 1px solid rgba(0, 255, 195, 0.18);
+      position: relative;
+    }
+
+    .lightbox-img {
+      width: 100%;
+      height: 60vh;
+      object-fit: cover;
+      display: block;
+    }
+
+    .lightbox-body {
+      padding: 24px;
+    }
+
+    .lightbox-body h3 {
+      margin-bottom: 12px;
+      font-size: 1.7rem;
+      color: #e7fff8;
+    }
+
+    .lightbox-body p {
+      color: #c7d9ec;
+      line-height: 1.8;
+      margin-bottom: 18px;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 22px;
+      right: 22px;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(0, 0, 0, 0.35);
+      color: #f5f7fa;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      font-size: 1.2rem;
+    }
+
+    @media (max-width: 720px) {
+      .page {
+        padding: 18px;
+      }
+
+      .header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .hero {
+        padding: 24px;
+      }
+
+      .gallery-info {
+        padding: 18px;
+      }
+
+      .lightbox-img {
+        height: 45vh;
+      }
+
+      .stats-row {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="header">
+      <div class="brand">
+        <div class="brand-icon">PC</div>
+        <div class="brand-text">
+          <h1>Positive Change College</h1>
+          <p>School gallery showcasing learning, leadership, and campus life.</p>
+        </div>
+      </div>
+      <div class="breadcrumb">Home / Gallery</div>
+    </header>
+
+    <section class="hero">
+      <h2>Explore School Life in Action</h2>
+      <p>Browse the Positive Change College gallery for a richer view of our classrooms, exam preparation, sporting activities, cultural events, and student achievements. Filter by category and click any image to view more details.</p>
+      <div class="filter-bar">
+        <div class="filter-tag active" data-filter="all">All</div>
+        <div class="filter-tag" data-filter="academics">Academics</div>
+        <div class="filter-tag" data-filter="events">Events</div>
+        <div class="filter-tag" data-filter="sports">Sports</div>
+        <div class="filter-tag" data-filter="exams">Exams</div>
+      </div>
+    </section>
+
+    <section class="gallery-grid" id="galleryGrid">
+      <article class="gallery-card" data-category="academics" data-title="Interactive Classroom Learning" data-description="Students participate in group work, science lessons, and classroom discussions with our dedicated teachers." data-image="https://images.unsplash.com/photo-1596495577886-d920f1fb20b1?auto=format&fit=crop&w=1200&q=80">
+        <div class="gallery-overlay"></div>
+        <img src="./pictures/sec view 2.png" alt="Students in classroom">
+        <div class="gallery-info">
+          <h3>Interactive Classroom Learning</h3>
+          <p>Focused lessons blending collaboration and guided classroom instruction.</p>
+          <div class="gallery-meta"><span><i class="bi bi-mortarboard"></i> Academics</span><span>Classroom</span></div>
+        </div>
+      </article>
+
+      <article class="gallery-card" data-category="sports" data-title="Team Sports and Fitness" data-description="Students play football, run athletics, and join exercise programs that build confidence and healthy habits." data-image="https://images.unsplash.com/photo-1516979187457-637abb4f9353?auto=format&fit=crop&w=1200&q=80">
+        <div class="gallery-overlay"></div>
+        <img src="./pictures/sec view 3.png" alt="School sports activity">
+        <div class="gallery-info">
+          <h3>Team Sports and Fitness</h3>
+          <p>Activities that promote teamwork, respect, and physical wellbeing.</p>
+          <div class="gallery-meta"><span><i class="bi bi-trophy"></i> Sports</span><span>Fitness</span></div>
+        </div>
+      </article>
+
+      <article class="gallery-card" data-category="exams" data-title="Exam Preparation Workshops" data-description="Morning tutorials, mock exams, and guided WAEC/NECO review sessions prepare students for exam success." data-image="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80">
+        <div class="gallery-overlay"></div>
+        <img src="./pictures/sec view 4.png" alt="Exam preparation session">
+        <div class="gallery-info">
+          <h3>Exam Preparation Workshops</h3>
+          <p>Dedicated revision sessions designed to boost confidence and results.</p>
+          <div class="gallery-meta"><span><i class="bi bi-journal-text"></i> Exams</span><span>Revision</span></div>
+        </div>
+      </article>
+
+      <article class="gallery-card" data-category="events" data-title="School Assembly and Culture" data-description="Morning assembly brings the school community together to celebrate values, announcements, and achievements." data-image="https://images.unsplash.com/photo-1529070538774-1843cb3265df?auto=format&fit=crop&w=1200&q=80">
+        <div class="gallery-overlay"></div>
+        <img src="./pictures/sec view 5.png" alt="School assembly">
+        <div class="gallery-info">
+          <h3>School Assembly and Culture</h3>
+          <p>Daily routines build character, unity, and a strong school identity.</p>
+          <div class="gallery-meta"><span><i class="bi bi-people-fill"></i> Events</span><span>Community</span></div>
+        </div>
+      </article>
+
+      <article class="gallery-card" data-category="academics" data-title="Science Lab Sessions" data-description="Hands-on experiments in science labs help students connect theory with practical learning." data-image="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?auto=format&fit=crop&w=1200&q=80">
+        <div class="gallery-overlay"></div>
+        <img src="./pictures/sec view 6.png" alt="Science lab session">
+        <div class="gallery-info">
+          <h3>Science Lab Sessions</h3>
+          <p>Practical science learning that supports experiments and discovery.</p>
+          <div class="gallery-meta"><span><i class="bi bi-beaker"></i> Academics</span><span>Science</span></div>
+        </div>
+      </article>
+
+      <article class="gallery-card" data-category="events" data-title="Student Awards Night" data-description="Recognizing high-achieving students in academics, sports, and school leadership." data-image="https://images.unsplash.com/photo-1517632298124-7b5ef0a25fa5?auto=format&fit=crop&w=1200&q=80">
+        <div class="gallery-overlay"></div>
+        <img src="./pictures/sec view 7.png" alt="School awards ceremony">
+        <div class="gallery-info">
+          <h3>Student Awards Night</h3>
+          <p>Celebrating excellence and leadership with awards for students.</p>
+          <div class="gallery-meta"><span><i class="bi bi-award"></i> Events</span><span>Achievement</span></div>
+        </div>
+      </article>
+    </section>
+
+    <div class="stats-row">
+      <div class="stat-card">
+        <h4>120+ Gallery Photos</h4>
+        <p>Capturing classrooms, events, sports and school activities throughout the year.</p>
+      </div>
+      <div class="stat-card">
+        <h4>Real School Moments</h4>
+        <p>See how students learn, grow, and celebrate at Positive Change College.</p>
+      </div>
+      <div class="stat-card">
+        <h4>Exam and Event Highlights</h4>
+        <p>Experience our preparation sessions, award ceremonies, and cultural programs.</p>
+      </div>
+    </div>
+
+    <div class="button-row">
+      <a href="index.html"><i class="bi bi-house-door-fill"></i> Back to Home</a>
+      <a href="parent potal.html"><i class="bi bi-person-lines-fill"></i> Parent Portal</a>
+      <a href="studient potal.html"><i class="bi bi-journal-bookmark-fill"></i> Student Portal</a>
+    </div>
+
+    <div class="footer-note">
+      This advanced school gallery page gives visitors a polished view of Positive Change College’s community, classrooms, and educational culture.
+    </div>
+  </div>
+
+  <div class="lightbox" id="lightbox">
+    <div class="lightbox-card">
+      <button class="lightbox-close" id="lightboxClose"><i class="bi bi-x-lg"></i></button>
+      <img src="" alt="Gallery preview" class="lightbox-img" id="lightboxImage">
+      <div class="lightbox-body">
+        <h3 id="lightboxTitle">Title</h3>
+        <p id="lightboxDescription">Description</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const filters = document.querySelectorAll('.filter-tag');
+    const cards = document.querySelectorAll('.gallery-card');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImage = document.getElementById('lightboxImage');
+    const lightboxTitle = document.getElementById('lightboxTitle');
+    const lightboxDescription = document.getElementById('lightboxDescription');
+    const lightboxClose = document.getElementById('lightboxClose');
+
+    filters.forEach(filter => {
+      filter.addEventListener('click', () => {
+        filters.forEach(tag => tag.classList.remove('active'));
+        filter.classList.add('active');
+        const category = filter.dataset.filter;
+        cards.forEach(card => {
+          const match = category === 'all' || card.dataset.category === category;
+          card.style.display = match ? 'block' : 'none';
+        });
+      });
+    });
+
+    cards.forEach(card => {
+      card.addEventListener('click', () => {
+        const image = card.dataset.image;
+        const title = card.dataset.title;
+        const description = card.dataset.description;
+        lightboxImage.src = image;
+        lightboxTitle.textContent = title;
+        lightboxDescription.textContent = description;
+        lightbox.classList.add('show');
+      });
+    });
+
+    lightboxClose.addEventListener('click', () => lightbox.classList.remove('show'));
+    lightbox.addEventListener('click', event => {
+      if (event.target === lightbox) {
+        lightbox.classList.remove('show');
+      }
+    });
+  </script>
+</body>
+</html>
