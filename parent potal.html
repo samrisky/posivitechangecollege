@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Positive Change College | Parent Portal</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(180deg, #071f2f 0%, #0e314d 100%);
+      color: #f5f9ff;
+      min-height: 100vh;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page-wrapper {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      padding: 16px 20px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 24px;
+      backdrop-filter: blur(12px);
+      margin-bottom: 24px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .brand-icon {
+      width: 54px;
+      height: 54px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, #00ffc3, #12a68a);
+      display: grid;
+      place-items: center;
+      color: #042b24;
+      font-weight: 800;
+      font-size: 1.2rem;
+    }
+
+    .brand-title {
+      display: grid;
+      gap: 4px;
+    }
+
+    .brand-title h1 {
+      font-size: 1.2rem;
+      letter-spacing: -0.02em;
+    }
+
+    .brand-title p {
+      font-size: 0.88rem;
+      color: #b8d1e3;
+      margin-top: 2px;
+    }
+
+    .topbar-links {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .topbar-links a,
+    .topbar-links button {
+      font-size: 0.95rem;
+      color: #cce8ff;
+      border: 1px solid rgba(255,255,255,0.16);
+      background: rgba(255,255,255,0.05);
+      padding: 10px 18px;
+      border-radius: 999px;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .topbar-links a:hover,
+    .topbar-links button:hover {
+      transform: translateY(-1px);
+      background: rgba(255,255,255,0.12);
+    }
+
+    .hero {
+      display: grid;
+      gap: 24px;
+      padding: 40px 0;
+    }
+
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .hero-copy h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.05;
+      margin-bottom: 16px;
+      color: #e7fff8;
+    }
+
+    .hero-copy p {
+      color: #cfe8fb;
+      max-width: 640px;
+      margin-bottom: 20px;
+      font-size: 1rem;
+    }
+
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 18px;
+      border-radius: 999px;
+      background: rgba(0, 255, 195, 0.14);
+      color: #e7fff8;
+      font-weight: 600;
+      border: 1px solid rgba(0, 255, 195, 0.22);
+    }
+
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 24px;
+    }
+
+    .dashboard-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 24px;
+      padding: 24px;
+      min-height: 180px;
+      display: grid;
+      gap: 14px;
+    }
+
+    .dashboard-card h3 {
+      margin: 0;
+      font-size: 1.05rem;
+      color: #f5f9ff;
+    }
+
+    .dashboard-card p {
+      color: #b8d1e3;
+      line-height: 1.6;
+      font-size: 0.95rem;
+    }
+
+    .portal-section {
+      margin-top: 40px;
+      display: grid;
+      gap: 24px;
+    }
+
+    .portal-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 24px;
+    }
+
+    .portal-panel {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 28px;
+      padding: 28px;
+    }
+
+    .portal-panel h3 {
+      margin-bottom: 14px;
+      font-size: 1.45rem;
+      color: #e7fff8;
+    }
+
+    .portal-panel p {
+      color: #c8dcee;
+      margin-bottom: 24px;
+      line-height: 1.7;
+    }
+
+    .form-group {
+      display: grid;
+      gap: 10px;
+      margin-bottom: 18px;
+      text-align: left;
+    }
+
+    .form-group label {
+      font-size: 0.94rem;
+      color: #d8e7f4;
+    }
+
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      padding: 14px 16px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: #eef9ff;
+      font-size: 0.98rem;
+    }
+
+    .form-group input::placeholder {
+      color: #a8b9cc;
+    }
+
+    .form-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      align-items: center;
+      justify-content: flex-start;
+      margin-top: 10px;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+      border: none;
+      border-radius: 999px;
+      padding: 14px 22px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.2s ease, filter 0.2s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #00ffc3, #10a182);
+      color: #042b24;
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.08);
+      color: #e9f5ff;
+      border: 1px solid rgba(255,255,255,0.16);
+    }
+
+    .btn-primary:hover,
+    .btn-secondary:hover {
+      transform: translateY(-1px);
+      filter: brightness(1.05);
+    }
+
+    .quick-links {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    .quick-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 20px;
+      padding: 18px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .quick-card strong {
+      display: block;
+      font-size: 1rem;
+      color: #e7fff8;
+    }
+
+    .quick-card span {
+      color: #a9c6dc;
+      font-size: 0.9rem;
+    }
+
+    .footer {
+      margin-top: 40px;
+      padding: 24px 20px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 24px;
+      text-align: center;
+    }
+
+    .footer p {
+      color: #9fb8d0;
+      font-size: 0.95rem;
+    }
+
+    .portal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .portal-header h2 {
+      font-size: 2rem;
+      color: #fff;
+    }
+
+    .portal-header p {
+      color: #c7d8ea;
+    }
+
+    .portal-cta {
+      background: rgba(0,255,195,0.08);
+      border: 1px solid rgba(0,255,195,0.16);
+      border-radius: 24px;
+      padding: 20px;
+      display: grid;
+      gap: 14px;
+    }
+
+    .portal-cta strong {
+      color: #e7fff8;
+      display: block;
+      font-size: 1rem;
+    }
+
+    .portal-cta span {
+      color: #b8d1e3;
+      font-size: 0.95rem;
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.16);
+      background: rgba(255,255,255,0.04);
+      color: #d7f6e1;
+      font-size: 0.92rem;
+    }
+
+    .status-pill i {
+      color: #8bffe7;
+    }
+
+    .modal-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.55);
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      z-index: 50;
+    }
+
+    .modal-backdrop.show {
+      display: flex;
+    }
+
+    .modal-box {
+      background: #081d2d;
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 24px;
+      padding: 28px;
+      max-width: 500px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .modal-box h4 {
+      color: #f5f9ff;
+      margin-bottom: 14px;
+    }
+
+    .modal-box p {
+      color: #b8cfe2;
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+
+    .modal-box button {
+      border: none;
+      border-radius: 999px;
+      padding: 12px 24px;
+      background: linear-gradient(135deg, #00ffc3, #12a68a);
+      color: #042b24;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    @media (max-width: 1024px) {
+      .hero-inner,
+      .portal-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .dashboard-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 720px) {
+      .page-wrapper {
+        padding: 16px;
+      }
+
+      .dashboard-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .topbar,
+      .portal-panel,
+      .portal-cta,
+      .hero-copy,
+      .hero-inner {
+        padding: 18px;
+      }
+
+      .quick-links {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-icon">PC</div>
+        <div class="brand-title">
+          <h1>Positive Change College</h1>
+          <p>Parent Portal</p>
+        </div>
+      </div>
+      <div class="topbar-links">
+        <a href="#dashboard"><i class="bi bi-speedometer2"></i> Dashboard</a>
+        <a href="#activities"><i class="bi bi-calendar-event"></i> Activities</a>
+        <button type="button" onclick="document.getElementById('loginForm').scrollIntoView({ behavior: 'smooth' })"><i class="bi bi-box-arrow-in-right"></i> Login</button>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="hero-inner">
+        <div class="hero-copy">
+          <div class="hero-badges">
+            <span class="hero-badge"><i class="bi bi-shield-lock"></i> Secure Parent Access</span>
+            <span class="hero-badge"><i class="bi bi-people"></i> Real-Time Progress</span>
+          </div>
+          <h2>Welcome Parents of Positive Change College</h2>
+          <p>Access your child’s attendance, exam results, fee statements, school announcements, and direct messages from teachers — all from one secure portal.</p>
+          <div class="hero-badges">
+            <span class="hero-badge"><i class="bi bi-bar-chart-line-fill"></i> Performance Insights</span>
+            <span class="hero-badge"><i class="bi bi-chat-dots"></i> Teacher Communication</span>
+          </div>
+        </div>
+        <div class="portal-cta">
+          <strong><i class="bi bi-check-circle-fill"></i> Parent Portal Benefits</strong>
+          <span>Track attendance and behavior reports for school term updates.</span>
+          <span>Download approved school circulars, timetables and result slips.</span>
+          <span>Receive alerts for fee deadlines, exam schedules, and parent meetings.</span>
+          <span>Open a parent account in seconds and stay connected to your child’s school journey.</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="dashboard-grid" id="dashboard">
+      <div class="dashboard-card">
+        <h3><i class="bi bi-people-fill"></i> My Children</h3>
+        <p>View enrolled children, class details, and latest progress summaries in one place.</p>
+      </div>
+      <div class="dashboard-card">
+        <h3><i class="bi bi-card-checklist"></i> Attendance</h3>
+        <p>Review attendance records, missed days, and school permission notes quickly.</p>
+      </div>
+      <div class="dashboard-card">
+        <h3><i class="bi bi-currency-dollar"></i> Fees</h3>
+        <p>See fee invoices, payment history, and outstanding balances for the current term.</p>
+      </div>
+    </section>
+
+    <section class="portal-section" id="activities">
+      <div class="portal-header">
+        <div>
+          <h2>Parent Portal Access</h2>
+          <p>Login or create your parent account to begin using the portal services.</p>
+        </div>
+        <div class="status-pill"><i class="bi bi-check-circle"></i> Available 24/7</div>
+      </div>
+
+      <div class="portal-grid">
+        <div class="portal-panel">
+          <h3>Parent Login</h3>
+          <p>Already registered? Use your parent email or ID with your password to access attendance, fees, and messages.</p>
+          <form id="loginForm">
+            <div class="form-group">
+              <label for="parentLoginEmail">Parent Email or ID</label>
+              <input id="parentLoginEmail" type="text" placeholder="Parent Email or ID" required>
+            </div>
+            <div class="form-group">
+              <label for="parentLoginPassword">Password</label>
+              <input id="parentLoginPassword" type="password" placeholder="Password" required>
+            </div>
+            <div class="form-actions">
+              <button type="submit" class="btn-primary">Login to Portal</button>
+              <button type="button" class="btn-secondary" onclick="showModal('forgot')">Forgot Password</button>
+            </div>
+          </form>
+        </div>
+
+        <div class="portal-panel">
+          <h3>Create Parent Account</h3>
+          <p>New to the portal? Create your parent account now to stay connected with Positive Change College.</p>
+          <form id="signupForm">
+            <div class="form-group">
+              <label for="signupName">Full Name</label>
+              <input id="signupName" type="text" placeholder="Your Full Name" required>
+            </div>
+            <div class="form-group">
+              <label for="signupEmail">Parent Email</label>
+              <input id="signupEmail" type="email" placeholder="Email Address" required>
+            </div>
+            <div class="form-group">
+              <label for="signupPassword">Create Password</label>
+              <input id="signupPassword" type="password" placeholder="Password" required>
+            </div>
+            <div class="form-group">
+              <label for="signupConfirm">Confirm Password</label>
+              <input id="signupConfirm" type="password" placeholder="Confirm Password" required>
+            </div>
+            <div class="form-actions">
+              <button type="submit" class="btn-primary">Create Account</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section class="quick-links">
+      <div class="quick-card">
+        <strong><i class="bi bi-info-circle"></i> School Notices</strong>
+        <span>Receive announcements for parent meetings, exam schedules, and holiday updates.</span>
+      </div>
+      <div class="quick-card">
+        <strong><i class="bi bi-envelope-check"></i> Secure Messaging</strong>
+        <span>Contact your child’s class teacher directly through the portal inbox.</span>
+      </div>
+      <div class="quick-card">
+        <strong><i class="bi bi-journal-bookmark"></i> Academic Reports</strong>
+        <span>Download termly reports and view performance analytics for each subject.</span>
+      </div>
+      <div class="quick-card">
+        <strong><i class="bi bi-hand-thumbs-up"></i> Support Center</strong>
+        <span>Get help with registration, password reset, or portal navigation anytime.</span>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <p>&copy; 2026 Positive Change College. Parent portal built for families who want to stay connected to school progress.</p>
+    </footer>
+  </div>
+
+  <div id="modalBackdrop" class="modal-backdrop" aria-hidden="true">
+    <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <h4 id="modalTitle">Notification</h4>
+      <p id="modalText">Your request has been received.</p>
+      <button type="button" onclick="hideModal()">OK</button>
+    </div>
+  </div>
+
+  <script>
+    const modalBackdrop = document.getElementById('modalBackdrop');
+    const modalText = document.getElementById('modalText');
+
+    document.getElementById('loginForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      modalText.textContent = 'Login successful. Redirecting to your parent dashboard...';
+      showModal();
+      this.reset();
+    });
+
+    document.getElementById('signupForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      const password = document.getElementById('signupPassword').value;
+      const confirm = document.getElementById('signupConfirm').value;
+      if (password !== confirm) {
+        modalText.textContent = 'Passwords do not match. Please try again.';
+        showModal();
+        return;
+      }
+      modalText.textContent = 'Parent account created successfully. Please check your email for confirmation.';
+      showModal();
+      this.reset();
+    });
+
+    function showModal(type) {
+      modalBackdrop.classList.add('show');
+      modalBackdrop.setAttribute('aria-hidden', 'false');
+      if (type === 'forgot') {
+        modalText.textContent = 'A password reset link has been sent to your registered email.';
+      }
+    }
+
+    function hideModal() {
+      modalBackdrop.classList.remove('show');
+      modalBackdrop.setAttribute('aria-hidden', 'true');
+    }
+  </script>
+</body>
+</html>

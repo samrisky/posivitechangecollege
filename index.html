@@ -143,6 +143,10 @@
     list-style: none;
   }
 
+  .nav-links li {
+    list-style: none;
+  }
+
   .nav-links a {
     text-decoration: none;
     font-weight: 500;
@@ -152,6 +156,91 @@
 
   .nav-links a:hover {
     color: #00b38f;
+  }
+
+  .nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: #00ffc3;
+    font-size: 1.8rem;
+    cursor: pointer;
+  }
+
+  .navbar .container {
+    position: relative;
+  }
+
+  @media (max-width: 900px) {
+    .nav-flex {
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .nav-toggle {
+      display: inline-flex;
+    }
+
+    .nav-links {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      margin: 0;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+      padding: 16px 0;
+      background: rgba(2, 12, 27, 0.98);
+      border-radius: 0 0 24px 24px;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, opacity 0.3s ease;
+      opacity: 0;
+      visibility: hidden;
+      border: 1px solid rgba(0,255,195,0.18);
+    }
+
+    .nav-links.show {
+      max-height: 420px;
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .nav-links li {
+      width: 100%;
+    }
+
+    .nav-links a {
+      padding: 14px 22px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .nav-links a:hover {
+      background: rgba(0, 255, 195, 0.08);
+    }
+
+    .nav-flex > .nav-brand {
+      flex: 1 1 auto;
+    }
+
+    .hero-content h1 {
+      font-size: 2.2rem;
+    }
+
+    .section-title {
+      font-size: 1.8rem;
+    }
+
+    .nav-links {
+      gap: 1rem;
+      margin-top: 0.5rem;
+    }
+
+    .portal-create-grid {
+      grid-template-columns: 1fr;
+    }
   }
 
   /* Hero Section */
@@ -522,6 +611,13 @@
     flex-wrap: wrap;
   }
 
+  .portal-create-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(240px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+
   .portal-card {
     flex: 1;
     background: #00ffc323;
@@ -530,6 +626,18 @@
     padding: 2rem;
     text-align: center;
     border: 1px solid #00ffc3;
+  }
+
+  .portal-card input {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 30px;
+    border: 1px solid #ddd;
+  }
+
+  .portal-card form {
+    margin-top: 1.2rem;
   }
 
 
@@ -668,10 +776,13 @@
 <body>
   <nav class="navbar">
     <div class="container nav-flex">
-      <div>
+      <div class="nav-brand">
         <a href="#home" class="logo">Positive Change College <span>Secondary School</span></a>
         <p>Motto: We Teach, God Give Understanding</p>
       </div>
+      <button class="nav-toggle" aria-expanded="false" aria-label="Open navigation">
+        <i class="bi bi-list"></i>
+      </button>
       <ul class="nav-links">
         <li><a href="#home">Home</a></li>
         <li><a href="#classes">Classes</a></li>
@@ -680,7 +791,6 @@
         <li><a href="#portal">Portal</a></li>
         <li><a href="#contact">Contact</a></li>
         <li><a href="#Gallery">Gallery</a></li>
-
       </ul>
     </div>
   </nav>
@@ -1063,6 +1173,36 @@
               Questions</button>
           </div>
         </div>
+        <div class="portal-create-grid">
+          <div class="portal-card">
+            <i class="bi bi-person-plus" style="font-size: 2.5rem; color:  #00ffc3;"></i>
+            <h3 style="margin: 1rem 0;">Student Account</h3>
+            <p>Create a portal account to access student results, schedules and learning resources.</p>
+            <form id="studentSignupForm" style="margin-top: 1.5rem;">
+              <input type="text" id="studentSignupID" placeholder="Student Email or ID" required
+                style="width:100%; padding: 10px; border-radius: 30px; border:1px solid #ddd; margin-bottom: 10px;">
+              <input type="password" id="studentSignupPassword" placeholder="Password" required
+                style="width:100%; padding: 10px; border-radius: 30px; border:1px solid #ddd; margin-bottom: 10px;">
+              <input type="password" id="studentSignupConfirm" placeholder="Confirm Password" required
+                style="width:100%; padding: 10px; border-radius: 30px; border:1px solid #ddd; margin-bottom: 10px;">
+              <button type="submit" class="btn btn-primary" style="width:100%; margin-top: 1rem;">Create Student Account</button>
+            </form>
+          </div>
+          <div class="portal-card">
+            <i class="bi bi-person-plus-fill" style="font-size: 2.5rem; color:  #00ffc3;"></i>
+            <h3 style="margin: 1rem 0;">Parent Account</h3>
+            <p>Create a parent portal account to follow your child’s progress and receive school updates.</p>
+            <form id="parentSignupForm" style="margin-top: 1.5rem;">
+              <input type="text" id="parentSignupEmail" placeholder="Parent Email or ID" required
+                style="width:100%; padding: 10px; border-radius: 30px; border:1px solid #ddd; margin-bottom: 10px;">
+              <input type="password" id="parentSignupPassword" placeholder="Password" required
+                style="width:100%; padding: 10px; border-radius: 30px; border:1px solid #ddd; margin-bottom: 10px;">
+              <input type="password" id="parentSignupConfirm" placeholder="Confirm Password" required
+                style="width:100%; padding: 10px; border-radius: 30px; border:1px solid #ddd; margin-bottom: 10px;">
+              <button type="submit" class="btn btn-outline" style="width:100%; margin-top: 1rem;">Create Parent Account</button>
+            </form>
+          </div>
+        </div>
       </div>
 
       <!-- Welcome Modal -->
@@ -1337,6 +1477,73 @@
             showWelcomeModal('parent');
             this.reset();
           }
+        });
+      }
+
+      const studentSignupForm = document.getElementById('studentSignupForm');
+      const parentSignupForm = document.getElementById('parentSignupForm');
+      const navToggle = document.querySelector('.nav-toggle');
+      const navLinks = document.querySelector('.nav-links');
+
+      if (navToggle && navLinks) {
+        navToggle.addEventListener('click', function() {
+          const isOpen = navLinks.classList.toggle('show');
+          this.setAttribute('aria-expanded', String(isOpen));
+          this.innerHTML = isOpen ? '<i class="bi bi-x-lg"></i>' : '<i class="bi bi-list"></i>';
+        });
+      }
+
+      document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', function() {
+          if (navLinks && navLinks.classList.contains('show')) {
+            navLinks.classList.remove('show');
+            navToggle?.setAttribute('aria-expanded', 'false');
+            if (navToggle) navToggle.innerHTML = '<i class="bi bi-list"></i>';
+          }
+        });
+      });
+
+      if (studentSignupForm) {
+        studentSignupForm.addEventListener('submit', function(e) {
+          e.preventDefault();
+          const id = document.getElementById('studentSignupID').value.trim();
+          const password = document.getElementById('studentSignupPassword').value;
+          const confirm = document.getElementById('studentSignupConfirm').value;
+
+          if (!id || !password || !confirm) {
+            alert('Please fill all student account fields.');
+            return;
+          }
+
+          if (password !== confirm) {
+            alert('Passwords do not match.');
+            return;
+          }
+
+          alert('Student account created successfully! Please log in using your new credentials.');
+          this.reset();
+        });
+      }
+
+      if (parentSignupForm) {
+        parentSignupForm.addEventListener('submit', function(e) {
+          e.preventDefault();
+          const email = document.getElementById('parentSignupEmail').value.trim();
+          const password = document.getElementById('parentSignupPassword').value;
+          const confirm = document.getElementById('parentSignupConfirm').value;
+
+          if (!email || !password || !confirm) {
+            alert('Please fill all parent account fields.');
+            return;
+          }
+
+          if (password !== confirm) {
+            alert('Passwords do not match.');
+            return;
+          }
+
+          alert('Parent account created successfully! Please log in using your new credentials.');
+          this.reset();
         });
       }
 
