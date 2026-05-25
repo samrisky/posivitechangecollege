@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>student Portal Sign In</title>
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body{
+      height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      background: radial-gradient(circle at 10% 20%, rgba(10, 25, 47, 0.98), rgba(2, 12, 27, 1));
+    }
+
+    .container{
+      width:350px;
+        background: rgba(0, 255, 195, 0.4);
+      padding:30px;
+      border-radius:12px;
+      box-shadow:0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    .logo{
+      text-align:center;
+      margin-bottom:20px;
+    }
+
+    .logo h1{
+      color: #00ffc3;
+      font-size:28px;
+    }
+
+    .logo p{
+      color: #00ffc3;
+      font-size:14px;
+      margin-top:5px;
+    }
+
+    .input-box{
+      margin-bottom:18px;
+    }
+
+    .input-box label{
+      display:block;
+      margin-bottom:6px;
+      color: #00ffc3;
+      font-size:14px;
+    }
+
+    .input-box input{
+      width:100%;
+      padding:12px;
+      border:1px solid #ccc;
+      border-radius:8px;
+      outline:none;
+      font-size:15px;
+    }
+
+    .input-box input:focus{
+      border-color: #00ffc3;
+    }
+
+    button{
+      width:100%;
+      padding:12px;
+      background: #00ffc3;
+      color:black;
+      border:none;
+      border-radius:8px;
+      cursor:pointer;
+      font-size:16px;
+      transition:0.3s;
+    }
+
+    button:hover{
+      box-shadow: 0 18px 30px rgba(0, 255, 195, 0.4);
+    }
+
+    .message{
+      text-align:center;
+      margin-top:15px;
+      font-size:14px;
+      color:white;
+    }
+
+    .error{
+      color:red;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="logo">
+      <h1>student Portal</h1>
+      <p>School Management System</p>
+    </div>
+
+    <form id="loginForm">
+      <div class="input-box">
+        <label>Email</label>
+        <input type="email" id="email" placeholder="Enter parent email" required>
+      </div>
+
+      <div class="input-box">
+        <label>Password</label>
+        <input type="password" id="password" placeholder="Enter password" required>
+      </div>
+
+      <button type="submit">Sign In</button>
+
+      <div class="message" id="message"></div>
+      
+</button>
+    </form>
+     <p style="text-align:center; margin-top:10px;">
+      No account? <a href="studentsignup.html">Create Account</a>
+    </p>
+  </div>
+
+  
+
+
+
+
+
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
+
+import {
+  getAuth,
+  signInWithEmailAndPassword
+} from "https://www.gstatic.com/firebasejs/12.13.0/firebase-auth.js";
+
+
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyDmvmqTgjhbtgLxrbvgmT3LQgEsNoj3x_g",
+  authDomain: "positivechangecollege-4d2cb.firebaseapp.com",
+  projectId: "positivechangecollege-4d2cb",
+  storageBucket: "positivechangecollege-4d2cb.firebasestorage.app",
+  messagingSenderId: "847572892577",
+  appId: "1:847572892577:web:1f6184c056ca46cf3ce9e0",
+  measurementId: "G-CVGTLPDR5M"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+
+const form = document.getElementById("loginForm");
+
+form.addEventListener("submit", async (e) => {
+
+  e.preventDefault();
+
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+
+  try {
+
+    await signInWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+
+
+    alert("Login successful!");
+
+    window.location.href = "studient potal.html";
+
+  } catch (error) {
+
+    alert(error.message);
+
+  }
+
+});
+
+</script>
+
+</body>
+</html>

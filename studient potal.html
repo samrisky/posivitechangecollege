@@ -862,7 +862,7 @@
             <section class="welcome">
                 <div>
                     <p style="margin:0; text-transform:uppercase; letter-spacing:0.18em; font-size:0.82rem; color:#ffb703; font-weight:700;">Good afternoon</p>
-                    <h2>Welcome back, <span id="welcomeName">Ada</span>.</h2>
+                    <h2>Welcome <span id="welcomeName">Ada</span>.</h2>
                     <p>Here's your daily snapshot: upcoming classes, latest grades, announcements, and school reminders.</p>
                 </div>
                 <div class="avatar" id="avatarInitial">A</div>
@@ -1086,5 +1086,85 @@
             </section> -->
         </section>
     </main>
+
+   
+
+    <script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
+
+import {
+  getAuth,
+  onAuthStateChanged,
+  signOut
+} from "https://www.gstatic.com/firebasejs/12.13.0/firebase-auth.js";
+
+import {
+  getFirestore,
+  doc,
+  getDoc
+} from "https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js";
+
+
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyDmvmqTgjhbtgLxrbvgmT3LQgEsNoj3x_g",
+  authDomain: "positivechangecollege-4d2cb.firebaseapp.com",
+  projectId: "positivechangecollege-4d2cb",
+  storageBucket: "positivechangecollege-4d2cb.firebasestorage.app",
+  messagingSenderId: "847572892577",
+  appId: "1:847572892577:web:1f6184c056ca46cf3ce9e0",
+  measurementId: "G-CVGTLPDR5M"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+
+const welcomeName = document.getElementById("welcomeName");
+const studentName = document.getElementById("studentName");
+const avatar = document.getElementById("avatarInitial");
+
+
+onAuthStateChanged(auth, async (user) => {
+
+  if (user) {
+
+    const docRef = doc(db, "students", user.uid);
+
+    const docSnap = await getDoc(docRef);
+
+
+    if (docSnap.exists()) {
+
+      const student = docSnap.data();
+
+      welcomeName.innerText = student.name;
+
+      studentName.innerText = student.name;
+
+      avatar.innerText = student.name.charAt(0).toUpperCase();
+
+    }
+
+  } else {
+
+    window.location.href = "signin.html";
+
+  }
+
+});
+
+
+window.logoutUser = async () => {
+
+  await signOut(auth);
+
+  window.location.href = "signin.html";
+
+};
+
+</script>
 </body>
 </html>

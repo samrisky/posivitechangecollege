@@ -589,43 +589,102 @@
     </div>
   </div>
 
-  <script>
-    const modalBackdrop = document.getElementById('modalBackdrop');
-    const modalText = document.getElementById('modalText');
+  <script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword
+} from "https://www.gstatic.com/firebasejs/12.13.0/firebase-auth.js";
 
-    document.getElementById('loginForm').addEventListener('submit', function(event) {
-      event.preventDefault();
-      modalText.textContent = 'Login successful. Redirecting to your parent dashboard...';
-      showModal();
-      this.reset();
+import {
+  getFirestore,
+  doc,
+  setDoc
+} from "https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js";
+
+// 🔥 PUT YOUR REAL FIREBASE CONFIG HERE
+const firebaseConfig = {
+  apiKey: "PASTE_REAL_KEY_HERE",
+  authDomain: "PASTE_REAL_AUTH_DOMAIN",
+  projectId: "PASTE_REAL_PROJECT_ID",
+  storageBucket: "PASTE_REAL_BUCKET",
+  messagingSenderId: "PASTE_REAL_SENDER_ID",
+  appId: "PASTE_REAL_APP_ID"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+// modal
+const modalBackdrop = document.getElementById('modalBackdrop');
+const modalText = document.getElementById('modalText');
+
+function showModal(message) {
+  modalText.textContent = message;
+  modalBackdrop.classList.add('show');
+}
+
+window.hideModal = function () {
+  modalBackdrop.classList.remove('show');
+};
+
+// ✅ SIGNUP
+document.getElementById('signupForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+
+  const name = document.getElementById('signupName').value;
+  const email = document.getElementById('signupEmail').value;
+  const password = document.getElementById('signupPassword').value;
+  const confirm = document.getElementById('signupConfirm').value;
+
+  if (password !== confirm) {
+    showModal("Passwords do not match");
+    return;
+  }
+
+  try {
+    const userCred = await createUserWithEmailAndPassword(auth, email, password);
+
+    await setDoc(doc(db, "parents", userCred.user.uid), {
+      name,
+      email,
+      role: "parent"
     });
 
-    document.getElementById('signupForm').addEventListener('submit', function(event) {
-      event.preventDefault();
-      const password = document.getElementById('signupPassword').value;
-      const confirm = document.getElementById('signupConfirm').value;
-      if (password !== confirm) {
-        modalText.textContent = 'Passwords do not match. Please try again.';
-        showModal();
-        return;
-      }
-      modalText.textContent = 'Parent account created successfully. Please check your email for confirmation.';
-      showModal();
-      this.reset();
-    });
+    showModal("Account created successfully!");
 
-    function showModal(type) {
-      modalBackdrop.classList.add('show');
-      modalBackdrop.setAttribute('aria-hidden', 'false');
-      if (type === 'forgot') {
-        modalText.textContent = 'A password reset link has been sent to your registered email.';
-      }
-    }
+    setTimeout(() => {
+      window.location.href = "parent-dashboard.html";
+    }, 1500);
 
-    function hideModal() {
-      modalBackdrop.classList.remove('show');
-      modalBackdrop.setAttribute('aria-hidden', 'true');
-    }
-  </script>
+  } catch (err) {
+    showModal(err.message);
+  }
+});
+
+
+// ✅ LOGIN (FIXED IDS)
+document.getElementById('loginForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+
+  const email = document.getElementById('parentLoginEmail').value;
+  const password = document.getElementById('parentLoginPassword').value;
+
+  try {
+    await signInWithEmailAndPassword(auth, email, password);
+
+    showModal("Login successful!");
+
+    setTimeout(() => {
+      window.location.href = "parent-dashboard.html";
+    }, 1500);
+
+  } catch (err) {
+    showModal(err.message);
+  }
+});
+</script>
 </body>
 </html>
