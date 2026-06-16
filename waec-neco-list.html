@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WAEC / NECO Registered Students</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: radial-gradient(circle at 10% 20%, rgba(10, 25, 47, 0.98), rgba(2, 12, 27, 1));
+            color: white;
+        }
+
+        .page-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px;
+        }
+
+        h1, h2 {
+            margin: 0 0 12px;
+            font-weight: 700;
+        }
+
+        .top-bar {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .top-bar a,
+        .top-bar select {
+            padding: 12px 16px;
+            border-radius: 12px;
+            border: none;
+            font-size: 0.95rem;
+        }
+
+        .top-bar a {
+            background: #00ffc3;
+            color: #041c1a;
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .notice {
+            background: rgba(0, 255, 195, 0.2);
+            border-left: 4px solid #00ffc3;
+            padding: 18px;
+            border-radius: 14px;
+            margin-bottom: 24px;
+            color: #e8fdf5;
+        }
+
+        .stats {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(0, 255, 195, 0.18);
+            border-radius: 16px;
+            padding: 16px 18px;
+            min-width: 180px;
+        }
+
+        .stat-card strong {
+            display: block;
+            font-size: 1.8rem;
+            margin-bottom: 6px;
+            color: #00ffc3;
+        }
+
+        .student-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 24px;
+        }
+
+        .student-table th,
+        .student-table td {
+            padding: 14px 12px;
+            border: 1px solid rgba(255,255,255,0.08);
+            text-align: left;
+            font-size: 0.95rem;
+        }
+
+        .student-table th {
+            background: rgba(0, 255, 195, 0.1);
+            color: #ffffff;
+        }
+
+        .student-table tbody tr:nth-child(even) {
+            background: rgba(255,255,255,0.04);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            border: 1px dashed rgba(255,255,255,0.2);
+            border-radius: 18px;
+            background: rgba(255,255,255,0.03);
+        }
+
+        @media (max-width: 900px) {
+            .student-table th,
+            .student-table td {
+                padding: 10px 8px;
+            }
+
+            .top-bar,
+            .controls {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-wrapper">
+        <div class="top-bar">
+            <div>
+                <h1>WAEC / NECO Registered Students</h1>
+                <p>Review the list of students who have completed WAEC or NECO registration on the registration page.</p>
+            </div>
+            <a href="waec and neco.html">Back to Registration</a>
+        </div>
+
+        <div class="notice">
+            This page displays the full WAEC and NECO registration details saved locally from the registration form. Use the filter to view all WAEC students, all NECO students, or both.
+        </div>
+
+        <div class="stats">
+            <div class="stat-card">
+                <strong id="totalStudents">0</strong>
+                Total Students
+            </div>
+            <div class="stat-card">
+                <strong id="waecCount">0</strong>
+                WAEC Students
+            </div>
+            <div class="stat-card">
+                <strong id="necoCount">0</strong>
+                NECO Students
+            </div>
+        </div>
+
+        <div class="controls">
+            <label>
+                Filter:
+                <select id="examFilter">
+                    <option value="all">All registrations</option>
+                    <option value="WAEC">WAEC only</option>
+                    <option value="NECO">NECO only</option>
+                </select>
+            </label>
+            <label>
+                Search Name:
+                <input id="searchName" type="text" placeholder="Type name to search" style="min-width:220px;">
+            </label>
+        </div>
+
+        <table class="student-table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Exam</th>
+                    <th>Stream</th>
+                    <th>Year</th>
+                    <th>Phone</th>
+                    <th>Email</th>
+                    <th>Class</th>
+                    <th>Gender</th>
+                    <th>Address</th>
+                    <th>Subjects</th>
+                </tr>
+            </thead>
+            <tbody id="studentTableBody"></tbody>
+        </table>
+
+        <div id="emptyState" class="empty-state" style="display:none;">
+            <h2>No registered students yet</h2>
+            <p>Once students submit the WAEC/NECO registration form, their details will appear here.</p>
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
+        import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyDmvmqTgjhbtgLxrbvgmT3LQgEsNoj3x_g",
+            authDomain: "positivechangecollege-4d2cb.firebaseapp.com",
+            projectId: "positivechangecollege-4d2cb",
+            storageBucket: "positivechangecollege-4d2cb.firebasestorage.app",
+            messagingSenderId: "847572892577",
+            appId: "1:847572892577:web:1f6184c056ca46cf3ce9e0",
+            measurementId: "G-CVGTLPDR5M"
+        };
+
+        let db = null;
+        let firebaseConnected = false;
+        try {
+            const app = initializeApp(firebaseConfig);
+            db = getFirestore(app);
+            firebaseConnected = true;
+            console.log('Firebase initialized for student list');
+        } catch (error) {
+            console.warn('Firebase initialization failed:', error);
+        }
+
+        const tableBody = document.getElementById('studentTableBody');
+        const emptyState = document.getElementById('emptyState');
+        const examFilter = document.getElementById('examFilter');
+        const searchName = document.getElementById('searchName');
+        const totalStudents = document.getElementById('totalStudents');
+        const waecCount = document.getElementById('waecCount');
+        const necoCount = document.getElementById('necoCount');
+
+        async function getRegistrations() {
+            const local = localStorage.getItem('waecNecoRegistrations');
+            const localRegs = local ? JSON.parse(local).filter(item => item && item.examType) : [];
+
+            if (!firebaseConnected) {
+                return localRegs;
+            }
+
+            try {
+                const snap = await getDocs(collection(db, 'waec-neco-students'));
+                const remoteRegs = snap.docs.map(doc => doc.data());
+                return remoteRegs.length ? remoteRegs : localRegs;
+            } catch (error) {
+                console.warn('Failed to fetch registrations from Firebase:', error);
+                return localRegs;
+            }
+        }
+
+        function formatFullName(record) {
+            const parts = [record.surname, record.firstname, record.othername].filter(Boolean);
+            return parts.join(' ');
+        }
+
+        async function renderTable() {
+            const registrations = await getRegistrations();
+            const filter = examFilter.value;
+            const query = searchName.value.trim().toLowerCase();
+
+            const filtered = registrations.filter(item => {
+                if (filter !== 'all' && item.examType !== filter) return false;
+                if (query) {
+                    return formatFullName(item).toLowerCase().includes(query);
+                }
+                return true;
+            });
+
+            tableBody.innerHTML = '';
+
+            if (!filtered.length) {
+                emptyState.style.display = 'block';
+                return;
+            }
+
+            emptyState.style.display = 'none';
+
+            filtered.forEach(item => {
+                const row = document.createElement('tr');
+                const fullName = formatFullName(item);
+                const classLabel = item.stream ? item.stream + ' class' : 'N/A';
+                const subjectsText = Array.isArray(item.subjects) ? item.subjects.join(', ') : (item.subjects || 'N/A');
+
+                row.innerHTML = `
+                    <td>${fullName}</td>
+                    <td>${item.examType || 'N/A'}</td>
+                    <td>${item.stream || 'N/A'}</td>
+                    <td>${item.examYear || 'N/A'}</td>
+                    <td>${item.phone || 'N/A'}</td>
+                    <td>${item.email || 'N/A'}</td>
+                    <td>${classLabel}</td>
+                    <td>${item.gender || 'N/A'}</td>
+                    <td>${item.address || 'N/A'}</td>
+                    <td>${subjectsText}</td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+
+        examFilter.addEventListener('change', () => {
+            renderTable();
+        });
+
+        searchName.addEventListener('input', () => {
+            renderTable();
+        });
+
+        async function updateStats() {
+            const registrations = await getRegistrations();
+            totalStudents.textContent = registrations.length;
+            waecCount.textContent = registrations.filter(item => item.examType === 'WAEC').length;
+            necoCount.textContent = registrations.filter(item => item.examType === 'NECO').length;
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            await updateStats();
+            await renderTable();
+        });
+    </script>
+</body>
+</html>

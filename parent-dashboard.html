@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Parent Dashboard | Positive Change College</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" />
+  <style>
+    :root {
+      --bg: #071324;
+      --surface: rgba(255, 255, 255, 0.05);
+      --surface-strong: rgba(255, 255, 255, 0.12);
+      --accent: #00ffc3;
+      --text: #eef6f7;
+      --muted: #a3c7d8;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: 'Inter', Arial, sans-serif;
+      background: linear-gradient(180deg, #071324 0%, #020913 100%);
+      color: var(--text);
+    }
+
+    .page-wrapper {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      padding: 18px 22px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 24px;
+      backdrop-filter: blur(12px);
+      margin-bottom: 24px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .brand-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #00ffc3, #12a68a);
+      display: grid;
+      place-items: center;
+      color: #042b24;
+      font-weight: 800;
+      font-size: 1.2rem;
+    }
+
+    .brand-title h1 {
+      margin: 0;
+      font-size: 1.25rem;
+    }
+
+    .brand-title p {
+      margin: 2px 0 0;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .topbar-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .topbar-links a,
+    .topbar-links button {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 18px;
+      border-radius: 999px;
+      text-decoration: none;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--text);
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.2s ease, filter 0.2s ease;
+    }
+
+    .topbar-links a:hover,
+    .topbar-links button:hover {
+      transform: translateY(-1px);
+      filter: brightness(1.04);
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 320px minmax(0, 1fr);
+      gap: 24px;
+    }
+
+    .sidebar,
+    .panel {
+      background: var(--surface);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 28px;
+      padding: 26px;
+      backdrop-filter: blur(16px);
+    }
+
+    .sidebar h2 {
+      margin: 0 0 18px;
+      color: var(--accent);
+      font-size: 1.1rem;
+    }
+
+    .sidebar p,
+    .sidebar span {
+      color: var(--text);
+    }
+
+    .info-card {
+      margin-top: 24px;
+      display: grid;
+      gap: 16px;
+    }
+
+    .info-card-item {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      padding: 18px;
+    }
+
+    .info-card-item h3 {
+      margin: 0 0 10px;
+      font-size: 1rem;
+      color: var(--text);
+    }
+
+    .info-card-item p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 0.95rem;
+    }
+
+    .panel section {
+      margin-bottom: 24px;
+    }
+
+    .welcome {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 18px;
+      padding: 26px;
+      border-radius: 28px;
+      background: rgba(0, 255, 195, 0.1);
+      border: 1px solid rgba(0, 255, 195, 0.2);
+    }
+
+    .welcome h2 {
+      margin: 0 0 10px;
+      font-size: clamp(2rem, 3vw, 2.6rem);
+      color: #f9fff8;
+    }
+
+    .welcome p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .avatar {
+      width: 96px;
+      height: 96px;
+      border-radius: 24px;
+      background: #eef7f0;
+      color: #042b24;
+      font-size: 2.4rem;
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 20px;
+    }
+
+    .stat-card {
+      padding: 24px;
+      border-radius: 24px;
+      background: rgba(0, 255, 195, 0.08);
+      border: 1px solid rgba(0, 255, 195, 0.15);
+    }
+
+    .stat-card strong {
+      display: block;
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+
+    .stat-card span {
+      color: var(--muted);
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .section-header h3 {
+      margin: 0;
+      font-size: 1.2rem;
+    }
+
+    .section-header a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .payment-status-grid,
+    .payment-actions,
+    .quick-links,
+    .grades-list,
+    .announcements-list {
+      display: grid;
+      gap: 16px;
+    }
+
+    .payment-status-grid {
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    }
+
+    .payment-status-item {
+      padding: 20px;
+      border-radius: 24px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      text-align: center;
+    }
+
+    .payment-status-amount {
+      font-size: 1.75rem;
+      margin-bottom: 8px;
+    }
+
+    .payment-status-label {
+      color: var(--muted);
+    }
+
+    .payment-actions {
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    }
+
+    .btn-primary,
+    .btn-secondary {
+      border: none;
+      border-radius: 999px;
+      padding: 14px 20px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.2s ease, filter 0.2s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #00ffc3, #12a68a);
+      color: #042b24;
+    }
+
+    .btn-secondary {
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .btn-primary:hover,
+    .btn-secondary:hover {
+      transform: translateY(-1px);
+      filter: brightness(1.05);
+    }
+
+    .table {
+      width: 100%;
+      border-collapse: collapse;
+      color: var(--text);
+    }
+
+    .table th,
+    .table td {
+      padding: 14px 16px;
+      text-align: left;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .grades-list,
+    .announcements-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .grades-list li,
+    .announcements-list li {
+      padding: 18px 20px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.05);
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .grades-subject,
+    .announcement-title {
+      margin: 0 0 6px;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .grades-score,
+    .announcement-meta,
+    .announcement-label {
+      color: var(--muted);
+    }
+
+    @media (max-width: 1024px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+
+      .welcome,
+      .dashboard-grid,
+      .payment-actions,
+      .quick-links,
+      .payment-status-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .page-wrapper {
+        padding: 16px;
+      }
+
+      header {
+        flex-direction: column;
+        align-items: stretch;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-wrapper">
+    <header>
+      <div class="brand">
+        <div class="brand-icon">P</div>
+        <div class="brand-title">
+          <h1>Parent Dashboard</h1>
+          <p>Positive Change College</p>
+        </div>
+      </div>
+      <div class="topbar-links">
+        <a href="index.html"><i class="bi bi-house-fill"></i> Home</a>
+        <a href="school-form.html"><i class="bi bi-pencil-square"></i> School Form</a>
+        <a href="student potal signin.html"><i class="bi bi-person-fill"></i> Student Portal</a>
+        <button type="button" onclick="logoutUser()"><i class="bi bi-box-arrow-right"></i> Sign Out</button>
+      </div>
+    </header>
+
+    <div class="layout">
+      <aside class="sidebar">
+        <h2>Parent Profile</h2>
+        <p><strong>Name:</strong> <span id="parentName">Parent</span></p>
+        <p><strong>Email:</strong> <span id="parentEmail">-</span></p>
+        <p><strong>Children:</strong> <span id="childrenCount">1</span></p>
+        <p><strong>Status:</strong> <span>Active</span></p>
+
+        <div class="info-card">
+          <div class="info-card-item">
+            <h3>Portal Access</h3>
+            <p>Use this dashboard to track attendance, results, fees, and announcements for your child.</p>
+          </div>
+          <div class="info-card-item">
+            <h3>Get Help</h3>
+            <p>Contact the school office or teacher from the portal quickly when you need support.</p>
+          </div>
+        </div>
+      </aside>
+
+      <section class="panel">
+        <section class="welcome">
+          <div>
+            <p style="margin:0; text-transform:uppercase; letter-spacing:0.18em; font-size:0.82rem; color:#ffb703; font-weight:700;">Welcome back</p>
+            <h2>Hello, <span id="welcomeName">Parent</span></h2>
+            <p>Monitor your child’s school performance, attendance, payments, and announcements from one central dashboard.</p>
+          </div>
+          <div class="avatar" id="avatarInitial">P</div>
+        </section>
+
+        <div class="stats-grid">
+          <article class="stat-card">
+            <strong>1</strong>
+            <span>Child enrolled</span>
+          </article>
+          <article class="stat-card">
+            <strong>95%</strong>
+            <span>Attendance rate</span>
+          </article>
+          <article class="stat-card">
+            <strong>4</strong>
+            <span>Unread messages</span>
+          </article>
+        </div>
+
+        <section>
+          <div class="section-header">
+            <h3>Fee summary</h3>
+            <a href="#payments">View details</a>
+          </div>
+          <div class="payment-status-grid">
+            <div class="payment-status-item">
+              <div class="payment-status-amount">₦850,000</div>
+              <div class="payment-status-label">Total fees</div>
+            </div>
+            <div class="payment-status-item">
+              <div class="payment-status-amount">₦650,000</div>
+              <div class="payment-status-label">Paid</div>
+            </div>
+            <div class="payment-status-item">
+              <div class="payment-status-amount">₦200,000</div>
+              <div class="payment-status-label">Outstanding</div>
+            </div>
+          </div>
+          <div class="payment-actions">
+            <button class="btn-primary">Make Payment</button>
+            <button class="btn-secondary">Payment history</button>
+          </div>
+        </section>
+
+        <section class="grades" id="grades">
+          <div class="section-header">
+            <h3>Latest academic updates</h3>
+            <a href="#">See all reports</a>
+          </div>
+          <ul class="grades-list">
+            <li>
+              <div>
+                <p class="grades-subject">Mathematics</p>
+                <p class="grades-score">Grade: A</p>
+              </div>
+              <span class="announcement-label">Strong</span>
+            </li>
+            <li>
+              <div>
+                <p class="grades-subject">English</p>
+                <p class="grades-score">Grade: B+</p>
+              </div>
+              <span class="announcement-label">Good</span>
+            </li>
+            <li>
+              <div>
+                <p class="grades-subject">Science</p>
+                <p class="grades-score">Grade: A-</p>
+              </div>
+              <span class="announcement-label">Improving</span>
+            </li>
+          </ul>
+        </section>
+
+        <section class="announcements" id="messages">
+          <div class="section-header">
+            <h3>School announcements</h3>
+            <a href="#">All news</a>
+          </div>
+          <ul class="announcements-list">
+            <li>
+              <div>
+                <p class="announcement-title">PTA meeting Friday</p>
+                <p class="announcement-meta">Venue: School hall • 2 days ago</p>
+              </div>
+              <span class="announcement-label">New</span>
+            </li>
+            <li>
+              <div>
+                <p class="announcement-title">Exam timetable released</p>
+                <p class="announcement-meta">Check the portal for your child’s exam dates.</p>
+              </div>
+              <span class="announcement-label">Info</span>
+            </li>
+            <li>
+              <div>
+                <p class="announcement-title">Fee deadline approaching</p>
+                <p class="announcement-meta">Complete payment before the end of term.</p>
+              </div>
+              <span class="announcement-label">Alert</span>
+            </li>
+          </ul>
+        </section>
+      </section>
+    </div>
+  </div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
+    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-auth.js";
+    import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyDmvmqTgjhbtgLxrbvgmT3LQgEsNoj3x_g",
+      authDomain: "positivechangecollege-4d2cb.firebaseapp.com",
+      projectId: "positivechangecollege-4d2cb",
+      storageBucket: "positivechangecollege-4d2cb.firebasestorage.app",
+      messagingSenderId: "847572892577",
+      appId: "1:847572892577:web:1f6184c056ca46cf3ce9e0",
+      measurementId: "G-CVGTLPDR5M"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+
+    const welcomeName = document.getElementById('welcomeName');
+    const parentName = document.getElementById('parentName');
+    const parentEmail = document.getElementById('parentEmail');
+    const avatarInitial = document.getElementById('avatarInitial');
+
+    onAuthStateChanged(auth, async (user) => {
+      if (!user) {
+        window.location.href = 'parent potalsignin.html';
+        return;
+      }
+
+      const docRef = doc(db, 'parents', user.uid);
+      const docSnap = await getDoc(docRef);
+      const data = docSnap.exists() ? docSnap.data() : null;
+
+      const displayName = data?.name || user.email || 'Parent';
+      welcomeName.textContent = displayName;
+      parentName.textContent = displayName;
+      parentEmail.textContent = data?.email || user.email || 'Not set';
+      avatarInitial.textContent = displayName.charAt(0).toUpperCase();
+    });
+
+    window.logoutUser = async () => {
+      await signOut(auth);
+      window.location.href = 'parent potalsignin.html';
+    };
+  </script>
+</body>
+</html>

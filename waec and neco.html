@@ -146,7 +146,20 @@
             ensure all information is accurate.
         </div>
 
-        <form>
+        <div style="margin-bottom: 18px;">
+            <a href="waec-neco-list.html" style="display:inline-flex; align-items:center; gap:8px; background:#ffffff; color:#041c1a; padding:10px 16px; border-radius:10px; text-decoration:none; font-weight:700;">View WAEC/NECO Student List</a>
+        </div>
+
+        <div id="recentRegistration" class="notice" style="display: none;">
+            <strong>Recent registration details</strong>
+            <p>Name: <span id="regFullName">-</span></p>
+            <p>Class: <span id="regClass">-</span></p>
+            <p>Registration Type: <span id="regType">-</span></p>
+            <p>Phone: <span id="regPhone">-</span></p>
+            <p>Email: <span id="regEmail">-</span></p>
+        </div>
+
+        <form id="waecRegistrationForm">
             <div class="form-grid">
                 <div>
                     <label for="surname">Surname *</label>
@@ -212,8 +225,17 @@
                     <label for="examType">Exam Type *</label>
                     <select id="examType" name="examType" required>
                         <option value="">Select exam</option>
-                        <option value="waec">WAEC</option>
-                        <option value="neco">NECO</option>
+                        <option value="WAEC">WAEC</option>
+                        <option value="NECO">NECO</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="stream">Class Stream *</label>
+                    <select id="stream" name="stream" required>
+                        <option value="">Select stream</option>
+                        <option value="Science">Science</option>
+                        <option value="Arts">Arts</option>
+                        <option value="Commercial">Commercial</option>
                     </select>
                 </div>
                 <div class="full photo-upload">
@@ -224,8 +246,34 @@
                 </div>
                 <div class="full">
                     <label for="subjects">Subjects to Register *</label>
-                    <textarea id="subjects" name="subjects" placeholder="List the subjects you are registering for"
-                        required></textarea>
+                    <select id="subjects" name="subjects" multiple size="12" required>
+                        <option value="English Language">English Language</option>
+                        <option value="Mathematics">Mathematics</option>
+                        <option value="Biology">Biology</option>
+                        <option value="Chemistry">Chemistry</option>
+                        <option value="Physics">Physics</option>
+                        <option value="Further Mathematics">Further Mathematics</option>
+                        <option value="Economics">Economics</option>
+                        <option value="Financial Accounting">Financial Accounting</option>
+                        <option value="Commerce">Commerce</option>
+                        <option value="Government">Government</option>
+                        <option value="Geography">Geography</option>
+                        <option value="Computer Studies">Computer Studies</option>
+                        <option value="Agricultural Science">Agricultural Science</option>
+                        <option value="Literature in English">Literature in English</option>
+                        <option value="Civic Education">Civic Education</option>
+                        <option value="Christian Religious Studies">Christian Religious Studies</option>
+                        <option value="Islamic Religious Studies">Islamic Religious Studies</option>
+                        <option value="Fine Art">Fine Art</option>
+                        <option value="French">French</option>
+                        <option value="Yoruba">Yoruba</option>
+                        <option value="Igbo">Igbo</option>
+                        <option value="Hausa">Hausa</option>
+                        <option value="Physical Education">Physical Education</option>
+                    </select>
+                    <p style="font-size: 0.9rem; margin-top: 8px; color: #ffffff; opacity: 0.85;">Select up to 9 subjects. Hold Ctrl (Windows) or Cmd (Mac) to choose multiple items.</p>
+                    <p id="subjectCount" style="font-size: 0.9rem; margin-top: 8px; color: #00ffc3;">Selected subjects: 0 / 9</p>
+                    <div id="selectedSubjectsList" style="font-size: 0.9rem; margin-top: 8px; color: #ffffff; opacity:0.95;"></div>
                 </div>
                 <div class="submit-row">
                     <button type="submit">Submit Registration</button>
@@ -234,9 +282,56 @@
         </form>
     </div>
 
-    <script>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
+        import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyDmvmqTgjhbtgLxrbvgmT3LQgEsNoj3x_g",
+            authDomain: "positivechangecollege-4d2cb.firebaseapp.com",
+            projectId: "positivechangecollege-4d2cb",
+            storageBucket: "positivechangecollege-4d2cb.firebasestorage.app",
+            messagingSenderId: "847572892577",
+            appId: "1:847572892577:web:1f6184c056ca46cf3ce9e0",
+            measurementId: "G-CVGTLPDR5M"
+        };
+
+        let db = null;
+        try {
+            const app = initializeApp(firebaseConfig);
+            db = getFirestore(app);
+            console.log('Firebase initialized');
+        } catch (error) {
+            console.warn('Firebase initialization failed:', error);
+        }
+
         const photoInput = document.getElementById('photo');
         const photoPreview = document.getElementById('photoPreview');
+        const waecForm = document.getElementById('waecRegistrationForm');
+        const subjectsSelect = document.getElementById('subjects');
+        const subjectCountText = document.getElementById('subjectCount');
+        const selectedSubjectsList = document.getElementById('selectedSubjectsList');
+
+        function updateSubjectSummary() {
+            if (!subjectsSelect) return;
+            const selectedOptions = Array.from(subjectsSelect.selectedOptions);
+            if (selectedOptions.length > 9) {
+                while (selectedOptions.length > 9) {
+                    const optionToDeselect = selectedOptions.pop();
+                    optionToDeselect.selected = false;
+                }
+                alert('You can only select up to 9 subjects. Extra selections have been removed.');
+            }
+            const selectedValues = Array.from(subjectsSelect.selectedOptions).map(opt => opt.value);
+            subjectCountText.textContent = `Selected subjects: ${selectedValues.length} / 9`;
+            selectedSubjectsList.textContent = selectedValues.length
+                ? `Chosen subjects: ${selectedValues.join(', ')}`
+                : 'No subjects selected yet.';
+        }
+
+        if (subjectsSelect) {
+            subjectsSelect.addEventListener('change', updateSubjectSummary);
+        }
 
         photoInput.addEventListener('change', () => {
             const file = photoInput.files[0];
@@ -252,6 +347,139 @@
             };
             reader.readAsDataURL(file);
         });
+
+        async function saveWaecRegistration(registration) {
+            const stored = localStorage.getItem('waecNecoRegistrations');
+            const registrations = stored ? JSON.parse(stored) : [];
+            registrations.unshift(registration);
+            localStorage.setItem('waecNecoRegistrations', JSON.stringify(registrations));
+
+            if (!db) return;
+            try {
+                await addDoc(collection(db, 'waec-neco-students'), registration);
+            } catch (error) {
+                console.warn('Failed to save registration to Firebase:', error);
+            }
+        }
+
+        if (waecForm) {
+            waecForm.addEventListener('submit', async function (e) {
+                e.preventDefault();
+
+                const registrationData = {
+                    surname: document.getElementById('surname').value.trim(),
+                    firstname: document.getElementById('firstname').value.trim(),
+                    othername: document.getElementById('othername').value.trim(),
+                    gender: document.getElementById('gender').value,
+                    dob: document.getElementById('dob').value,
+                    placeOfBirth: document.getElementById('placeOfBirth').value.trim(),
+                    lga: document.getElementById('lga').value.trim(),
+                    state: document.getElementById('state').value.trim(),
+                    address: document.getElementById('address').value.trim(),
+                    phone: document.getElementById('phone').value.trim(),
+                    email: document.getElementById('email').value.trim(),
+                    examYear: document.getElementById('examYear').value,
+                    examType: document.getElementById('examType').value,
+                    stream: document.getElementById('stream').value,
+                    subjects: Array.from(document.getElementById('subjects').selectedOptions).map(option => option.value),
+                    registrationDate: new Date().toISOString()
+                };
+
+                if (!registrationData.examType || !registrationData.stream) {
+                    alert('Please choose an exam type and class stream.');
+                    return;
+                }
+
+                if (!registrationData.subjects.length) {
+                    alert('Please select at least one subject.');
+                    return;
+                }
+
+                await saveWaecRegistration(registrationData);
+                alert('WAEC/NECO registration saved successfully. You can view the student list now.');
+                waecForm.reset();
+                photoPreview.style.display = 'none';
+                photoPreview.src = '';
+                updateSubjectSummary();
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', updateSubjectSummary);
+
+        function getRecentRegistration() {
+            const redirectData = localStorage.getItem('lastWaecRedirectData');
+            if (redirectData) {
+                try {
+                    return JSON.parse(redirectData);
+                } catch (error) {
+                    console.warn('Failed to parse last waec redirect data:', error);
+                }
+            }
+            const saved = localStorage.getItem('pccRegistration');
+            if (!saved) return null;
+            try {
+                return JSON.parse(saved);
+            } catch (error) {
+                console.warn('Failed to load saved registration:', error);
+                return null;
+            }
+        }
+
+        function populateWaecForm(reg) {
+            const fullName = reg.fullName || '';
+            const nameParts = fullName.trim().split(' ').filter(Boolean);
+            const surnameInput = document.getElementById('surname');
+            const firstnameInput = document.getElementById('firstname');
+            if (surnameInput && firstnameInput) {
+                if (nameParts.length > 1) {
+                    surnameInput.value = nameParts.pop();
+                    firstnameInput.value = nameParts.join(' ');
+                } else {
+                    surnameInput.value = fullName;
+                    firstnameInput.value = '';
+                }
+            }
+
+            if (reg.dateOfBirth) {
+                const dobInput = document.getElementById('dob');
+                if (dobInput) dobInput.value = reg.dateOfBirth;
+            }
+            if (reg.parentPhone) {
+                const phoneInput = document.getElementById('phone');
+                if (phoneInput) phoneInput.value = reg.parentPhone;
+            }
+            if (reg.parentEmail) {
+                const emailInput = document.getElementById('email');
+                if (emailInput) emailInput.value = reg.parentEmail;
+            }
+            const examTypeInput = document.getElementById('examType');
+            if (examTypeInput && reg.registrationType) {
+                if (reg.registrationType.includes('WAEC') && !reg.registrationType.includes('NECO')) {
+                    examTypeInput.value = 'WAEC';
+                } else if (reg.registrationType.includes('NECO') && !reg.registrationType.includes('WAEC')) {
+                    examTypeInput.value = 'NECO';
+                } else if (reg.registrationType.includes('Both')) {
+                    examTypeInput.value = 'WAEC';
+                }
+            }
+            localStorage.removeItem('lastWaecRedirectData');
+        }
+
+        function loadSavedRegistration() {
+            const reg = getRecentRegistration();
+            if (!reg) return;
+            const details = document.getElementById('recentRegistration');
+            if (!details) return;
+            details.style.display = 'block';
+            document.getElementById('regFullName').textContent = reg.fullName || 'N/A';
+            document.getElementById('regClass').textContent = reg.studentClass || 'N/A';
+            document.getElementById('regType').textContent = reg.registrationType || 'N/A';
+            document.getElementById('regPhone').textContent = reg.parentPhone || reg.phone || 'N/A';
+            document.getElementById('regEmail').textContent = reg.parentEmail || reg.email || 'N/A';
+            populateWaecForm(reg);
+        }
+
+        document.addEventListener('DOMContentLoaded', loadSavedRegistration);
     </script>
 </body>
 

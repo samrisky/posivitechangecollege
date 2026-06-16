@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Admission Form</title>
+    <style>
+        :root {
+            --bg: #06121f;
+            --panel: rgba(255, 255, 255, 0.08);
+            --border: rgba(0, 255, 195, 0.2);
+            --accent: #00ffc3;
+            --text: #f4f8f7;
+            --muted: rgba(244, 248, 247, 0.7);
+            --card: rgba(6, 18, 31, 0.92);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: Inter, Arial, sans-serif;
+            background: radial-gradient(circle at top left, rgba(0, 255, 195, 0.15), transparent 35%),
+                        radial-gradient(circle at bottom right, rgba(0, 255, 195, 0.1), transparent 25%),
+                        linear-gradient(180deg, #071324 0%, #020913 100%);
+            color: var(--text);
+        }
+
+        .page {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px 24px 60px;
+        }
+
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            align-items: flex-start;
+            margin-bottom: 30px;
+        }
+
+        .page-header h1 {
+            margin: 0;
+            font-size: clamp(2rem, 2.5vw, 2.8rem);
+            letter-spacing: -0.03em;
+        }
+
+        .page-header p {
+            margin: 12px 0 0;
+            max-width: 680px;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 18px;
+            border-radius: 999px;
+            border: 1px solid rgba(255,255,255,0.12);
+            background: rgba(255,255,255,0.04);
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 24px;
+            align-items: start;
+        }
+
+        .form-panel,
+        .summary-panel {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 28px;
+            padding: 28px;
+            backdrop-filter: blur(16px);
+            box-shadow: 0 24px 64px rgba(0,0,0,0.18);
+        }
+
+        .section-title {
+            margin: 0 0 18px;
+            font-size: 1.25rem;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+        }
+
+        .section-card {
+            border-radius: 22px;
+            border: 1px solid rgba(255,255,255,0.08);
+            padding: 24px;
+            margin-bottom: 20px;
+            background: rgba(255,255,255,0.03);
+        }
+
+        .section-card h2 {
+            margin: 0 0 16px;
+            font-size: 1.1rem;
+            color: var(--text);
+        }
+
+        .section-card .grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .field {
+            display: grid;
+            gap: 8px;
+            margin-bottom: 18px;
+        }
+
+        .field.full {
+            grid-column: span 2;
+        }
+
+        label {
+            font-size: 0.95rem;
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            border-radius: 14px;
+            border: 1px solid rgba(255,255,255,0.12);
+            background: rgba(255,255,255,0.95);
+            color: #041c1a;
+            padding: 14px 16px;
+            font-size: 0.95rem;
+            outline: none;
+        }
+
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .hint {
+            font-size: 0.88rem;
+            color: var(--muted);
+        }
+
+        .summary-panel h2 {
+            margin-top: 0;
+            font-size: 1.3rem;
+        }
+
+        .summary-item {
+            margin-bottom: 16px;
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            align-items: baseline;
+        }
+
+        .summary-item strong {
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+
+        .summary-item span {
+            color: var(--text);
+            font-weight: 700;
+        }
+
+        .submit-row {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 10px;
+        }
+
+        .btn-primary {
+            border: none;
+            border-radius: 999px;
+            padding: 16px 28px;
+            background: linear-gradient(95deg, #00ffc3, #00b38f);
+            color: #041c1a;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 16px 30px rgba(0,255,195,0.18);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 22px 40px rgba(0,255,195,0.22);
+        }
+
+        @media (max-width: 980px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 720px) {
+            .page {
+                padding: 20px 16px 40px;
+            }
+            .section-card {
+                padding: 20px;
+            }
+            .submit-row {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="page-header">
+            <div>
+                <h1>School Admission Form</h1>
+                <p>Fill in the details below to complete your admission application. The form is organized in sections for student details, guardian details, previous school information, and emergency contact data.</p>
+            </div>
+            <a class="back-link" href="index.html">← Back to Home</a>
+        </div>
+
+        <div class="form-grid">
+            <section class="form-panel">
+                <div class="section-card">
+                    <h2>Student Information</h2>
+                    <div class="grid">
+                        <div class="field">
+                            <label for="fullName">Full Name *</label>
+                            <input id="fullName" name="fullName" type="text" required>
+                        </div>
+                        <div class="field">
+                            <label for="dob">Date of Birth *</label>
+                            <input id="dob" name="dob" type="date" required>
+                        </div>
+                        <div class="field">
+                            <label for="studentClass">Class Applying For *</label>
+                            <select id="studentClass" name="studentClass" required>
+                                <option value="">Choose a class</option>
+                                <option>JSS 1</option>
+                                <option>JSS 2</option>
+                                <option>JSS 3</option>
+                                <option>SS 1</option>
+                                <option>SS 2</option>
+                                <option>SS 3</option>
+                            </select>
+                        </div>
+                        <div class="field">
+                            <label for="program">Program / Stream *</label>
+                            <select id="program" name="program" required>
+                                <option value="">Choose a stream</option>
+                                <option>Science</option>
+                                <option>Arts</option>
+                                <option>Commercial</option>
+                            </select>
+                        </div>
+                        <div class="field">
+                            <label for="gender">Gender *</label>
+                            <select id="gender" name="gender" required>
+                                <option value="">Choose gender</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        <div class="field">
+                            <label for="nationality">Nationality</label>
+                            <input id="nationality" name="nationality" type="text" placeholder="e.g. Nigerian">
+                        </div>
+                        <div class="field">
+                            <label for="religion">Religion</label>
+                            <input id="religion" name="religion" type="text" placeholder="e.g. Christian">
+                        </div>
+                        <div class="field">
+                            <label for="state">State of Origin</label>
+                            <input id="state" name="state" type="text" placeholder="e.g. Abuja">
+                        </div>
+                        <div class="field">
+                            <label for="lga">Local Government Area</label>
+                            <input id="lga" name="lga" type="text" placeholder="e.g. Garki">
+                        </div>
+                        <div class="field full">
+                            <label for="address">Home Address *</label>
+                            <textarea id="address" name="address" required></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-card">
+                    <h2>Guardian / Parent Details</h2>
+                    <div class="grid">
+                        <div class="field full">
+                            <label for="guardianName">Parent / Guardian Name *</label>
+                            <input id="guardianName" name="guardianName" type="text" required>
+                        </div>
+                        <div class="field">
+                            <label for="guardianRelationship">Relationship *</label>
+                            <input id="guardianRelationship" name="guardianRelationship" type="text" placeholder="e.g. Mother" required>
+                        </div>
+                        <div class="field">
+                            <label for="guardianPhone">Phone Number *</label>
+                            <input id="guardianPhone" name="guardianPhone" type="tel" required>
+                        </div>
+                        <div class="field full">
+                            <label for="guardianEmail">Email Address</label>
+                            <input id="guardianEmail" name="guardianEmail" type="email" placeholder="example@mail.com">
+                        </div>
+                        <div class="field full">
+                            <label for="guardianAddress">Guardian Address</label>
+                            <textarea id="guardianAddress" name="guardianAddress"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-card">
+                    <h2>Previous School</h2>
+                    <div class="grid">
+                        <div class="field full">
+                            <label for="previousSchool">Previous School Name</label>
+                            <input id="previousSchool" name="previousSchool" type="text" placeholder="Enter previous school">
+                        </div>
+                        <div class="field">
+                            <label for="lastClass">Class Completed</label>
+                            <select id="lastClass" name="lastClass">
+                                <option value="">Select class</option>
+                                <option>JSS 1</option>
+                                <option>JSS 2</option>
+                                <option>JSS 3</option>
+                                <option>SS 1</option>
+                                <option>SS 2</option>
+                            </select>
+                        </div>
+                        <div class="field">
+                            <label for="lastExamYear">Completion Year</label>
+                            <input id="lastExamYear" name="lastExamYear" type="number" min="2000" max="2035" placeholder="e.g. 2025">
+                        </div>
+                        <div class="field full">
+                            <label for="transferReason">Reason for Transfer</label>
+                            <textarea id="transferReason" name="transferReason" placeholder="Explain why you are joining this school"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-card">
+                    <h2>Emergency Contact</h2>
+                    <div class="grid">
+                        <div class="field">
+                            <label for="emergencyName">Contact Name *</label>
+                            <input id="emergencyName" name="emergencyName" type="text" required>
+                        </div>
+                        <div class="field">
+                            <label for="emergencyRelationship">Relationship *</label>
+                            <input id="emergencyRelationship" name="emergencyRelationship" type="text" required>
+                        </div>
+                        <div class="field full">
+                            <label for="emergencyPhone">Contact Phone *</label>
+                            <input id="emergencyPhone" name="emergencyPhone" type="tel" required>
+                        </div>
+                        <div class="field full">
+                            <label for="allergies">Medical / Allergies</label>
+                            <textarea id="allergies" name="allergies" placeholder="List allergies, medical conditions, or health notes"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-card">
+                    <h2>Application Notes</h2>
+                    <div class="field full">
+                        <label for="notes">Additional Information</label>
+                        <textarea id="notes" name="notes" placeholder="Any extra details you want the school to know"></textarea>
+                        <p class="hint">Optional: mention transfer documents, medical requests, or special support needs.</p>
+                    </div>
+                </div>
+
+                <div class="submit-row">
+                    <button class="btn-primary" type="submit">Submit Admission Application</button>
+                </div>
+            </form>
+
+            <aside class="summary-panel">
+                <h2>Application Summary</h2>
+                <div class="summary-item"><strong>Registration type</strong><span id="redirectType">N/A</span></div>
+                <div class="summary-item"><strong>Student name</strong><span id="redirectName">N/A</span></div>
+                <div class="summary-item"><strong>Class</strong><span id="redirectClass">N/A</span></div>
+                <div class="summary-item"><strong>Email</strong><span id="redirectEmail">N/A</span></div>
+                <div class="summary-item"><strong>Signed in user</strong><span id="loggedInUser">Not signed in</span></div>
+                <div class="summary-item"><strong>Phone</strong><span id="redirectPhone">N/A</span></div>
+                <div class="summary-item"><strong>Status</strong><span>New admission</span></div>
+                <p class="hint">This summary is preloaded from the registration page. Update any field before submitting.</p>
+            </aside>
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
+        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-auth.js";
+        import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyDmvmqTgjhbtgLxrbvgmT3LQgEsNoj3x_g",
+            authDomain: "positivechangecollege-4d2cb.firebaseapp.com",
+            projectId: "positivechangecollege-4d2cb",
+            storageBucket: "positivechangecollege-4d2cb.firebasestorage.app",
+            messagingSenderId: "847572892577",
+            appId: "1:847572892577:web:1f6184c056ca46cf3ce9e0",
+            measurementId: "G-CVGTLPDR5M"
+        };
+
+        let db = null;
+        let currentUser = null;
+        const schoolForm = document.getElementById('schoolForm');
+        const redirectType = document.getElementById('redirectType');
+        const redirectName = document.getElementById('redirectName');
+        const redirectClass = document.getElementById('redirectClass');
+        const redirectEmail = document.getElementById('redirectEmail');
+        const redirectPhone = document.getElementById('redirectPhone');
+        const loggedInUser = document.getElementById('loggedInUser');
+
+        try {
+            const app = initializeApp(firebaseConfig);
+            const auth = getAuth(app);
+            db = getFirestore(app);
+            console.log('Firebase initialized for school admission');
+
+            onAuthStateChanged(auth, (user) => {
+                currentUser = user;
+                if (user) {
+                    loggedInUser.textContent = user.email || 'Signed in';
+                } else {
+                    loggedInUser.textContent = 'Not signed in';
+                }
+            });
+        } catch (error) {
+            console.warn('Firebase initialization failed:', error);
+        }
+
+        function getRedirectData() {
+            const saved = localStorage.getItem('schoolFormRedirectData') || localStorage.getItem('registrationRedirectData');
+            if (!saved) return null;
+            try {
+                return JSON.parse(saved);
+            } catch (error) {
+                console.warn('Failed to parse redirect data:', error);
+                return null;
+            }
+        }
+
+        function populateForm(data) {
+            if (!data) return;
+            redirectType.textContent = data.registrationType || 'N/A';
+            redirectName.textContent = data.fullName || 'N/A';
+            redirectClass.textContent = data.studentClass || 'N/A';
+            redirectEmail.textContent = data.parentEmail || 'N/A';
+            redirectPhone.textContent = data.parentPhone || 'N/A';
+
+            document.getElementById('fullName').value = data.fullName || '';
+            if (data.dateOfBirth) document.getElementById('dob').value = data.dateOfBirth;
+            document.getElementById('studentClass').value = data.studentClass || '';
+            document.getElementById('guardianEmail').value = data.parentEmail || '';
+            document.getElementById('guardianPhone').value = data.parentPhone || '';
+            document.getElementById('previousSchool').value = data.previousSchool || '';
+        }
+
+        async function saveSchoolAdmission(admission) {
+            const stored = localStorage.getItem('schoolFormRegistrations');
+            const records = stored ? JSON.parse(stored) : [];
+            records.unshift(admission);
+            localStorage.setItem('schoolFormRegistrations', JSON.stringify(records));
+
+            if (!db) return;
+            try {
+                await addDoc(collection(db, 'school-admissions'), admission);
+            } catch (error) {
+                console.warn('Failed to save school admission to Firebase:', error);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const redirectData = getRedirectData();
+            populateForm(redirectData);
+        });
+
+        schoolForm.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const admissionData = {
+                fullName: document.getElementById('fullName').value.trim(),
+                dateOfBirth: document.getElementById('dob').value,
+                studentClass: document.getElementById('studentClass').value,
+                program: document.getElementById('program').value,
+                gender: document.getElementById('gender').value,
+                nationality: document.getElementById('nationality').value.trim(),
+                religion: document.getElementById('religion').value.trim(),
+                state: document.getElementById('state').value.trim(),
+                lga: document.getElementById('lga').value.trim(),
+                address: document.getElementById('address').value.trim(),
+                guardianName: document.getElementById('guardianName').value.trim(),
+                guardianRelationship: document.getElementById('guardianRelationship').value.trim(),
+                guardianPhone: document.getElementById('guardianPhone').value.trim(),
+                guardianEmail: document.getElementById('guardianEmail').value.trim(),
+                guardianAddress: document.getElementById('guardianAddress').value.trim(),
+                previousSchool: document.getElementById('previousSchool').value.trim(),
+                lastClass: document.getElementById('lastClass').value,
+                lastExamYear: document.getElementById('lastExamYear').value,
+                transferReason: document.getElementById('transferReason').value.trim(),
+                emergencyName: document.getElementById('emergencyName').value.trim(),
+                emergencyRelationship: document.getElementById('emergencyRelationship').value.trim(),
+                emergencyPhone: document.getElementById('emergencyPhone').value.trim(),
+                allergies: document.getElementById('allergies').value.trim(),
+                notes: document.getElementById('notes').value.trim(),
+                registrationType: redirectType.textContent || 'New Admission',
+                studentUid: currentUser ? currentUser.uid : null,
+                studentEmail: currentUser ? currentUser.email : document.getElementById('guardianEmail').value.trim() || redirectEmail.textContent || null,
+                createdAt: new Date().toISOString()
+            };
+
+            await saveSchoolAdmission(admissionData);
+            alert('Admission application submitted successfully.');
+            schoolForm.reset();
+        });
+    </script>
+</body>
+</html>

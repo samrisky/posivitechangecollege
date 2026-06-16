@@ -139,7 +139,7 @@
 
   .nav-links {
     display: flex;
-    gap: 1.8rem;
+    gap: 15px;
     list-style: none;
   }
 
@@ -198,7 +198,7 @@
       transition: max-height 0.3s ease, opacity 0.3s ease;
       opacity: 0;
       visibility: hidden;
-      border: 1px solid rgba(0,255,195,0.18);
+      border: 1px solid rgba(0, 255, 195, 0.18);
     }
 
     .nav-links.show {
@@ -221,7 +221,7 @@
       background: rgba(0, 255, 195, 0.08);
     }
 
-    .nav-flex > .nav-brand {
+    .nav-flex>.nav-brand {
       flex: 1 1 auto;
     }
 
@@ -639,6 +639,39 @@
   }
 
 
+  /* cta */
+  .cta-section {
+    background: linear-gradient(125deg, #0f172a 0%, #1e293b 100%);
+    border-radius: 48px;
+    padding: 70px 40px;
+    text-align: center;
+    margin: 40px auto 30px;
+    color: white;
+  }
+
+  .cta-section h2 {
+    font-size: 2.4rem;
+    margin-bottom: 18px;
+  }
+
+  .cta-button {
+    background: white;
+    color: #0f172a;
+    padding: 14px 40px;
+    border-radius: 60px;
+    font-weight: 700;
+    font-size: 1rem;
+    border: none;
+    margin-top: 20px;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+
+  .cta-button:hover {
+    transform: scale(0.97);
+    background: #f1f5f9;
+  }
+
   /* testimonials */
   .testimonial-flex {
     display: flex;
@@ -795,8 +828,9 @@
 <body>
   <nav class="navbar">
     <div class="container nav-flex">
+      <img src="./pictures/pca logo.png" alt="" width="50px" height="50px">
       <div class="nav-brand">
-        <a href="#home" class="logo">Positive Change College <span>Secondary School</span></a>
+        <a href="#home" class="logo"> Positive Change College <span>Secondary School</span></a>
         <p>Motto: We Teach, God Give Understanding</p>
       </div>
       <button class="nav-toggle" aria-expanded="false" aria-label="Open navigation">
@@ -810,6 +844,7 @@
         <li><a href="#portal">Portal</a></li>
         <li><a href="#contact">Contact</a></li>
         <li><a href="#Gallery">Gallery</a></li>
+        <li><a href="#cbt">C.B.T</a></li>
       </ul>
     </div>
   </nav>
@@ -984,9 +1019,14 @@
       <div class="container about-wrap">
         <div class="about-text">
           <h2 class="section-title" style="margin-bottom: 2rem;">About Our School</h2>
-          <p>Positive Change College is a leading secondary school dedicated to academic excellence, character formation, and high-stakes exam success. We support students from JSS1 through SS3 with a caring, disciplined learning environment.</p>
-          <p>Our school blends strong classroom instruction with practical guidance for WAEC and NECO preparation, leadership development, and community service. We are committed to helping every student reach their highest potential.</p>
-          <p><i class="bi bi-geo-alt" style="color:#00ffc3; margin-right: 8px;"></i> Located in Abuja, Nigeria · Serving students across the region</p>
+          <p>Positive Change College is a leading secondary school dedicated to academic excellence, character
+            formation, and high-stakes exam success. We support students from JSS1 through SS3 with a caring,
+            disciplined learning environment.</p>
+          <p>Our school blends strong classroom instruction with practical guidance for WAEC and NECO preparation,
+            leadership development, and community service. We are committed to helping every student reach their highest
+            potential.</p>
+          <p><i class="bi bi-geo-alt" style="color:#00ffc3; margin-right: 8px;"></i> Located in Abuja, Nigeria · Serving
+            students across the region</p>
           <div style="margin-top: 1.5rem;">
             <a href="#contact" class="btn btn-outline"><i class="bi bi-telephone"></i> Contact Admissions</a>
           </div>
@@ -1072,8 +1112,10 @@
 
           <form id="registrationForm">
             <div class="form-row">
-              <div class="form-group"><input id="studentName" name="studentName" type="text" placeholder="Full Name" required></div>
-              <div class="form-group"><input id="studentDob" name="studentDob" type="date" placeholder="Date of Birth"></div>
+              <div class="form-group"><input id="studentName" name="studentName" type="text" placeholder="Full Name"
+                  required></div>
+              <div class="form-group"><input id="studentDob" name="studentDob" type="date" placeholder="Date of Birth">
+              </div>
             </div>
             <div class="form-row">
               <div class="form-group">
@@ -1099,13 +1141,17 @@
               </div>
             </div>
             <div class="form-row">
-              <div class="form-group"><input id="parentEmail" name="parentEmail" type="email" placeholder="Parent/Guardian Email"></div>
-              <div class="form-group"><input id="parentPhone" name="parentPhone" type="tel" placeholder="Phone Number"></div>
+              <div class="form-group"><input id="parentEmail" name="parentEmail" type="email"
+                  placeholder="Parent/Guardian Email"></div>
+              <div class="form-group"><input id="parentPhone" name="parentPhone" type="tel" placeholder="Phone Number">
+              </div>
             </div>
-            <div class="form-group"><textarea id="previousSchool" name="previousSchool" rows="2" placeholder="Previous School (if applicable)"></textarea></div>
+            <div class="form-group"><textarea id="previousSchool" name="previousSchool" rows="2"
+                placeholder="Previous School (if applicable)"></textarea></div>
             <div class="form-group">
               <label style="display: flex; align-items: center; gap: 10px;">
-                <input id="agreeTerms" name="agreeTerms" type="checkbox" required> I confirm that the information provided is correct.
+                <input id="agreeTerms" name="agreeTerms" type="checkbox" required> I confirm that the information
+                provided is correct.
               </label>
             </div>
             <button type="submit" class="btn btn-primary" style="width:100%; justify-content: center;"><i
@@ -1150,13 +1196,15 @@
             <i class="bi bi-mortarboard" style="font-size: 2.5rem; color:  #00ffc3;"></i>
             <h3 style="margin: 1rem 0;">Student Portal</h3>
             <p>Check results, download timetables, and access learning materials on the dedicated portal page.</p>
-            <button class="btn btn-primary" style="width:100%; margin-top: 1rem;" onclick="window.location.href='student potal signin.html'">Go to Student Portal</button>
+            <button class="btn btn-primary" style="width:100%; margin-top: 1rem;"
+              onclick="window.location.href='student potal signin.html'">Go to Student Portal</button>
           </div>
           <div class="portal-card">
             <i class="bi bi-person-video2" style="font-size: 2.5rem; color:  #00ffc3;"></i>
             <h3 style="margin: 1rem 0;">Parent Portal</h3>
             <p>Monitor academic progress, fee payments, and school events on the parent portal page.</p>
-            <button class="btn btn-outline" style="width:100%; margin-top: 1rem;" onclick="window.location.href='parent potalsignin.html'">Open Parent Portal</button>
+            <button class="btn btn-outline" style="width:100%; margin-top: 1rem;"
+              onclick="window.location.href='parent potalsignin.html'">Open Parent Portal</button>
             <a href="#" style="display: block; margin-top: 1rem; font-size: 0.85rem;">Need help? Contact Admin</a>
           </div>
           <div class="portal-card">
@@ -1172,15 +1220,29 @@
             <i class="bi bi-person-plus" style="font-size: 2.5rem; color:  #00ffc3;"></i>
             <h3 style="margin: 1rem 0;">Student Account</h3>
             <p>Create a portal account to access student results, schedules and learning resources.</p>
-            <button class="btn btn-primary" style="width:100%; margin-top: 1rem;" onclick="window.location.href='studentsignup.html'">Create Student Account</button>
+            <button class="btn btn-primary" style="width:100%; margin-top: 1rem;"
+              onclick="window.location.href='studentsignup.html'">Create Student Account</button>
           </div>
           <div class="portal-card">
             <i class="bi bi-person-plus-fill" style="font-size: 2.5rem; color:  #00ffc3;"></i>
             <h3 style="margin: 1rem 0;">Parent Account</h3>
             <p>Create a parent portal account to follow your child’s progress and receive school updates.</p>
-            <button class="btn btn-outline" style="width:100%; margin-top: 1rem;" onclick="window.location.href='parent signup.html'">Create Parent Account</button>
+            <button class="btn btn-outline" style="width:100%; margin-top: 1rem;"
+              onclick="window.location.href='parent signup.html'">Create Parent Account</button>
           </div>
         </div>
+      </div>
+
+
+      <!-- CTA -->
+      <div class="container" id="cbt">
+        <div class="cta-section">
+          <h2>C.B.T</h2>
+          <p style="opacity:0.9; max-width:600px; margin: 10px auto;">Join the school CBT ecosystem for positive change
+            college.</p>
+            <a href="cbt.html">
+          <button class="cta-button"><i class="fas fa-graduation-cap"></i> Start free trial →</button>
+        </a></div>
       </div>
 
       <!-- Welcome Modal -->
@@ -1189,7 +1251,8 @@
           <button class="modal-close" aria-label="Close">&times;</button>
           <div style="font-size: 3rem; color: #00ffc3; margin-bottom: 1rem;">✓</div>
           <h3 class="modal-success-title">Welcome Back!</h3>
-          <p class="modal-success-body" id="welcomeMessage">You have successfully logged in. Redirecting to your dashboard...</p>
+          <p class="modal-success-body" id="welcomeMessage">You have successfully logged in. Redirecting to your
+            dashboard...</p>
         </div>
       </div>
     </section>
@@ -1198,18 +1261,22 @@
     <section id="testimonials">
       <div class="container">
         <h2 class="section-title">School Voices, Real Impact</h2>
-        <div class="section-sub"><span class="jjc"> Parents, students, and alumni share why Positive Change College is their trusted school.</span></div>
+        <div class="section-sub"><span class="jjc"> Parents, students, and alumni share why Positive Change College is
+            their trusted school.</span></div>
         <div class="testimonial-flex">
           <div class="testimonial"><i class="bi bi-quote" style="color: #00ffc3; font-size: 1.8rem;"></i>
-            <p style="margin: 1rem 0;">"My child’s grades improved quickly after joining Positive Change College. The teachers are supportive and the school is focused on exam success."</p>
+            <p style="margin: 1rem 0;">"My child’s grades improved quickly after joining Positive Change College. The
+              teachers are supportive and the school is focused on exam success."</p>
             <h4>— Mrs. Adeola</h4><span>Parent</span>
           </div>
           <div class="testimonial"><i class="bi bi-quote" style="color: #00ffc3; font-size: 1.8rem;"></i>
-            <p style="margin: 1rem 0;">"The school keeps parents informed and helps us stay involved in our student’s education every step of the way."</p>
+            <p style="margin: 1rem 0;">"The school keeps parents informed and helps us stay involved in our student’s
+              education every step of the way."</p>
             <h4>— Mr. Chukwu</h4><span>Parent</span>
           </div>
           <div class="testimonial"><i class="bi bi-quote" style="color: #00ffc3; font-size: 1.8rem;"></i>
-            <p style="margin: 1rem 0;">"I passed WAEC and NECO with confidence because of the extra tutorials and exam preparation at school."</p>
+            <p style="margin: 1rem 0;">"I passed WAEC and NECO with confidence because of the extra tutorials and exam
+              preparation at school."</p>
             <h4>— Blessing</h4><span>Alumnus</span>
           </div>
         </div>
@@ -1227,7 +1294,8 @@
             <div style="margin-top: 2rem;">
               <p><i class="bi bi-geo-alt" style="color: #00ffc3; width: 30px;"></i> 42 Education Avenue, Garki,
                 Abuja, Nigeria</p>
-              <p style="margin: 1rem 0;"><i class="bi bi-telephone" style="color: #00ffc3; width: 30px;"></i> +234 802 345
+              <p style="margin: 1rem 0;"><i class="bi bi-telephone" style="color: #00ffc3; width: 30px;"></i> +234 802
+                345
                 6789</p>
               <p><i class="bi bi-envelope" style="color: #00ffc3; width: 30px;"></i> admissions@positivechangess.edu.ng
               </p>
@@ -1267,13 +1335,13 @@
           <a href="#classes">Classes (JSS1-SS3)</a>
           <a href="#exams">WAEC/NECO Info</a>
           <a href="#register">Register Online</a>
-          <a href="studient potal.html">Student Portal</a>
+          <a href="student potal signin.html">Student Portal</a>
         </div>
         <div class="footer-col">
           <h4>Resources</h4>
           <a href="#">Academic Calendar</a>
           <a href="#">Fee Structure</a>
-          <a href="#">Download Forms</a>
+          <a href="school-form.html">school Forms</a>
           <a href="#">Past Questions</a>
         </div>
         <div class="footer-col">
@@ -1281,6 +1349,7 @@
           <a href="#">Admissions Help</a>
           <a href="#">Exam Registration Guide</a>
           <a href="#">Parent-Teacher Meeting</a>
+          <a href="host page.html">pot</a>
         </div>
       </div>
       <div class="copyright">
@@ -1297,18 +1366,18 @@
     // https://firebase.google.com/docs/web/setup#available-libraries
 
     // Your web app's Firebase configuration
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-  const firebaseConfig = {
-    apiKey: "AIzaSyDmvmqTgjhbtgLxrbvgmT3LQgEsNoj3x_g",
-    authDomain: "positivechangecollege-4d2cb.firebaseapp.com",
-    projectId: "positivechangecollege-4d2cb",
-    storageBucket: "positivechangecollege-4d2cb.firebasestorage.app",
-    messagingSenderId: "847572892577",
-    appId: "1:847572892577:web:1f6184c056ca46cf3ce9e0",
-    measurementId: "G-CVGTLPDR5M"
-  };
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+      apiKey: "AIzaSyDmvmqTgjhbtgLxrbvgmT3LQgEsNoj3x_g",
+      authDomain: "positivechangecollege-4d2cb.firebaseapp.com",
+      projectId: "positivechangecollege-4d2cb",
+      storageBucket: "positivechangecollege-4d2cb.firebasestorage.app",
+      messagingSenderId: "847572892577",
+      appId: "1:847572892577:web:1f6184c056ca46cf3ce9e0",
+      measurementId: "G-CVGTLPDR5M"
+    };
 
-  // Initialize Firebase
+    // Initialize Firebase
     let db = null;
     try {
       const app = initializeApp(firebaseConfig);
@@ -1319,77 +1388,106 @@
     }
 
     const signupForm = document.getElementById("registrationForm");
-  const regSuccessModal = document.getElementById('regSuccessModal');
-  const regModalClose = regSuccessModal?.querySelector('.modal-close');
+    const regSuccessModal = document.getElementById('regSuccessModal');
+    const regModalClose = regSuccessModal?.querySelector('.modal-close');
 
-  function showModal() {
-    if (!regSuccessModal) return;
-    regSuccessModal.classList.add('show');
-    regSuccessModal.setAttribute('aria-hidden', 'false');
-  }
+    function showModal() {
+      if (!regSuccessModal) return;
+      regSuccessModal.classList.add('show');
+      regSuccessModal.setAttribute('aria-hidden', 'false');
+    }
 
-  function hideModal() {
-    if (!regSuccessModal) return;
-    regSuccessModal.classList.remove('show');
-    regSuccessModal.setAttribute('aria-hidden', 'true');
-  }
+    function hideModal() {
+      if (!regSuccessModal) return;
+      regSuccessModal.classList.remove('show');
+      regSuccessModal.setAttribute('aria-hidden', 'true');
+    }
 
-  if (signupForm) {
-    signupForm.addEventListener("submit", async (e) => {
-      e.preventDefault();
+    if (signupForm) {
+      signupForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
 
-      if (!db) {
-        alert('Registration service is unavailable. Please try again later.');
-        return;
-      }
+        if (!db) {
+          alert('Registration service is unavailable. Please try again later.');
+          return;
+        }
 
-      if (!signupForm.checkValidity()) {
-        signupForm.reportValidity();
-        return;
-      }
+        if (!signupForm.checkValidity()) {
+          signupForm.reportValidity();
+          return;
+        }
 
-      const registrationData = {
-        fullName: signupForm.querySelector('[name="studentName"]')?.value.trim() || '',
-        dateOfBirth: signupForm.querySelector('[name="studentDob"]')?.value || '',
-        studentClass: signupForm.querySelector('[name="studentClass"]')?.value || '',
-        registrationType: signupForm.querySelector('[name="registrationType"]')?.value || '',
-        parentEmail: signupForm.querySelector('[name="parentEmail"]')?.value.trim() || '',
-        parentPhone: signupForm.querySelector('[name="parentPhone"]')?.value.trim() || '',
-        previousSchool: signupForm.querySelector('[name="previousSchool"]')?.value.trim() || '',
-        agreedToTerms: signupForm.querySelector('[name="agreeTerms"]')?.checked || false,
-        createdAt: serverTimestamp()
-      };
+        const registrationData = {
+          fullName: signupForm.querySelector('[name="studentName"]')?.value.trim() || '',
+          dateOfBirth: signupForm.querySelector('[name="studentDob"]')?.value || '',
+          studentClass: signupForm.querySelector('[name="studentClass"]')?.value || '',
+          registrationType: signupForm.querySelector('[name="registrationType"]')?.value || '',
+          parentEmail: signupForm.querySelector('[name="parentEmail"]')?.value.trim() || '',
+          parentPhone: signupForm.querySelector('[name="parentPhone"]')?.value.trim() || '',
+          previousSchool: signupForm.querySelector('[name="previousSchool"]')?.value.trim() || '',
+          agreedToTerms: signupForm.querySelector('[name="agreeTerms"]')?.checked || false,
+          createdAt: serverTimestamp()
+        };
 
-      try {
-        await addDoc(collection(db, "pcc-students"), registrationData); 
-        showModal();
-        signupForm.reset();
-      } catch (error) {
-        console.error("Firestore save failed:", error);
-        alert(error.message);
-      }
-    
+        const redirectData = {
+          fullName: registrationData.fullName,
+          dateOfBirth: registrationData.dateOfBirth,
+          studentClass: registrationData.studentClass,
+          registrationType: registrationData.registrationType,
+          parentEmail: registrationData.parentEmail,
+          parentPhone: registrationData.parentPhone,
+          previousSchool: registrationData.previousSchool,
+          agreedToTerms: registrationData.agreedToTerms,
+          createdAt: Date.now()
+        };
+
+        localStorage.setItem('pccRegistration', JSON.stringify({
+          fullName: redirectData.fullName,
+          studentClass: redirectData.studentClass,
+          registrationType: redirectData.registrationType,
+          phone: redirectData.parentPhone,
+          email: redirectData.parentEmail
+        }));
+        localStorage.setItem('registrationRedirectData', JSON.stringify(redirectData));
+
+        const isExamRegistration = /WAEC|NECO/.test(registrationData.registrationType);
+        if (isExamRegistration) {
+          localStorage.setItem('lastWaecRedirectData', JSON.stringify(redirectData));
+        } else {
+          localStorage.setItem('schoolFormRedirectData', JSON.stringify(redirectData));
+        }
+
+        try {
+          await addDoc(collection(db, "pcc-students"), registrationData);
+        } catch (error) {
+          console.error("Firestore save failed:", error);
+          alert(error.message);
+        }
+
+        const redirectUrl = isExamRegistration ? 'waec and neco.html' : 'school-form.html';
+        window.location.href = redirectUrl;
+
+      });
+    }
+
+    regModalClose?.addEventListener('click', hideModal);
+    regSuccessModal?.addEventListener('click', function (ev) {
+      if (ev.target === regSuccessModal) hideModal();
     });
-  }
 
-  regModalClose?.addEventListener('click', hideModal);
-  regSuccessModal?.addEventListener('click', function (ev) {
-    if (ev.target === regSuccessModal) hideModal();
-  });
 
-    
     // Portal Login Scripts
     (function () {
       // Password Show/Hide Toggle
       const pwdToggles = document.querySelectorAll('.pwd-toggle');
-      
+
       pwdToggles.forEach(button => {
-        button.addEventListener('click', function(e) {
+        button.addEventListener('click', function (e) {
           e.preventDefault();
           const targetId = this.getAttribute('data-target');
           const inputField = document.getElementById(targetId);
           const icon = this.querySelector('i');
-          
+
           if (inputField.type === 'password') {
             inputField.type = 'text';
             icon.classList.remove('bi-eye');
@@ -1415,7 +1513,7 @@
         welcomeMessage.textContent = `Welcome ${greeting}! You have successfully logged in. Redirecting to your dashboard...`;
         welcomeModal.classList.add('show');
         welcomeModal.setAttribute('aria-hidden', 'false');
-        
+
         setTimeout(() => {
           welcomeModal.classList.remove('show');
           welcomeModal.setAttribute('aria-hidden', 'true');
@@ -1429,11 +1527,11 @@
       }
 
       if (studentForm) {
-        studentForm.addEventListener('submit', function(e) {
+        studentForm.addEventListener('submit', function (e) {
           e.preventDefault();
           const studentID = document.getElementById('studentID').value;
           const password = document.getElementById('studentPassword').value;
-          
+
           if (studentID && password) {
             showWelcomeModal('student');
             this.reset();
@@ -1442,11 +1540,11 @@
       }
 
       if (parentForm) {
-        parentForm.addEventListener('submit', function(e) {
+        parentForm.addEventListener('submit', function (e) {
           e.preventDefault();
           const parentEmail = document.getElementById('parentPortalEmail').value;
           const password = document.getElementById('parentPassword').value;
-          
+
           if (parentEmail && password) {
             showWelcomeModal('parent');
             this.reset();
@@ -1460,7 +1558,7 @@
       const navLinks = document.querySelector('.nav-links');
 
       if (navToggle && navLinks) {
-        navToggle.addEventListener('click', function() {
+        navToggle.addEventListener('click', function () {
           const isOpen = navLinks.classList.toggle('show');
           this.setAttribute('aria-expanded', String(isOpen));
           this.innerHTML = isOpen ? '<i class="bi bi-x-lg"></i>' : '<i class="bi bi-list"></i>';
@@ -1468,7 +1566,7 @@
       }
 
       document.querySelectorAll('.nav-links a').forEach(link => {
-        link.addEventListener('click', function() {
+        link.addEventListener('click', function () {
           if (navLinks && navLinks.classList.contains('show')) {
             navLinks.classList.remove('show');
             navToggle?.setAttribute('aria-expanded', 'false');
@@ -1478,7 +1576,7 @@
       });
 
       if (studentSignupForm) {
-        studentSignupForm.addEventListener('submit', function(e) {
+        studentSignupForm.addEventListener('submit', function (e) {
           e.preventDefault();
           const id = document.getElementById('studentSignupID').value.trim();
           const password = document.getElementById('studentSignupPassword').value;
@@ -1500,7 +1598,7 @@
       }
 
       if (parentSignupForm) {
-        parentSignupForm.addEventListener('submit', function(e) {
+        parentSignupForm.addEventListener('submit', function (e) {
           e.preventDefault();
           const email = document.getElementById('parentSignupEmail').value.trim();
           const password = document.getElementById('parentSignupPassword').value;
@@ -1522,7 +1620,7 @@
       }
 
       modalClose?.addEventListener('click', hideWelcomeModal);
-      welcomeModal?.addEventListener('click', function(ev) {
+      welcomeModal?.addEventListener('click', function (ev) {
         if (ev.target === welcomeModal) hideWelcomeModal();
       });
     })();

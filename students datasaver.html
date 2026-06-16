@@ -1,6 +1,3 @@
-# Student Registration Admin Page
-
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -239,36 +236,3 @@ loadStudents();
 
 </body>
 </html>
-```
-
-## What this page does
-
-* Connects to your Firebase
-* Reads all students from Firestore
-* Displays:
-
-  * Name
-  * Email
-  * Role
-  * User ID
-* Automatically updates when new students are added
-
-## Important
-
-This page reads from:
-
-```javascript
-collection(db, "students")
-```
-
-So your student signup must save data into the `students` collection.
-
-Example:
-
-```javascript
-await setDoc(doc(db, "students", user.uid), {
-  name,
-  email,
-  role: "student"
-});
-```
