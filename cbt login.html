@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Positive Change College – CBT Login</title>
+    <style>
+        /* ── reset & base ── */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            background: radial-gradient(circle at 10% 20%,
+                    rgba(10, 25, 47, 0.98),
+                    rgba(2, 12, 27, 1));
+            background-attachment: fixed;
+        }
+
+        /* ── glass card ── */
+        .login-box {
+            width: 100%;
+            max-width: 420px;
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 44px 40px 40px;
+            border-radius: 32px;
+            border: 1px solid rgba(0, 255, 195, 0.12);
+            box-shadow:
+                0 30px 80px rgba(0, 0, 0, 0.6),
+                inset 0 1px 0 rgba(255, 255, 255, 0.04);
+            transition: border-color 0.3s;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .login-box:hover {
+            border-color: rgba(0, 255, 195, 0.25);
+        }
+
+        /* ── subtle decorative glow ── */
+        .login-box::before {
+            content: '';
+            position: absolute;
+            top: -60%;
+            left: -30%;
+            width: 180%;
+            height: 180%;
+            background: radial-gradient(circle at 30% 20%,
+                    rgba(0, 255, 195, 0.04),
+                    transparent 70%);
+            pointer-events: none;
+            z-index: -1;
+            border-radius: 32px;
+        }
+
+        /* ── Logo ── */
+        .logo-wrapper {
+            margin-bottom: 12px;
+        }
+        .logo-wrapper img {
+            width: 80px;
+            height: auto;
+            display: block;
+            margin: 0 auto 8px;
+            border: 2px solid rgba(0, 255, 195, 0.25);
+            border-radius: 16px;
+            padding: 6px;
+            background: rgba(0, 0, 0, 0.2);
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        .logo-wrapper img:hover {
+            border-color: #00ffc3;
+            box-shadow: 0 0 20px rgba(0, 255, 195, 0.15);
+        }
+
+        /* ── typography ── */
+        .login-box h1 {
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+            color: #fff;
+            margin-bottom: 4px;
+        }
+
+        .login-box h1 span {
+            color: #00ffc3;
+        }
+
+        .login-box .subtitle {
+            color: rgba(255, 255, 255, 0.55);
+            font-size: 15px;
+            margin-bottom: 32px;
+            letter-spacing: 0.2px;
+        }
+
+        /* ── inputs ── */
+        .input-group {
+            margin-bottom: 16px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            outline: none;
+            background: rgba(255, 255, 255, 0.04);
+            color: #fff;
+            font-size: 15px;
+            transition: 0.3s ease;
+        }
+
+        .input-group input::placeholder {
+            color: rgba(255, 255, 255, 0.2);
+            font-weight: 400;
+        }
+
+        .input-group input:focus {
+            border-color: #00ffc3;
+            background: rgba(0, 255, 195, 0.04);
+            box-shadow: 0 0 0 4px rgba(0, 255, 195, 0.08);
+        }
+
+        /* ── button ── */
+        .btn-primary {
+            width: 100%;
+            padding: 16px;
+            border: none;
+            border-radius: 16px;
+            background: #00ffc3;
+            color: #0b1a2e;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 8px;
+            transition: 0.25s ease;
+            letter-spacing: 0.2px;
+        }
+
+        .btn-primary:hover {
+            background: #66ffd6;
+            transform: scale(1.01);
+            box-shadow: 0 8px 30px rgba(0, 255, 195, 0.25);
+        }
+
+        .btn-primary:active {
+            transform: scale(0.98);
+        }
+
+        /* ── error message ── */
+        .login-error {
+            margin-top: 16px;
+            color: #ffc857;
+            text-align: center;
+            font-weight: 600;
+            font-size: 14px;
+            min-height: 22px;
+        }
+
+        /* ── footer & links ── */
+        .footer {
+            margin-top: 24px;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.25);
+            letter-spacing: 0.3px;
+        }
+
+        .footer p {
+            color: rgba(255, 255, 255, 0.25);
+        }
+
+        .signup-link {
+            margin-top: 14px;
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 14px;
+        }
+
+        .signup-link a {
+            color: #00ffc3;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.2s;
+            border-bottom: 1px solid transparent;
+        }
+
+        .signup-link a:hover {
+            color: #66ffd6;
+            border-bottom-color: rgba(0, 255, 195, 0.3);
+        }
+
+        /* ── responsive ── */
+        @media (max-width: 480px) {
+            .login-box {
+                padding: 32px 22px 30px;
+            }
+            .login-box h1 {
+                font-size: 22px;
+            }
+            .logo-wrapper img {
+                width: 60px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-box">
+        <!-- ─── LOGO ─── -->
+        <div class="logo-wrapper">
+            <img src="./pictures/pca logo.png" alt="Positive Change College Logo" />
+        </div>
+
+        <h1>Positive Change <span>College</span></h1>
+        <p class="subtitle">CBT Examination Portal</p>
+
+        <form id="loginForm">
+            <div class="input-group">
+                <input type="email" id="email" placeholder="student@positive.edu" required />
+            </div>
+            <div class="input-group">
+                <input type="password" id="password" placeholder="Password" required />
+            </div>
+            <button type="submit" class="btn-primary">Login</button>
+        </form>
+
+        <div id="loginError" class="login-error"></div>
+
+        <div class="signup-link">
+            No account? <a href="cbt signup.html">Create Account</a>
+        </div>
+
+        <div class="footer">
+            <p>Powered by Positive Change College CBT System</p>
+        </div>
+    </div>
+
+    <script>
+        function getStoredUser() {
+            const storedUser = localStorage.getItem('cbtUserData');
+            return storedUser ? JSON.parse(storedUser) : null;
+        }
+
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value;
+            const loginError = document.getElementById('loginError');
+            loginError.textContent = '';
+
+            const user = getStoredUser();
+            if (!user || user.email !== email || user.password !== password) {
+                loginError.textContent = 'Invalid email or password. Please try again.';
+                return;
+            }
+
+            localStorage.setItem('cbtUserName', user.name);
+            localStorage.setItem('cbtUserEmail', user.email);
+            window.location.href = 'cbt dashboard.html';
+        });
+    </script>
+
+</body>
+</html>

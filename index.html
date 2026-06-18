@@ -823,6 +823,44 @@
       order: -1;
     }
   }
+
+  .news-ticker {
+    display: flex;
+    align-items: center;
+    /* background: #0d47a1; */
+    color: white;
+    padding: 10px;
+    overflow: hidden;
+    font-family: Arial;
+    /* border-radius: 20px; */
+}
+
+.news-label {
+    font-weight: bold;
+    margin-right: 15px;
+    white-space: nowrap;
+}
+
+.news-content {
+    overflow: hidden;
+    flex: 1;
+}
+
+.news-text {
+    display: inline-block;
+    white-space: nowrap;
+    padding-left: 100%;
+    animation: scrollNews 20s linear infinite;
+}
+
+@keyframes scrollNews {
+    0% {
+        transform: translateX(0%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
 </style>
 
 <body>
@@ -848,7 +886,19 @@
       </ul>
     </div>
   </nav>
+<div class="news-ticker">
+    <div class="news-label">📢 School News:</div>
 
+    <div class="news-content">
+        <div class="news-text">
+            🔔 Admission is now open for 2026 session • 
+            🏫 First term begins September 10 • 
+            📚 WAEC registration deadline is August 30 • 
+            💳 All students should clear school fees before resumption • 
+            🚌 New school bus service available • 
+        </div>
+    </div>
+</div>
   <main>
     <!-- Hero Section -->
     <section id="home" class="hero">
@@ -1025,7 +1075,7 @@
           <p>Our school blends strong classroom instruction with practical guidance for WAEC and NECO preparation,
             leadership development, and community service. We are committed to helping every student reach their highest
             potential.</p>
-          <p><i class="bi bi-geo-alt" style="color:#00ffc3; margin-right: 8px;"></i> Located in Abuja, Nigeria · Serving
+          <p><i class="bi bi-geo-alt" style="color:#00ffc3; margin-right: 8px;"></i> Located in Ibadan, Nigeria · Serving
             students across the region</p>
           <div style="margin-top: 1.5rem;">
             <a href="#contact" class="btn btn-outline"><i class="bi bi-telephone"></i> Contact Admissions</a>
@@ -1292,8 +1342,7 @@
             <h2 class="section-title">Contact Us</h2>
             <p>Visit our campus or reach out for inquiries about admissions, exams, and school fees.</p>
             <div style="margin-top: 2rem;">
-              <p><i class="bi bi-geo-alt" style="color: #00ffc3; width: 30px;"></i> 42 Education Avenue, Garki,
-                Abuja, Nigeria</p>
+              <p><i class="bi bi-geo-alt" style="color: #00ffc3; width: 30px;"></i> Plot 80, Zone c, Kuelu Area, Iyana Abgala,Ibadan. </p>
               <p style="margin: 1rem 0;"><i class="bi bi-telephone" style="color: #00ffc3; width: 30px;"></i> +234 802
                 345
                 6789</p>
@@ -1339,14 +1388,14 @@
         </div>
         <div class="footer-col">
           <h4>Resources</h4>
-          <a href="#">Academic Calendar</a>
+          <a href="academic calender.html">Academic Calendar</a>
           <a href="#">Fee Structure</a>
           <a href="school-form.html">school Forms</a>
-          <a href="#">Past Questions</a>
+          <a href="past questions.html">Past Questions</a>
         </div>
         <div class="footer-col">
           <h4>Support</h4>
-          <a href="#">Admissions Help</a>
+          <a href="addmission help.html">Admissions Help</a>
           <a href="#">Exam Registration Guide</a>
           <a href="#">Parent-Teacher Meeting</a>
           <a href="host page.html">pot</a>
@@ -1499,6 +1548,83 @@
           }
         });
       });
+
+
+
+
+
+
+
+// 💳 ADD PAYMENT
+async function addPayment() {
+    try {
+        await addDoc(collection(db, "payments"), {
+            studentName: "John Doe", // you can replace later with login user
+            description: "School Fee Payment",
+            amount: 200000,
+            status: "Pending",
+            date: new Date().toISOString().split("T")[0]
+        });
+
+        alert("Payment added!");
+        loadPayments();
+
+    } catch (error) {
+        console.log(error);
+        alert("Error adding payment");
+    }
+}
+
+
+
+// 📥 LOAD PAYMENTS
+async function loadPayments() {
+    const snapshot = await getDocs(collection(db, "payments"));
+
+    const tableBody = document.getElementById("paymentTableBody");
+    tableBody.innerHTML = "";
+
+    let totalPaid = 0;
+    let totalOutstanding = 0;
+
+    snapshot.forEach((doc) => {
+        const data = doc.data();
+
+        if (data.status === "Paid") {
+            totalPaid += Number(data.amount);
+        } else {
+            totalOutstanding += Number(data.amount);
+        }
+
+        tableBody.innerHTML += `
+            <tr>
+                <td>${data.date}</td>
+                <td>${data.description}</td>
+                <td>₦${data.amount}</td>
+                <td><span class="badge ${data.status.toLowerCase()}">${data.status}</span></td>
+            </tr>
+        `;
+    });
+
+    // update summary
+    document.getElementById("totalFees").innerText = `₦${totalPaid + totalOutstanding}`;
+    document.getElementById("paidAmount").innerText = `₦${totalPaid}`;
+    document.getElementById("outstandingAmount").innerText = `₦${totalOutstanding}`;
+}
+
+
+
+// 🚀 make functions global (IMPORTANT)
+window.addPayment = addPayment;
+window.loadPayments = loadPayments;
+
+
+
+// auto load
+window.onload = loadPayments;
+
+
+
 
       // Form Submissions
       const studentForm = document.getElementById('studentLoginForm');

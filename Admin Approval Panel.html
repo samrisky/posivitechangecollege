@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Panel – Student Approvals</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        }
+        body {
+            min-height: 100vh;
+            padding: 40px 20px;
+            background: radial-gradient(circle at 10% 20%, rgba(10, 25, 47, 0.98), rgba(2, 12, 27, 1));
+            background-attachment: fixed;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            width: 100%;
+            max-width: 1100px;
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 40px;
+            border-radius: 32px;
+            border: 1px solid rgba(0, 255, 195, 0.12);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+            position: relative;
+            overflow: hidden;
+        }
+        .container::before {
+            content: '';
+            position: absolute;
+            top: -60%;
+            left: -30%;
+            width: 180%;
+            height: 180%;
+            background: radial-gradient(circle at 30% 20%, rgba(0, 255, 195, 0.04), transparent 70%);
+            pointer-events: none;
+            z-index: -1;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 8px;
+        }
+        h1 {
+            color: #fff;
+            font-size: 28px;
+        }
+        h1 span {
+            color: #00ffc3;
+        }
+        .subtitle {
+            color: rgba(255, 255, 255, 0.45);
+            font-size: 14px;
+            margin-bottom: 30px;
+        }
+        .header-actions {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 16px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: 0.2s;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn-primary {
+            background: #00ffc3;
+            color: #0b1a2e;
+        }
+        .btn-primary:hover {
+            background: #66ffd6;
+        }
+        .btn-outline {
+            background: transparent;
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+        .btn-outline:hover {
+            background: rgba(255, 255, 255, 0.06);
+        }
+        .btn-danger {
+            background: #ff6b6b;
+            color: #fff;
+        }
+        .btn-danger:hover {
+            background: #ff8a8a;
+        }
+        .btn-sm {
+            padding: 6px 14px;
+            font-size: 12px;
+            border-radius: 12px;
+        }
+        .btn-approve {
+            background: #00ffc3;
+            color: #0b1a2e;
+        }
+        .btn-approve:hover {
+            background: #66ffd6;
+        }
+        .btn-suspend {
+            background: #ff6b6b;
+            color: #fff;
+        }
+        .btn-suspend:hover {
+            background: #ff8a8a;
+        }
+        .btn-unsuspend {
+            background: #38bdf8;
+            color: #fff;
+        }
+        .btn-unsuspend:hover {
+            background: #6bceff;
+        }
+        .table-wrapper {
+            overflow-x: auto;
+            margin-top: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            color: #fff;
+            font-size: 14px;
+        }
+        th {
+            text-align: left;
+            padding: 14px 12px;
+            background: rgba(255, 255, 255, 0.04);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 12px;
+        }
+        td {
+            padding: 14px 12px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            vertical-align: middle;
+        }
+        td:last-child {
+            white-space: nowrap;
+        }
+        .status-badge {
+            display: inline-block;
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+        .status-approved {
+            background: rgba(0, 255, 195, 0.15);
+            color: #00ffc3;
+        }
+        .status-pending {
+            background: rgba(255, 200, 87, 0.15);
+            color: #ffc857;
+        }
+        .status-suspended {
+            background: rgba(255, 107, 107, 0.15);
+            color: #ff6b6b;
+        }
+        .empty {
+            text-align: center;
+            padding: 60px 0;
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 16px;
+        }
+        .stats {
+            display: flex;
+            gap: 24px;
+            flex-wrap: wrap;
+            margin: 12px 0 8px;
+        }
+        .stat-item {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 14px;
+        }
+        .stat-item strong {
+            color: #fff;
+            font-size: 18px;
+        }
+        .stat-item .dot {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin-right: 6px;
+        }
+        .dot-pending { background: #ffc857; }
+        .dot-approved { background: #00ffc3; }
+        .dot-suspended { background: #ff6b6b; }
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            padding: 14px 24px;
+            border-radius: 16px;
+            background: #0b1a2e;
+            border: 1px solid rgba(0, 255, 195, 0.2);
+            color: #fff;
+            font-weight: 500;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            transform: translateY(100px);
+            opacity: 0;
+            transition: 0.4s ease;
+            z-index: 100;
+        }
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        .toast.success {
+            border-color: #00ffc3;
+        }
+        .toast.error {
+            border-color: #ff6b6b;
+        }
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+            }
+            th, td {
+                padding: 10px 8px;
+                font-size: 12px;
+            }
+            .stats {
+                gap: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="header">
+            <div>
+                <h1>Admin <span>Panel</span></h1>
+                <p class="subtitle">Manage student approvals and suspensions</p>
+            </div>
+            <div class="header-actions">
+                <button class="btn btn-primary" id="refreshBtn">⟳ Refresh</button>
+                <a href="index.html" class="btn btn-outline">🏠 Home</a>
+            </div>
+        </div>
+
+        <!-- Stats -->
+        <div class="stats" id="statsContainer">
+            <div class="stat-item">
+                <span class="dot dot-pending"></span>
+                Pending: <strong id="pendingCount">0</strong>
+            </div>
+            <div class="stat-item">
+                <span class="dot dot-approved"></span>
+                Approved: <strong id="approvedCount">0</strong>
+            </div>
+            <div class="stat-item">
+                <span class="dot dot-suspended"></span>
+                Suspended: <strong id="suspendedCount">0</strong>
+            </div>
+            <div class="stat-item">
+                Total: <strong id="totalCount">0</strong>
+            </div>
+        </div>
+
+        <!-- Table -->
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Class</th>
+                        <th>Status</th>
+                        <th style="text-align:center;">Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="studentTableBody">
+                    <tr><td colspan="6" class="empty">Loading students...</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast">Action completed</div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
+        import { getFirestore, collection, getDocs, doc, updateDoc, query, orderBy } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js";
+
+        // ── Firebase Config ──
+        const firebaseConfig = {
+            apiKey: "AIzaSyDmvmqTgjhbtgLxrbvgmT3LQgEsNoj3x_g",
+            authDomain: "positivechangecollege-4d2cb.firebaseapp.com",
+            projectId: "positivechangecollege-4d2cb",
+            storageBucket: "positivechangecollege-4d2cb.firebasestorage.app",
+            messagingSenderId: "847572892577",
+            appId: "1:847572892577:web:1f6184c056ca46cf3ce9e0",
+            measurementId: "G-CVGTLPDR5M"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // ── DOM Elements ──
+        const tbody = document.getElementById('studentTableBody');
+        const refreshBtn = document.getElementById('refreshBtn');
+        const pendingCount = document.getElementById('pendingCount');
+        const approvedCount = document.getElementById('approvedCount');
+        const suspendedCount = document.getElementById('suspendedCount');
+        const totalCount = document.getElementById('totalCount');
+        const toast = document.getElementById('toast');
+
+        let allStudents = [];
+
+        // ── Toast Notification ──
+        function showToast(message, type = 'success') {
+            toast.textContent = message;
+            toast.className = `toast ${type}`;
+            setTimeout(() => toast.classList.add('show'), 50);
+            setTimeout(() => toast.classList.remove('show'), 3500);
+        }
+
+        // ── Load Students ──
+        async function loadStudents() {
+            tbody.innerHTML = '<tr><td colspan="6" class="empty">Loading students...</td></tr>';
+            try {
+                const q = query(collection(db, "students"), orderBy("createdAt", "desc"));
+                const querySnapshot = await getDocs(q);
+
+                if (querySnapshot.empty) {
+                    tbody.innerHTML = '<tr><td colspan="6" class="empty">No students registered yet.</td></tr>';
+                    updateStats([]);
+                    return;
+                }
+
+                const students = [];
+                querySnapshot.forEach((docSnap) => {
+                    const data = docSnap.data();
+                    students.push({
+                        id: docSnap.id,
+                        ...data
+                    });
+                });
+
+                allStudents = students;
+                renderTable(students);
+                updateStats(students);
+
+            } catch (error) {
+                console.error('Error loading students:', error);
+                tbody.innerHTML = `<tr><td colspan="6" class="empty">Error loading data: ${error.message}</td></tr>`;
+                showToast('Failed to load students: ' + error.message, 'error');
+            }
+        }
+
+        // ── Render Table ──
+        function renderTable(students) {
+            if (students.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="6" class="empty">No students found.</td></tr>';
+                return;
+            }
+
+            let rows = '';
+            students.forEach((student, index) => {
+                const name = student.name || 'N/A';
+                const email = student.email || 'N/A';
+                const cls = student.class || 'N/A';
+                const approved = student.approved === true;
+                const suspended = student.suspended === true;
+
+                let statusText, statusClass;
+                if (suspended) {
+                    statusText = 'Suspended';
+                    statusClass = 'status-suspended';
+                } else if (approved) {
+                    statusText = 'Approved';
+                    statusClass = 'status-approved';
+                } else {
+                    statusText = 'Pending';
+                    statusClass = 'status-pending';
+                }
+
+                // Build action buttons
+                let actions = '';
+                if (suspended) {
+                    actions += `<button class="btn btn-sm btn-unsuspend" data-uid="${student.id}" data-action="unsuspend">Unsuspend</button>`;
+                } else if (approved) {
+                    actions += `<button class="btn btn-sm btn-suspend" data-uid="${student.id}" data-action="suspend">Suspend</button>`;
+                } else {
+                    // pending
+                    actions += `<button class="btn btn-sm btn-approve" data-uid="${student.id}" data-action="approve">Approve</button>`;
+                    actions += `<button class="btn btn-sm btn-suspend" data-uid="${student.id}" data-action="suspend">Suspend</button>`;
+                }
+
+                rows += `<tr>
+                    <td>${index + 1}</td>
+                    <td><strong>${name}</strong></td>
+                    <td>${email}</td>
+                    <td>${cls}</td>
+                    <td><span class="status-badge ${statusClass}">${statusText}</span></td>
+                    <td style="text-align:center;">${actions}</td>
+                </tr>`;
+            });
+
+            tbody.innerHTML = rows;
+
+            // ── Attach event listeners to action buttons ──
+            document.querySelectorAll('[data-action]').forEach(btn => {
+                btn.addEventListener('click', async (e) => {
+                    const uid = btn.dataset.uid;
+                    const action = btn.dataset.action;
+                    await handleAction(uid, action);
+                });
+            });
+        }
+
+        // ── Update Stats ──
+        function updateStats(students) {
+            let pending = 0, approved = 0, suspended = 0;
+            students.forEach(s => {
+                if (s.suspended === true) suspended++;
+                else if (s.approved === true) approved++;
+                else pending++;
+            });
+            pendingCount.textContent = pending;
+            approvedCount.textContent = approved;
+            suspendedCount.textContent = suspended;
+            totalCount.textContent = students.length;
+        }
+
+        // ── Handle Action (Approve / Suspend / Unsuspend) ──
+        async function handleAction(uid, action) {
+            try {
+                const docRef = doc(db, "students", uid);
+                let updateData = {};
+                let message = '';
+
+                if (action === 'approve') {
+                    updateData = { approved: true, suspended: false };
+                    message = 'Student approved successfully ✅';
+                } else if (action === 'suspend') {
+                    updateData = { suspended: true, approved: false };
+                    message = 'Student suspended 🚫';
+                } else if (action === 'unsuspend') {
+                    updateData = { suspended: false, approved: true };
+                    message = 'Student unsuspended ✅';
+                }
+
+                await updateDoc(docRef, updateData);
+                showToast(message, 'success');
+                await loadStudents(); // Refresh the table
+
+            } catch (error) {
+                console.error('Error updating student:', error);
+                showToast('Failed to update: ' + error.message, 'error');
+            }
+        }
+
+        // ── Refresh Button ──
+        refreshBtn.addEventListener('click', loadStudents);
+
+        // ── Auto-refresh every 15 seconds ──
+        setInterval(loadStudents, 15000);
+
+        // ── Initial Load ──
+        loadStudents();
+    </script>
+</body>
+</html>

@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Awaiting Approval – Positive Change College</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        }
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            background: radial-gradient(circle at 10% 20%, rgba(10, 25, 47, 0.98), rgba(2, 12, 27, 1));
+            background-attachment: fixed;
+        }
+        .container {
+            width: 100%;
+            max-width: 480px;
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 44px 40px 40px;
+            border-radius: 32px;
+            border: 1px solid rgba(0, 255, 195, 0.12);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+            transition: border-color 0.3s;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+        .container:hover {
+            border-color: rgba(0, 255, 195, 0.25);
+        }
+        .container::before {
+            content: '';
+            position: absolute;
+            top: -60%;
+            left: -30%;
+            width: 180%;
+            height: 180%;
+            background: radial-gradient(circle at 30% 20%, rgba(0, 255, 195, 0.04), transparent 70%);
+            pointer-events: none;
+            z-index: -1;
+            border-radius: 32px;
+        }
+        .icon {
+            font-size: 64px;
+            margin-bottom: 12px;
+            display: block;
+        }
+        .icon-pending {
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.6; transform: scale(0.95); }
+        }
+        h1 {
+            font-size: 26px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 4px;
+        }
+        h1 span {
+            color: #00ffc3;
+        }
+        .subtitle {
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+        .status-badge {
+            display: inline-block;
+            padding: 6px 20px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin: 8px 0 16px;
+        }
+        .status-pending {
+            background: rgba(255, 200, 87, 0.15);
+            color: #ffc857;
+            border: 1px solid rgba(255, 200, 87, 0.2);
+        }
+        .status-suspended {
+            background: rgba(255, 107, 107, 0.15);
+            color: #ff6b6b;
+            border: 1px solid rgba(255, 107, 107, 0.2);
+        }
+        .status-approved {
+            background: rgba(0, 255, 195, 0.15);
+            color: #00ffc3;
+            border: 1px solid rgba(0, 255, 195, 0.2);
+        }
+        .user-info {
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 16px;
+            padding: 16px;
+            margin: 12px 0 20px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+        .user-info p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 14px;
+            margin: 4px 0;
+        }
+        .user-info strong {
+            color: #fff;
+        }
+        .message-box {
+            padding: 14px 16px;
+            border-radius: 12px;
+            margin: 16px 0 24px;
+        }
+        .message-box.pending {
+            background: rgba(255, 200, 87, 0.08);
+            border-left: 4px solid #ffc857;
+        }
+        .message-box.suspended {
+            background: rgba(255, 107, 107, 0.08);
+            border-left: 4px solid #ff6b6b;
+        }
+        .message-box p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 15px;
+            line-height: 1.6;
+        }
+        .spinner {
+            display: inline-block;
+            width: 28px;
+            height: 28px;
+            border: 3px solid rgba(255, 255, 255, 0.1);
+            border-top-color: #00ffc3;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin: 4px auto 0;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        .btn-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .btn {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 16px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.25s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+        .btn-primary {
+            background: #00ffc3;
+            color: #0b1a2e;
+        }
+        .btn-primary:hover {
+            background: #66ffd6;
+            transform: scale(1.02);
+            box-shadow: 0 8px 30px rgba(0, 255, 195, 0.25);
+        }
+        .btn-primary:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .btn-outline {
+            background: transparent;
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+        .btn-outline:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: #00ffc3;
+        }
+        .btn-danger {
+            background: #ff6b6b;
+            color: #fff;
+        }
+        .btn-danger:hover {
+            background: #ff8a8a;
+        }
+        .footer {
+            margin-top: 24px;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.15);
+        }
+        .hidden {
+            display: none !important;
+        }
+        @media (max-width: 480px) {
+            .container {
+                padding: 32px 22px 30px;
+            }
+            h1 {
+                font-size: 22px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="waitingContainer">
+        <span class="icon icon-pending" id="statusIcon">⏳</span>
+        <h1>Positive Change <span>College</span></h1>
+        <p class="subtitle">Student Portal</p>
+
+        <!-- Status Badge -->
+        <div id="statusBadge" class="status-badge status-pending">Pending Approval</div>
+
+        <!-- User Info -->
+        <div class="user-info">
+            <p><strong>Name:</strong> <span id="studentName">—</span></p>
+            <p><strong>Email:</strong> <span id="studentEmail">—</span></p>
+        </div>
+
+        <!-- Message Box -->
+        <div id="messageBox" class="message-box pending">
+            <p id="messageText">
+                Your account is currently <strong style="color:#ffc857;">pending approval</strong> from the school administration.
+                You will be notified via email once your account is activated.
+            </p>
+        </div>
+
+        <!-- Spinner (shown while checking) -->
+        <div id="spinnerContainer" class="hidden">
+            <div class="spinner"></div>
+            <p style="color:rgba(255,255,255,0.3); font-size:13px; margin-top:8px;">Checking status…</p>
+        </div>
+
+        <!-- Buttons -->
+        <div class="btn-group">
+            <button class="btn btn-primary" id="checkStatusBtn">⟳ Check Status</button>
+            <button class="btn btn-danger" id="logoutBtn">Logout</button>
+        </div>
+
+        <div class="footer">
+            &copy; 2026 Positive Change College. All rights reserved.
+        </div>
+    </div>
+
+    <script type="module">
+        // ── Firebase Imports ──
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
+        import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-auth.js";
+        import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js";
+
+        // ── Firebase Config ──
+        const firebaseConfig = {
+            apiKey: "AIzaSyDmvmqTgjhbtgLxrbvgmT3LQgEsNoj3x_g",
+            authDomain: "positivechangecollege-4d2cb.firebaseapp.com",
+            projectId: "positivechangecollege-4d2cb",
+            storageBucket: "positivechangecollege-4d2cb.firebasestorage.app",
+            messagingSenderId: "847572892577",
+            appId: "1:847572892577:web:1f6184c056ca46cf3ce9e0",
+            measurementId: "G-CVGTLPDR5M"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        // ── DOM Elements ──
+        const statusBadge = document.getElementById('statusBadge');
+        const statusIcon = document.getElementById('statusIcon');
+        const studentName = document.getElementById('studentName');
+        const studentEmail = document.getElementById('studentEmail');
+        const messageText = document.getElementById('messageText');
+        const messageBox = document.getElementById('messageBox');
+        const spinnerContainer = document.getElementById('spinnerContainer');
+        const checkBtn = document.getElementById('checkStatusBtn');
+        const logoutBtn = document.getElementById('logoutBtn');
+
+        let currentUser = null;
+
+        // ── Update UI based on status ──
+        function updateUI(status, userData) {
+            // Show user info
+            if (userData) {
+                studentName.textContent = userData.name || 'Student';
+                studentEmail.textContent = userData.email || 'student@positive.edu';
+            }
+
+            // Hide spinner
+            spinnerContainer.classList.add('hidden');
+            checkBtn.disabled = false;
+            checkBtn.textContent = '⟳ Check Status';
+
+            // Clear previous classes
+            statusBadge.className = 'status-badge';
+            messageBox.className = 'message-box';
+
+            if (status === 'approved') {
+                statusBadge.classList.add('status-approved');
+                statusBadge.textContent = '✅ Approved';
+                statusIcon.textContent = '✅';
+                statusIcon.className = 'icon';
+                messageBox.classList.add('approved');
+                messageText.innerHTML = `
+                    <strong style="color:#00ffc3;">Your account has been approved!</strong><br />
+                    Redirecting to your dashboard…
+                `;
+                // Auto-redirect after 2 seconds
+                setTimeout(() => {
+                    window.location.href = 'student-dashboard.html';
+                }, 2000);
+            } else if (status === 'suspended') {
+                statusBadge.classList.add('status-suspended');
+                statusBadge.textContent = '🚫 Suspended';
+                statusIcon.textContent = '🚫';
+                statusIcon.className = 'icon';
+                messageBox.classList.add('suspended');
+                messageText.innerHTML = `
+                    <strong style="color:#ff6b6b;">Your account has been suspended.</strong><br />
+                    Please contact the school administration for further assistance.
+                `;
+            } else {
+                // pending (default)
+                statusBadge.classList.add('status-pending');
+                statusBadge.textContent = '⏳ Pending Approval';
+                statusIcon.textContent = '⏳';
+                statusIcon.className = 'icon icon-pending';
+                messageBox.classList.add('pending');
+                messageText.innerHTML = `
+                    Your account is currently <strong style="color:#ffc857;">pending approval</strong> from the school administration.<br />
+                    You will be notified via email once your account is activated.
+                `;
+            }
+        }
+
+        // ── Check student status from Firestore ──
+        async function checkStatus(user) {
+            if (!user) {
+                window.location.href = 'student-signin.html';
+                return;
+            }
+
+            // Show spinner
+            spinnerContainer.classList.remove('hidden');
+            checkBtn.disabled = true;
+            checkBtn.textContent = 'Checking…';
+
+            try {
+                const docRef = doc(db, "students", user.uid);
+                const docSnap = await getDoc(docRef);
+
+                if (!docSnap.exists()) {
+                    // No record found – maybe sign out
+                    messageText.innerHTML = `
+                        <strong style="color:#ff6b6b;">Student record not found.</strong><br />
+                        Please contact support or create a new account.
+                    `;
+                    messageBox.className = 'message-box suspended';
+                    statusBadge.className = 'status-badge status-suspended';
+                    statusBadge.textContent = '❌ Not Found';
+                    statusIcon.textContent = '❌';
+                    statusIcon.className = 'icon';
+                    spinnerContainer.classList.add('hidden');
+                    checkBtn.disabled = false;
+                    checkBtn.textContent = '⟳ Check Status';
+                    return;
+                }
+
+                const data = docSnap.data();
+                const approved = data.approved === true;
+                const suspended = data.suspended === true;
+
+                let status;
+                if (suspended) {
+                    status = 'suspended';
+                } else if (approved) {
+                    status = 'approved';
+                } else {
+                    status = 'pending';
+                }
+
+                updateUI(status, data);
+
+            } catch (error) {
+                console.error('Error checking status:', error);
+                spinnerContainer.classList.add('hidden');
+                checkBtn.disabled = false;
+                checkBtn.textContent = '⟳ Check Status';
+                messageText.innerHTML = `
+                    <strong style="color:#ff6b6b;">Error checking status.</strong><br />
+                    ${error.message}
+                `;
+                messageBox.className = 'message-box suspended';
+            }
+        }
+
+        // ── Auth State Listener ──
+        onAuthStateChanged(auth, async (user) => {
+            if (user) {
+                currentUser = user;
+                // Show user email from auth if not in Firestore yet
+                studentEmail.textContent = user.email || 'student@positive.edu';
+                await checkStatus(user);
+            } else {
+                // Not signed in – redirect to sign-in
+                window.location.href = 'student-signin.html';
+            }
+        });
+
+        // ── Check Status Button ──
+        checkBtn.addEventListener('click', async () => {
+            if (currentUser) {
+                await checkStatus(currentUser);
+            } else {
+                window.location.href = 'student-signin.html';
+            }
+        });
+
+        // ── Logout Button ──
+        logoutBtn.addEventListener('click', async () => {
+            try {
+                await signOut(auth);
+                window.location.href = 'student-signin.html';
+            } catch (error) {
+                alert('Error logging out: ' + error.message);
+            }
+        });
+    </script>
+</body>
+</html>

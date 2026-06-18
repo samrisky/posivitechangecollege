@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>School Fees System</title>
+
+    <!-- Bootstrap 5 CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+
+    <style>
+        /* ── Dark cosmic theme overrides ── */
+        body {
+            background: radial-gradient(circle at 10% 20%, rgba(10, 25, 47, 0.98), rgba(2, 12, 27, 1));
+            color: #fff;
+            min-height: 100vh;
+            padding: 30px 20px;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(4px);
+            border: 2px solid #00ffc3;
+            border-radius: 16px;
+            padding: 16px 20px;
+        }
+        .glass-card span {
+            font-size: 24px;
+            font-weight: 700;
+            color: #00ffc3;
+        }
+
+        .clock {
+            background: rgba(0, 255, 195, 0.08);
+            border: 1px solid rgba(0, 255, 195, 0.15);
+            padding: 10px 18px;
+            border-radius: 40px;
+            font-size: 16px;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .clock .date {
+            color: rgba(255, 255, 255, 0.5);
+            font-weight: 400;
+        }
+
+        .fee-schedule {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(0, 255, 195, 0.12);
+            border-radius: 16px;
+            padding: 16px 20px;
+        }
+        .fee-schedule h3 {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+        }
+
+        .form-control,
+        .form-select {
+            background: rgba(255, 255, 255, 0.04) !important;
+            border: 1px solid rgba(255, 255, 255, 0.1) !important;
+            color: #fff !important;
+            border-radius: 14px !important;
+            padding: 12px 16px !important;
+        }
+        .form-control:focus,
+        .form-select:focus {
+            border-color: #00ffc3 !important;
+            box-shadow: 0 0 0 3px rgba(0, 255, 195, 0.1) !important;
+            background: rgba(0, 255, 195, 0.04) !important;
+        }
+        .form-control::placeholder {
+            color: rgba(255, 255, 255, 0.3) !important;
+        }
+        .form-select option {
+            background: #0b1a2e;
+        }
+
+        .btn-primary {
+            background: #00ffc3 !important;
+            border: none !important;
+            color: #0b1a2e !important;
+            font-weight: 700 !important;
+            border-radius: 14px !important;
+            padding: 12px 16px !important;
+            transition: 0.2s !important;
+        }
+        .btn-primary:hover {
+            background: #66ffd6 !important;
+            transform: scale(1.02);
+        }
+
+        .table-dark {
+            --bs-table-bg: transparent;
+            --bs-table-hover-bg: rgba(255, 255, 255, 0.04);
+        }
+        .table-dark th {
+            border-bottom: 2px solid rgba(0, 255, 195, 0.15) !important;
+            color: rgba(255, 255, 255, 0.6) !important;
+            text-transform: uppercase;
+            font-size: 12px;
+            letter-spacing: 0.5px;
+        }
+        .table-dark td {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+            vertical-align: middle;
+        }
+
+        .badge-paid {
+            background: rgba(0, 255, 0, 0.15);
+            color: #4caf50;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+        .badge-part {
+            background: rgba(255, 165, 0, 0.15);
+            color: #ffa500;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+        .badge-unpaid {
+            background: rgba(255, 0, 0, 0.15);
+            color: #ff6b6b;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+
+        .student-row {
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .student-row:hover {
+            background: rgba(255, 255, 255, 0.04);
+        }
+        .student-row .toggle-btn {
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            text-align: center;
+            line-height: 22px;
+            border-radius: 50%;
+            background: rgba(0, 255, 195, 0.1);
+            color: #00ffc3;
+            font-weight: 700;
+            font-size: 14px;
+            transition: 0.2s;
+            user-select: none;
+        }
+        .student-row .toggle-btn:hover {
+            background: rgba(0, 255, 195, 0.2);
+        }
+
+        .detail-row {
+            display: none;
+            background: rgba(255, 255, 255, 0.02);
+        }
+        .detail-row.show {
+            display: table-row;
+        }
+        .detail-row td {
+            padding: 0 !important;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03) !important;
+        }
+        .detail-inner {
+            padding: 8px 12px 12px 52px;
+        }
+        .detail-inner table {
+            margin: 0;
+            font-size: 13px;
+        }
+        .detail-inner table th {
+            background: rgba(255, 255, 255, 0.02);
+            font-size: 11px;
+            padding: 8px 10px;
+            color: rgba(255, 255, 255, 0.4);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .detail-inner table td {
+            padding: 8px 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        .detail-inner table .amount-col {
+            color: #fff;
+            font-weight: 500;
+        }
+        .no-payments {
+            color: rgba(255, 255, 255, 0.2);
+            font-style: italic;
+            padding: 8px 0;
+            font-size: 13px;
+        }
+
+        @media (max-width: 600px) {
+            .clock {
+                width: 100%;
+                justify-content: center;
+            }
+            .detail-inner {
+                padding: 6px 8px 10px 28px;
+            }
+            .detail-inner table {
+                font-size: 12px;
+            }
+            .detail-inner table th,
+            .detail-inner table td {
+                padding: 6px 6px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <!-- ─── HEADER ─── -->
+        <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">
+            <h1 class="h2 fw-bold mb-0">Positive Change <span style="color:#00ffc3;">College</span></h1>
+            <div class="clock">
+                <span class="date" id="dateDisplay"></span>
+                <span id="timeDisplay">00:00:00</span>
+            </div>
+        </div>
+
+        <!-- ─── STATS ─── -->
+        <div class="row g-3 mb-4">
+            <div class="col-md-4">
+                <div class="glass-card">
+                    📚 Total Students: <span id="totalFeeStudents">0</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ─── FORM ─── -->
+        <div class="row g-2 mb-4">
+            <div class="col-md">
+                <input id="studentName" class="form-control" placeholder="Student Name" />
+            </div>
+            <div class="col-md">
+                <select id="studentClass" class="form-select">
+                    <option value="">Select Class</option>
+                    <option>JSS1</option>
+                    <option>JSS2</option>
+                    <option>JSS3</option>
+                    <option>SS1</option>
+                    <option>SS2</option>
+                    <option>SS3</option>
+                </select>
+            </div>
+            <div class="col-md">
+                <input id="amountPaid" type="number" class="form-control" placeholder="Amount Paid (₦)" />
+            </div>
+            <div class="col-md-auto">
+                <button id="saveBtn" class="btn btn-primary w-100">Save Payment</button>
+            </div>
+        </div>
+
+        <!-- ─── FEE SCHEDULE ─── -->
+        <div class="fee-schedule mb-4">
+            <h3>📋 Fee Schedule (School Fees + Exam Fees)</h3>
+            <div class="table-responsive">
+                <table class="table table-dark table-hover align-middle mb-0">
+                    <thead>
+                        <tr>
+                            <th>Class</th>
+                            <th>School Fees</th>
+                            <th>WAEC</th>
+                            <th>NECO</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>JSS1</td><td>₦50,000</td><td>–</td><td>–</td><td class="fw-bold text-success">₦50,000</td></tr>
+                        <tr><td>JSS2</td><td>₦50,000</td><td>–</td><td>–</td><td class="fw-bold text-success">₦50,000</td></tr>
+                        <tr><td>JSS3</td><td>₦55,000</td><td>–</td><td>–</td><td class="fw-bold text-success">₦55,000</td></tr>
+                        <tr><td>SS1</td><td>₦70,000</td><td>–</td><td>–</td><td class="fw-bold text-success">₦70,000</td></tr>
+                        <tr><td>SS2</td><td>₦70,000</td><td>₦30,000</td><td>–</td><td class="fw-bold text-success">₦100,000</td></tr>
+                        <tr><td>SS3</td><td>₦75,000</td><td>₦30,000</td><td>₦25,000</td><td class="fw-bold text-success">₦130,000</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- ─── SEARCH + TABLE ─── -->
+        <div class="d-flex flex-wrap gap-2 align-items-center mb-3">
+            <input id="searchInput" class="form-control" style="flex:1; min-width:200px;" placeholder="🔍 Search by name or class..." />
+            <span class="record-count text-white-50" id="recordCount">0 records</span>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-dark table-hover align-middle">
+                <thead>
+                    <tr>
+                        <th style="width:30px;"></th>
+                        <th>Name</th>
+                        <th>Class</th>
+                        <th>Total Fees</th>
+                        <th>Total Paid</th>
+                        <th>Balance</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody id="paymentTable"></tbody>
+            </table>
+        </div>
+
+    </div>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js">
+    </script>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+        import { getFirestore, collection, addDoc, getDocs }
+        from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyDmvmqTgjhbtgLxrbvgmT3LQgEsNoj3x_g",
+            authDomain: "positivechangecollege-4d2cb.firebaseapp.com",
+            projectId: "positivechangecollege-4d2cb",
+            storageBucket: "positivechangecollege-4d2cb.firebasestorage.app",
+            messagingSenderId: "847572892577",
+            appId: "1:847572892577:web:1f6184c056ca46cf3ce9e0",
+            measurementId: "G-CVGTLPDR5M"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // ── Fee breakdown ──
+        const feeBreakdown = {
+            JSS1: { school: 50000, waec: 0, neco: 0, total: 50000 },
+            JSS2: { school: 50000, waec: 0, neco: 0, total: 50000 },
+            JSS3: { school: 55000, waec: 0, neco: 0, total: 55000 },
+            SS1: { school: 70000, waec: 0, neco: 0, total: 70000 },
+            SS2: { school: 70000, waec: 30000, neco: 0, total: 100000 },
+            SS3: { school: 75000, waec: 30000, neco: 25000, total: 130000 }
+        };
+
+        const classFees = Object.fromEntries(
+            Object.entries(feeBreakdown).map(([cls, data]) => [cls, data.total])
+        );
+
+        function calc(total, paid) {
+            let balance = Math.max(total - paid, 0);
+            let status = "Unpaid";
+            if (paid > 0 && balance > 0) status = "Part Payment";
+            if (balance <= 0) { status = "Paid";
+                balance = 0; }
+            return { balance, status };
+        }
+
+        function formatDate(timestamp) {
+            if (!timestamp) return '—';
+            const date = timestamp.toDate ? timestamp.toDate() : new Date(timestamp);
+            return date.toLocaleDateString('en-NG', {
+                day: '2-digit',
+                month: 'short',
+                year: 'numeric'
+            }) + ' ' + date.toLocaleTimeString('en-NG', {
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: false
+            });
+        }
+
+        const tableBody = document.getElementById("paymentTable");
+        const searchInput = document.getElementById("searchInput");
+        const recordCount = document.getElementById("recordCount");
+
+        let allRecords = [];
+        let aggregatedData = [];
+
+        // ── Aggregate by student with payment history ──
+        function aggregateWithHistory(records) {
+            const studentMap = new Map();
+            records.forEach(record => {
+                const key = record.name + '|' + record.studentClass;
+                if (!studentMap.has(key)) {
+                    studentMap.set(key, {
+                        name: record.name,
+                        studentClass: record.studentClass,
+                        totalPaid: 0,
+                        payments: []
+                    });
+                }
+                const entry = studentMap.get(key);
+                entry.totalPaid += record.amountPaid;
+                entry.payments.push({
+                    amount: record.amountPaid,
+                    formattedDate: record.formattedDate || '—'
+                });
+            });
+
+            const result = [];
+            for (let [key, student] of studentMap) {
+                const totalFees = classFees[student.studentClass] || 0;
+                const paid = student.totalPaid;
+                const { balance, status } = calc(totalFees, paid);
+                result.push({
+                    ...student,
+                    totalFees: totalFees,
+                    balance: balance,
+                    status: status
+                });
+            }
+            return result;
+        }
+
+        // ── Render table ──
+        function renderTable(students) {
+            if (!students || students.length === 0) {
+                tableBody.innerHTML =
+                    `<tr class="empty-row"><td colspan="7" class="text-center text-white-50 py-5">No students found</td></tr>`;
+                recordCount.textContent = '0 records';
+                return;
+            }
+
+            let html = '';
+            students.forEach((s, index) => {
+                const detailId = 'detail-' + index;
+
+                let statusBadge = `<span class="badge-unpaid">${s.status}</span>`;
+                if (s.status === 'Paid') statusBadge = `<span class="badge-paid">${s.status}</span>`;
+                if (s.status === 'Part Payment') statusBadge = `<span class="badge-part">${s.status}</span>`;
+
+                html += `
+                        <tr class="student-row" onclick="toggleDetail('${detailId}', this)">
+                            <td><span class="toggle-btn" id="btn-${detailId}">+</span></td>
+                            <td>${s.name}</td>
+                            <td>${s.studentClass}</td>
+                            <td>₦${s.totalFees.toLocaleString()}</td>
+                            <td>₦${s.totalPaid.toLocaleString()}</td>
+                            <td>₦${s.balance.toLocaleString()}</td>
+                            <td>${statusBadge}</td>
+                        </tr>
+                        <tr class="detail-row" id="${detailId}">
+                            <td colspan="7">
+                                <div class="detail-inner">
+                                    ${s.payments && s.payments.length > 0 ? `
+                                        <table class="table table-dark table-borderless mb-0">
+                                            <thead>
+                                                <tr>
+                                                    <th>Date & Time</th>
+                                                    <th>Amount Paid</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                ${s.payments.map(p => `
+                                                    <tr>
+                                                        <td>${p.formattedDate}</td>
+                                                        <td class="amount-col">₦${p.amount.toLocaleString()}</td>
+                                                    </tr>
+                                                `).join('')}
+                                            </tbody>
+                                        </table>
+                                    ` : `<div class="no-payments">No payments recorded yet.</div>`}
+                                </div>
+                            </td>
+                        </tr>
+                    `;
+            });
+
+            tableBody.innerHTML = html;
+            recordCount.textContent = `${students.length} student${students.length !== 1 ? 's' : ''}`;
+        }
+
+        // ── Toggle single row (global for onclick) ──
+        window.toggleDetail = function(detailId, row) {
+            const detailRow = document.getElementById(detailId);
+            const btn = document.getElementById('btn-' + detailId);
+            if (detailRow) {
+                detailRow.classList.toggle('show');
+                if (btn) {
+                    btn.textContent = detailRow.classList.contains('show') ? '−' : '+';
+                }
+            }
+        };
+
+        // ── Filter ──
+        function filterRecords() {
+            const term = searchInput.value.toLowerCase().trim();
+            if (!term) {
+                renderTable(aggregatedData);
+                return;
+            }
+            const filtered = aggregatedData.filter(s =>
+                s.name.toLowerCase().includes(term) ||
+                s.studentClass.toLowerCase().includes(term)
+            );
+            renderTable(filtered);
+        }
+
+        // ── Load Data ──
+        async function loadData() {
+            const snap = await getDocs(collection(db, "school-fees"));
+            allRecords = [];
+            snap.forEach(doc => {
+                const data = doc.data();
+                let formattedDate = '—';
+                if (data.createdAt) {
+                    formattedDate = formatDate(data.createdAt);
+                }
+                allRecords.push({
+                    name: data.name || '',
+                    studentClass: data.studentClass || '',
+                    amountPaid: Number(data.amountPaid) || 0,
+                    formattedDate: formattedDate
+                });
+            });
+
+            aggregatedData = aggregateWithHistory(allRecords);
+            filterRecords();
+            updateStats();
+        }
+
+        // ── Update Stats ──
+        async function updateStats() {
+            const snap = await getDocs(collection(db, "school-fees"));
+            const studentSet = new Set();
+            snap.forEach(doc => {
+                const x = doc.data();
+                if (x.name && x.studentClass) {
+                    studentSet.add(x.name + '|' + x.studentClass);
+                }
+            });
+            document.getElementById("totalFeeStudents").textContent = studentSet.size;
+        }
+
+        // ── Save Payment ──
+        document.getElementById("saveBtn").addEventListener("click", async () => {
+            const name = document.getElementById("studentName").value.trim();
+            const cls = document.getElementById("studentClass").value;
+            const paid = Number(document.getElementById("amountPaid").value);
+
+            if (!name || !cls || isNaN(paid) || paid <= 0) {
+                alert("Please fill all fields correctly.");
+                return;
+            }
+
+            const total = classFees[cls];
+            if (!total) {
+                alert("Invalid class selected.");
+                return;
+            }
+
+            const res = calc(total, paid);
+
+            await addDoc(collection(db, "school-fees"), {
+                name,
+                studentClass: cls,
+                totalFees: total,
+                amountPaid: paid,
+                balance: res.balance,
+                status: res.status,
+                createdAt: new Date()
+            });
+
+            document.getElementById("studentName").value = '';
+            document.getElementById("studentClass").value = '';
+            document.getElementById("amountPaid").value = '';
+
+            await loadData();
+            await updateStats();
+        });
+
+        // ── Clock ──
+        function updateClock() {
+            const now = new Date();
+            const dateStr = now.toLocaleDateString('en-NG', {
+                weekday: 'short',
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric'
+            });
+            const timeStr = now.toLocaleTimeString('en-NG', {
+                hour12: false,
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit'
+            });
+            document.getElementById('dateDisplay').textContent = dateStr;
+            document.getElementById('timeDisplay').textContent = timeStr;
+        }
+        updateClock();
+        setInterval(updateClock, 1000);
+
+        searchInput.addEventListener('input', filterRecords);
+
+        loadData();
+    </script>
+
+</body>
+</html>

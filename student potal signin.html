@@ -1,194 +1,299 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>student Portal Sign In</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Sign In – Positive Change College</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', system-ui, sans-serif;
+        }
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            background: radial-gradient(circle at 10% 20%, rgba(10, 25, 47, 0.98), rgba(2, 12, 27, 1));
+            background-attachment: fixed;
+        }
+        .container {
+            width: 100%;
+            max-width: 420px;
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(20px);
+            padding: 44px 40px 40px;
+            border-radius: 32px;
+            border: 1px solid rgba(0, 255, 195, 0.12);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+            transition: border-color 0.3s;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+        .container:hover {
+            border-color: rgba(0, 255, 195, 0.25);
+        }
+        .container::before {
+            content: '';
+            position: absolute;
+            top: -60%;
+            left: -30%;
+            width: 180%;
+            height: 180%;
+            background: radial-gradient(circle at 30% 20%, rgba(0, 255, 195, 0.04), transparent 70%);
+            pointer-events: none;
+            z-index: -1;
+            border-radius: 32px;
+        }
 
-  <style>
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
-      font-family: Arial, sans-serif;
-    }
+        /* ── Logo ── */
+        .logo-wrapper {
+            margin-bottom: 12px;
+        }
+        .logo-wrapper img {
+            width: 80px;
+            height: auto;
+            display: block;
+            margin: 0 auto 8px;
+            border: 2px solid rgba(0, 255, 195, 0.25);
+            border-radius: 16px;
+            padding: 6px;
+            background: rgba(0, 0, 0, 0.2);
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        .logo-wrapper img:hover {
+            border-color: #00ffc3;
+            box-shadow: 0 0 20px rgba(0, 255, 195, 0.15);
+        }
 
-    body{
-      height:100vh;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      background: radial-gradient(circle at 10% 20%, rgba(10, 25, 47, 0.98), rgba(2, 12, 27, 1));
-    }
+        .logo-text h1 {
+            font-size: 28px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 4px;
+        }
+        .logo-text h1 span {
+            color: #00ffc3;
+        }
+        .logo-text p {
+            color: rgba(255, 255, 255, 0.45);
+            font-size: 14px;
+            margin-top: 4px;
+            margin-bottom: 28px;
+        }
 
-    .container{
-      width:350px;
-        background: rgba(0, 255, 195, 0.4);
-      padding:30px;
-      border-radius:12px;
-      box-shadow:0 4px 15px rgba(0,0,0,0.1);
-    }
+        .input-box {
+            margin-bottom: 18px;
+            text-align: left;
+        }
+        .input-box label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 500;
+            font-size: 13px;
+            letter-spacing: 0.3px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.5);
+        }
+        .input-box input {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            outline: none;
+            background: rgba(255, 255, 255, 0.04);
+            color: #fff;
+            font-size: 15px;
+            transition: 0.3s;
+        }
+        .input-box input::placeholder {
+            color: rgba(255, 255, 255, 0.2);
+        }
+        .input-box input:focus {
+            border-color: #00ffc3;
+            background: rgba(0, 255, 195, 0.04);
+            box-shadow: 0 0 0 4px rgba(0, 255, 195, 0.08);
+        }
 
-    .logo{
-      text-align:center;
-      margin-bottom:20px;
-    }
+        .btn-primary {
+            width: 100%;
+            padding: 16px;
+            border: none;
+            border-radius: 16px;
+            background: #00ffc3;
+            color: #0b1a2e;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 6px;
+            transition: 0.25s;
+            letter-spacing: 0.2px;
+        }
+        .btn-primary:hover {
+            background: #66ffd6;
+            transform: scale(1.01);
+            box-shadow: 0 8px 30px rgba(0, 255, 195, 0.25);
+        }
 
-    .logo h1{
-      color: #00ffc3;
-      font-size:28px;
-    }
+        .message {
+            margin-top: 16px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: 500;
+            min-height: 22px;
+            color: #ffc857;
+        }
+        .message.error {
+            color: #ff6b6b;
+        }
+        .message.success {
+            color: #00ffc3;
+        }
 
-    .logo p{
-      color: #00ffc3;
-      font-size:14px;
-      margin-top:5px;
-    }
+        .bottom-text {
+            text-align: center;
+            margin-top: 20px;
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 14px;
+        }
+        .bottom-text a {
+            color: #00ffc3;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.2s;
+            border-bottom: 1px solid transparent;
+        }
+        .bottom-text a:hover {
+            color: #66ffd6;
+            border-bottom-color: rgba(0, 255, 195, 0.3);
+        }
 
-    .input-box{
-      margin-bottom:18px;
-    }
-
-    .input-box label{
-      display:block;
-      margin-bottom:6px;
-      color: #00ffc3;
-      font-size:14px;
-    }
-
-    .input-box input{
-      width:100%;
-      padding:12px;
-      border:1px solid #ccc;
-      border-radius:8px;
-      outline:none;
-      font-size:15px;
-    }
-
-    .input-box input:focus{
-      border-color: #00ffc3;
-    }
-
-    button{
-      width:100%;
-      padding:12px;
-      background: #00ffc3;
-      color:black;
-      border:none;
-      border-radius:8px;
-      cursor:pointer;
-      font-size:16px;
-      transition:0.3s;
-    }
-
-    button:hover{
-      box-shadow: 0 18px 30px rgba(0, 255, 195, 0.4);
-    }
-
-    .message{
-      text-align:center;
-      margin-top:15px;
-      font-size:14px;
-      color:white;
-    }
-
-    .error{
-      color:red;
-    }
-  </style>
+        @media (max-width: 480px) {
+            .container {
+                padding: 32px 22px 30px;
+            }
+            .logo-text h1 {
+                font-size: 22px;
+            }
+            .logo-wrapper img {
+                width: 60px;
+            }
+        }
+    </style>
 </head>
 <body>
+    <div class="container">
+        <!-- ─── LOGO ─── -->
+        <div class="logo-wrapper">
+            <img src="./pictures/pca logo.png" alt="Positive Change College Logo" />
+        </div>
 
-  <div class="container">
-    <div class="logo">
-      <h1>student Portal</h1>
-      <p>School Management System</p>
+        <!-- ─── TITLE ─── -->
+        <div class="logo-text">
+            <h1>Positive Change <span>College</span></h1>
+            <p>Student Portal · School Management System</p>
+        </div>
+
+        <form id="loginForm">
+            <div class="input-box">
+                <label>Email</label>
+                <input type="email" id="email" placeholder="student@positive.edu" required />
+            </div>
+            <div class="input-box">
+                <label>Password</label>
+                <input type="password" id="password" placeholder="Enter your password" required />
+            </div>
+            <button type="submit" class="btn-primary">Sign In</button>
+            <div class="message" id="message"></div>
+        </form>
+
+        <div class="bottom-text">
+            No account? <a href="student-signup.html">Create Account</a>
+        </div>
     </div>
 
-    <form id="loginForm">
-      <div class="input-box">
-        <label>Email</label>
-        <input type="email" id="email" placeholder="Enter parent email" required>
-      </div>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
+        import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-auth.js";
+        import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js";
 
-      <div class="input-box">
-        <label>Password</label>
-        <input type="password" id="password" placeholder="Enter password" required>
-      </div>
+        const firebaseConfig = {
+            apiKey: "AIzaSyDmvmqTgjhbtgLxrbvgmT3LQgEsNoj3x_g",
+            authDomain: "positivechangecollege-4d2cb.firebaseapp.com",
+            projectId: "positivechangecollege-4d2cb",
+            storageBucket: "positivechangecollege-4d2cb.firebasestorage.app",
+            messagingSenderId: "847572892577",
+            appId: "1:847572892577:web:1f6184c056ca46cf3ce9e0",
+            measurementId: "G-CVGTLPDR5M"
+        };
 
-      <button type="submit">Sign In</button>
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
 
-      <div class="message" id="message"></div>
-      
-</button>
-    </form>
-     <p style="text-align:center; margin-top:10px;">
-      No account? <a href="studentsignup.html">Create Account</a>
-    </p>
-  </div>
+        const form = document.getElementById("loginForm");
+        const message = document.getElementById("message");
 
-  
+        form.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const email = document.getElementById("email").value.trim();
+            const password = document.getElementById("password").value;
 
+            message.textContent = '';
+            message.className = 'message';
 
+            if (!email || !password) {
+                message.textContent = 'Please fill in all fields.';
+                message.className = 'message error';
+                return;
+            }
 
+            try {
+                const userCredential = await signInWithEmailAndPassword(auth, email, password);
+                const user = userCredential.user;
 
+                const docRef = doc(db, "students", user.uid);
+                const docSnap = await getDoc(docRef);
+                if (!docSnap.exists()) {
+                    message.textContent = 'Student record not found. Please contact support.';
+                    message.className = 'message error';
+                    return;
+                }
+                const data = docSnap.data();
 
-<script type="module">
+                // Redirects – keep your existing file names
+                if (data.suspended) {
+                    window.location.href = 'suspended page.html';
+                    return;
+                }
+                if (!data.approved) {
+                    window.location.href = 'Student Portal Waiting Page.html';
+                    return;
+                }
 
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
+                localStorage.setItem("userEmail", user.email);
+                localStorage.setItem("userId", user.uid);
+                message.textContent = 'Login successful! Redirecting…';
+                message.className = 'message success';
+                setTimeout(() => {
+                    window.location.href = "studient potal.html";
+                }, 1200);
 
-import {
-  getAuth,
-  signInWithEmailAndPassword
-} from "https://www.gstatic.com/firebasejs/12.13.0/firebase-auth.js";
-
-
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: "AIzaSyDmvmqTgjhbtgLxrbvgmT3LQgEsNoj3x_g",
-  authDomain: "positivechangecollege-4d2cb.firebaseapp.com",
-  projectId: "positivechangecollege-4d2cb",
-  storageBucket: "positivechangecollege-4d2cb.firebasestorage.app",
-  messagingSenderId: "847572892577",
-  appId: "1:847572892577:web:1f6184c056ca46cf3ce9e0",
-  measurementId: "G-CVGTLPDR5M"
-};
-
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-
-
-const form = document.getElementById("loginForm");
-
-form.addEventListener("submit", async (e) => {
-
-  e.preventDefault();
-
-  const email = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
-
-  try {
-
-    await signInWithEmailAndPassword(
-      auth,
-      email,
-      password
-    );
-
-
-    alert("Login successful!");
-
-    window.location.href = "studient potal.html";
-
-  } catch (error) {
-
-    alert(error.message);
-
-  }
-
-});
-
-</script>
-
+            } catch (error) {
+                console.error(error);
+                let msg = error.message;
+                if (error.code === 'auth/user-not-found') msg = 'No account found with this email.';
+                else if (error.code === 'auth/wrong-password') msg = 'Incorrect password. Please try again.';
+                else if (error.code === 'auth/invalid-email') msg = 'Please enter a valid email address.';
+                else if (error.code === 'auth/too-many-requests') msg = 'Too many failed attempts. Please try again later.';
+                message.textContent = msg;
+                message.className = 'message error';
+            }
+        });
+    </script>
 </body>
 </html>

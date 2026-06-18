@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Account Suspended – Positive Change College</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        }
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            background: radial-gradient(circle at 10% 20%, rgba(10, 25, 47, 0.98), rgba(2, 12, 27, 1));
+            background-attachment: fixed;
+        }
+        .container {
+            width: 100%;
+            max-width: 480px;
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 44px 40px 40px;
+            border-radius: 32px;
+            border: 1px solid rgba(255, 107, 107, 0.2);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+            transition: border-color 0.3s;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+        .container:hover {
+            border-color: rgba(255, 107, 107, 0.4);
+        }
+        .container::before {
+            content: '';
+            position: absolute;
+            top: -60%;
+            left: -30%;
+            width: 180%;
+            height: 180%;
+            background: radial-gradient(circle at 30% 20%, rgba(255, 107, 107, 0.04), transparent 70%);
+            pointer-events: none;
+            z-index: -1;
+            border-radius: 32px;
+        }
+        .icon {
+            font-size: 72px;
+            margin-bottom: 12px;
+            display: block;
+        }
+        h1 {
+            font-size: 26px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 4px;
+        }
+        h1 span {
+            color: #ff6b6b;
+        }
+        .subtitle {
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+        .status-badge {
+            display: inline-block;
+            padding: 6px 24px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin: 8px 0 16px;
+            background: rgba(255, 107, 107, 0.15);
+            color: #ff6b6b;
+            border: 1px solid rgba(255, 107, 107, 0.2);
+        }
+        .user-info {
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 16px;
+            padding: 16px;
+            margin: 12px 0 20px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+        .user-info p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 14px;
+            margin: 4px 0;
+        }
+        .user-info strong {
+            color: #fff;
+        }
+        .message-box {
+            background: rgba(255, 107, 107, 0.08);
+            border-left: 4px solid #ff6b6b;
+            padding: 16px;
+            border-radius: 12px;
+            margin: 16px 0 24px;
+        }
+        .message-box p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 15px;
+            line-height: 1.6;
+        }
+        .message-box strong {
+            color: #ff6b6b;
+        }
+        .btn-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .btn {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 16px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.25s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+        .btn-primary {
+            background: #00ffc3;
+            color: #0b1a2e;
+        }
+        .btn-primary:hover {
+            background: #66ffd6;
+            transform: scale(1.02);
+            box-shadow: 0 8px 30px rgba(0, 255, 195, 0.25);
+        }
+        .btn-danger {
+            background: #ff6b6b;
+            color: #fff;
+        }
+        .btn-danger:hover {
+            background: #ff8a8a;
+        }
+        .btn-outline {
+            background: transparent;
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+        .btn-outline:hover {
+            background: rgba(255, 255, 255, 0.06);
+        }
+        .footer {
+            margin-top: 24px;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.15);
+        }
+        @media (max-width: 480px) {
+            .container {
+                padding: 32px 22px 30px;
+            }
+            h1 {
+                font-size: 22px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <span class="icon">🚫</span>
+        <h1>Account <span>Suspended</span></h1>
+        <p class="subtitle">Positive Change College · Student Portal</p>
+
+        <div class="status-badge">⛔ Suspended</div>
+
+        <div class="user-info">
+            <p><strong>Name:</strong> <span id="studentName">—</span></p>
+            <p><strong>Email:</strong> <span id="studentEmail">—</span></p>
+        </div>
+
+        <div class="message-box">
+            <p>
+                Your account has been <strong>suspended</strong> by the school administration.
+                Please contact the <strong>Student Affairs Office</strong> for further assistance.
+                <br /><br />
+                <span style="font-size:13px; color:rgba(255,255,255,0.4);">
+                    📧 support@positivechange.edu &nbsp;|&nbsp; 📞 +234 800 123 4567
+                </span>
+            </p>
+        </div>
+
+        <div class="btn-group">
+            <button class="btn btn-danger" id="logoutBtn">Logout</button>
+            <a href="index.html" class="btn btn-outline">🏠 Home</a>
+        </div>
+
+        <div class="footer">&copy; 2026 Positive Change College</div>
+    </div>
+
+    <script>
+        // Load student info from localStorage (set during login)
+        document.addEventListener('DOMContentLoaded', function() {
+            const name = localStorage.getItem('cbtUserName') || 'Student';
+            const email = localStorage.getItem('userEmail') || 'student@positive.edu';
+            document.getElementById('studentName').textContent = name;
+            document.getElementById('studentEmail').textContent = email;
+        });
+
+        // Logout – clear storage and redirect
+        document.getElementById('logoutBtn').addEventListener('click', function() {
+            localStorage.removeItem('userEmail');
+            localStorage.removeItem('userId');
+            localStorage.removeItem('cbtUserName');
+            localStorage.removeItem('cbtUserEmail');
+            window.location.href = 'student-signin.html';
+        });
+    </script>
+</body>
+</html>

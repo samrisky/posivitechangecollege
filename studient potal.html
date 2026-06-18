@@ -992,7 +992,7 @@
         <aside class="sidebar">
             <div>
                 <h2>Student Info</h2>
-                <p><strong>Name:</strong> <span id="studentName">Ada Johnson</span></p>
+                <p><strong>Name:</strong> <span id="studentName"></span></p>
                 <p><strong>Class:</strong> Grade 11</p>
                 <p><strong>Student ID:</strong> 2026-0409</p>
             </div>
@@ -1044,7 +1044,7 @@
                     <p
                         style="margin:0; text-transform:uppercase; letter-spacing:0.18em; font-size:0.82rem; color:#ffb703; font-weight:700;">
                         Good afternoon</p>
-                    <h2>Welcome <span id="welcomeName">Ada</span>.</h2>
+                    <h2>Welcome <span id="welcomeName"></span>.</h2>
                     <p>Here's your daily snapshot: upcoming classes, latest grades, announcements, and school reminders.
                     </p>
                 </div>
@@ -1071,18 +1071,19 @@
                     <h3>💳 Tuition & Payments</h3>
                     <div class="payment-status-grid">
                         <div class="payment-status-item">
-                            <div class="payment-status-amount">₦850,000</div>
-                            <div class="payment-status-label">Total Fees</div>
-                        </div>
-                        <div class="payment-status-item">
-                            <div class="payment-status-amount">₦650,000</div>
-                            <div class="payment-status-label">Paid</div>
-                        </div>
-                        <div class="payment-status-item">
-                            <div class="payment-status-amount">₦200,000</div>
-                            <div class="payment-status-label">Outstanding</div>
-                        </div>
-                    </div>
+    <div class="payment-status-amount" id="totalFees">₦0</div>
+    <div class="payment-status-label">Total Fees</div>
+</div>
+
+<div class="payment-status-item">
+    <div class="payment-status-amount" id="totalPaid">₦0</div>
+    <div class="payment-status-label">Paid</div>
+</div>
+
+<div class="payment-status-item">
+    <div class="payment-status-amount" id="totalOutstanding">₦0</div>
+    <div class="payment-status-label">Outstanding</div>
+</div>
                 </div>
                 <div class="payment-content">
                     <div class="payment-actions">
@@ -1271,84 +1272,142 @@
     </main>
 
 
+<script type="module">
 
-    <script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
+import {
+    getAuth,
+    onAuthStateChanged,
+    signOut
+} from "https://www.gstatic.com/firebasejs/12.13.0/firebase-auth.js";
 
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
+import {
+    getFirestore,
+    doc,
+    getDoc,
+    collection,
+    query,
+    where,
+    onSnapshot
+} from "https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js";
 
-        import {
-            getAuth,
-            onAuthStateChanged,
-            signOut
-        } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-auth.js";
+const firebaseConfig = {
+    apiKey: "AIzaSyDmvmqTgjhbtgLxrbvgmT3LQgEsNoj3x_g",
+    authDomain: "positivechangecollege-4d2cb.firebaseapp.com",
+    projectId: "positivechangecollege-4d2cb",
+    storageBucket: "positivechangecollege-4d2cb.firebasestorage.app",
+    messagingSenderId: "847572892577",
+    appId: "1:847572892577:web:1f6184c056ca46cf3ce9e0",
+    measurementId: "G-CVGTLPDR5M"
+};
 
-        import {
-            getFirestore,
-            doc,
-            getDoc
-        } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js";
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+// UI elements
+const welcomeName = document.getElementById("welcomeName");
+const studentName = document.getElementById("studentName");
+const avatar = document.getElementById("avatarInitial");
+
+// AUTH
+onAuthStateChanged(auth, async (user) => {
+
+    if (!user) {
+        window.location.href = "signin.html";
+        return;
+    }
+
+    try {
+
+        const docRef = doc(db, "students", user.uid);
+        const docSnap = await getDoc(docRef);
+
+        if (!docSnap.exists()) {
+            console.log("No student found");
+            return;
+        }
+
+        const student = docSnap.data();
+        const name = student.name || "Student";
+
+        welcomeName.textContent = name;
+        studentName.textContent = name;
+        avatar.textContent = name.charAt(0).toUpperCase();
+
+        // IMPORTANT FIX: pass name instead of uid
+        loadStudentPayments(name);
+
+    } catch (err) {
+        console.error("Error loading student:", err);
+    }
+});
 
 
-        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-        const firebaseConfig = {
-            apiKey: "AIzaSyDmvmqTgjhbtgLxrbvgmT3LQgEsNoj3x_g",
-            authDomain: "positivechangecollege-4d2cb.firebaseapp.com",
-            projectId: "positivechangecollege-4d2cb",
-            storageBucket: "positivechangecollege-4d2cb.firebasestorage.app",
-            messagingSenderId: "847572892577",
-            appId: "1:847572892577:web:1f6184c056ca46cf3ce9e0",
-            measurementId: "G-CVGTLPDR5M"
-        };
+// 🔥 FIXED PAYMENT LOADER
+function loadStudentPayments(studentNameValue) {
 
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        const db = getFirestore(app);
+    const table = document.querySelector(".payment-table tbody");
 
+    if (!table) {
+        console.error("Payment table not found!");
+        return;
+    }
 
-        const welcomeName = document.getElementById("welcomeName");
-        const studentName = document.getElementById("studentName");
-        const avatar = document.getElementById("avatarInitial");
+    const q = query(
+        collection(db, "school-fees"),
+        where("name", "==", studentNameValue)
+    );
 
+    onSnapshot(q, (snap) => {
 
-        onAuthStateChanged(auth, async (user) => {
+        console.log("Payments found:", snap.size);
 
-            if (user) {
+        table.innerHTML = "";
 
-                const docRef = doc(db, "students", user.uid);
+        let totalFees = 0;
+        let totalPaid = 0;
+        let totalOutstanding = 0;
 
-                const docSnap = await getDoc(docRef);
+        snap.forEach((docSnap) => {
 
+            const x = docSnap.data();
 
-                if (docSnap.exists()) {
+            const paid = Number(x.amountPaid || 0);
+            const balance = Number(x.balance || 0);
 
-                    const student = docSnap.data();
+            totalPaid += paid;
+            totalOutstanding += balance;
+            totalFees += paid + balance;
 
-                    welcomeName.innerText = student.name;
-
-                    studentName.innerText = student.name;
-
-                    avatar.innerText = student.name.charAt(0).toUpperCase();
-
-                }
-
-            } else {
-
-                window.location.href = "signin.html";
-
-            }
-
+            table.innerHTML += `
+                <tr>
+                    <td>${x.createdAt?.toDate?.().toLocaleDateString() || "N/A"}</td>
+                    <td>${x.studentClass || "Tuition"}</td>
+                    <td>₦${paid}</td>
+                    <td>
+                        <span class="badge ${x.status === "Paid" ? "paid" : "pending"}">
+                            ${x.status}
+                        </span>
+                    </td>
+                </tr>
+            `;
         });
 
+        document.getElementById("totalFees").textContent = "₦" + totalFees;
+        document.getElementById("totalPaid").textContent = "₦" + totalPaid;
+        document.getElementById("totalOutstanding").textContent = "₦" + totalOutstanding;
+    });
+}
 
-        window.logoutUser = async () => {
 
-            await signOut(auth);
+// logout
+window.logoutUser = async () => {
+    await signOut(auth);
+    window.location.href = "signin.html";
+};
 
-            window.location.href = "signin.html";
-
-        };
-
-    </script>
+</script>
 </body>
 
 </html>

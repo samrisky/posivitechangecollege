@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Positive Change College – Sign Up</title>
+    <style>
+        /* ── reset & base ── */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            background: radial-gradient(circle at 10% 20%,
+                    rgba(10, 25, 47, 0.98),
+                    rgba(2, 12, 27, 1));
+            background-attachment: fixed;
+        }
+
+        /* ── glass card ── */
+        .signup-box {
+            width: 100%;
+            max-width: 520px;
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 44px 40px 40px;
+            border-radius: 32px;
+            border: 1px solid rgba(0, 255, 195, 0.12);
+            box-shadow:
+                0 30px 80px rgba(0, 0, 0, 0.6),
+                inset 0 1px 0 rgba(255, 255, 255, 0.04);
+            transition: border-color 0.3s;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .signup-box:hover {
+            border-color: rgba(0, 255, 195, 0.25);
+        }
+
+        /* ── subtle decorative glow ── */
+        .signup-box::before {
+            content: '';
+            position: absolute;
+            top: -60%;
+            left: -30%;
+            width: 180%;
+            height: 180%;
+            background: radial-gradient(circle at 30% 20%,
+                    rgba(0, 255, 195, 0.04),
+                    transparent 70%);
+            pointer-events: none;
+            z-index: -1;
+            border-radius: 32px;
+        }
+
+        /* ── Logo ── */
+        .logo-wrapper {
+            margin-bottom: 12px;
+        }
+        .logo-wrapper img {
+            width: 80px;
+            height: auto;
+            display: block;
+            margin: 0 auto 8px;
+            border: 2px solid rgba(0, 255, 195, 0.25);
+            border-radius: 16px;
+            padding: 6px;
+            background: rgba(0, 0, 0, 0.2);
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        .logo-wrapper img:hover {
+            border-color: #00ffc3;
+            box-shadow: 0 0 20px rgba(0, 255, 195, 0.15);
+        }
+
+        /* ── typography ── */
+        .signup-box h1 {
+            text-align: center;
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+            color: #fff;
+            margin-bottom: 4px;
+        }
+
+        .signup-box h1 span {
+            color: #00ffc3;
+        }
+
+        .signup-box .subtitle {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.55);
+            font-size: 15px;
+            margin-bottom: 32px;
+            letter-spacing: 0.2px;
+        }
+
+        /* ── inputs ── */
+        .input-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 500;
+            font-size: 13px;
+            letter-spacing: 0.3px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            outline: none;
+            background: rgba(255, 255, 255, 0.04);
+            color: #fff;
+            font-size: 15px;
+            transition: 0.3s ease;
+        }
+
+        .input-group input::placeholder {
+            color: rgba(255, 255, 255, 0.2);
+            font-weight: 400;
+        }
+
+        .input-group input:focus {
+            border-color: #00ffc3;
+            background: rgba(0, 255, 195, 0.04);
+            box-shadow: 0 0 0 4px rgba(0, 255, 195, 0.08);
+        }
+
+        /* ── button ── */
+        .btn-primary {
+            width: 100%;
+            padding: 16px;
+            border: none;
+            border-radius: 16px;
+            background: #00ffc3;
+            color: #0b1a2e;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 8px;
+            transition: 0.25s ease;
+            letter-spacing: 0.2px;
+        }
+
+        .btn-primary:hover {
+            background: #66ffd6;
+            transform: scale(1.01);
+            box-shadow: 0 8px 30px rgba(0, 255, 195, 0.25);
+        }
+
+        .btn-primary:active {
+            transform: scale(0.98);
+        }
+
+        /* ── login link ── */
+        .login-link {
+            text-align: center;
+            margin-top: 22px;
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 14px;
+        }
+
+        .login-link a {
+            color: #00ffc3;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.2s;
+            border-bottom: 1px solid transparent;
+        }
+
+        .login-link a:hover {
+            color: #66ffd6;
+            border-bottom-color: rgba(0, 255, 195, 0.3);
+        }
+
+        /* ── responsive ── */
+        @media (max-width: 480px) {
+            .signup-box {
+                padding: 32px 22px 30px;
+            }
+            .signup-box h1 {
+                font-size: 22px;
+            }
+            .logo-wrapper img {
+                width: 60px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="signup-box">
+        <!-- ─── LOGO ─── -->
+        <div class="logo-wrapper">
+            <img src="./pictures/pca logo.png" alt="Positive Change College Logo" />
+        </div>
+
+        <h1>Positive Change <span>College</span></h1>
+        <p class="subtitle">Create your CBT Account</p>
+
+        <form id="signupForm">
+            <div class="input-group">
+                <label>Full Name</label>
+                <input type="text" id="fullName" placeholder="Enter your full name" required />
+            </div>
+
+            <div class="input-group">
+                <label>Student ID</label>
+                <input type="text" id="studentId" placeholder="Enter your Student ID" required />
+            </div>
+
+            <div class="input-group">
+                <label>Email Address</label>
+                <input type="email" id="email" placeholder="Enter your email" required />
+            </div>
+
+            <div class="input-group">
+                <label>Password</label>
+                <input type="password" id="password" placeholder="Create a password" required />
+            </div>
+
+            <div class="input-group">
+                <label>Confirm Password</label>
+                <input type="password" id="confirmPassword" placeholder="Confirm password" required />
+            </div>
+
+            <button type="submit" class="btn-primary">Create Account</button>
+
+            <div class="login-link">
+                Already have an account?
+                <a href="cbt login.html">Login</a>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('signupForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const name = document.getElementById('fullName').value.trim();
+            const studentId = document.getElementById('studentId').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value;
+            const confirm = document.getElementById('confirmPassword').value;
+
+            if (!name || !studentId || !email || !password || !confirm) {
+                alert('Please fill in all fields.');
+                return;
+            }
+            if (password !== confirm) {
+                alert('Passwords do not match.');
+                return;
+            }
+            if (password.length < 6) {
+                alert('Password must be at least 6 characters.');
+                return;
+            }
+
+            const userData = {
+                name,
+                studentId,
+                email,
+                password
+            };
+            localStorage.setItem('cbtUserData', JSON.stringify(userData));
+            localStorage.setItem('cbtUserName', name);
+            localStorage.setItem('cbtUserEmail', email);
+
+            window.location.href = 'cbt dashboard.html';
+        });
+    </script>
+
+</body>
+</html>

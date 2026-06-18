@@ -1,147 +1,283 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Parent Sign In</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Parent Sign In – Positive Change College</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', system-ui, sans-serif;
+        }
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            background: radial-gradient(circle at 10% 20%, rgba(10, 25, 47, 0.98), rgba(2, 12, 27, 1));
+            background-attachment: fixed;
+        }
+        .container {
+            width: 100%;
+            max-width: 420px;
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(20px);
+            padding: 44px 40px 40px;
+            border-radius: 32px;
+            border: 1px solid rgba(0, 255, 195, 0.12);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+            transition: border-color 0.3s;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+        .container:hover {
+            border-color: rgba(0, 255, 195, 0.25);
+        }
+        .container::before {
+            content: '';
+            position: absolute;
+            top: -60%;
+            left: -30%;
+            width: 180%;
+            height: 180%;
+            background: radial-gradient(circle at 30% 20%, rgba(0, 255, 195, 0.04), transparent 70%);
+            pointer-events: none;
+            z-index: -1;
+            border-radius: 32px;
+        }
 
-<style>
-body{
-  margin:0;
-  font-family:Arial;
-  background:#0a192f;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  height:100vh;
-}
+        /* ── Logo ── */
+        .logo-wrapper {
+            margin-bottom: 12px;
+        }
+        .logo-wrapper img {
+            width: 80px;
+            height: auto;
+            display: block;
+            margin: 0 auto 8px;
+            border: 2px solid rgba(0, 255, 195, 0.25);
+            border-radius: 16px;
+            padding: 6px;
+            background: rgba(0, 0, 0, 0.2);
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        .logo-wrapper img:hover {
+            border-color: #00ffc3;
+            box-shadow: 0 0 20px rgba(0, 255, 195, 0.15);
+        }
 
-.container{
-  width:350px;
-  background:#112240;
-  padding:30px;
-  border-radius:15px;
-  border:1px solid #233554;
-}
+        .container h1 {
+            font-size: 26px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 4px;
+        }
+        .container h1 span {
+            color: #00ffc3;
+        }
+        .container .subtitle {
+            color: rgba(255, 255, 255, 0.45);
+            font-size: 14px;
+            margin-bottom: 28px;
+        }
 
-h2{
-  text-align:center;
-  color:#00ffc3;
-}
+        .input-box {
+            margin-bottom: 18px;
+            text-align: left;
+        }
+        .input-box label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 500;
+            font-size: 13px;
+            letter-spacing: 0.3px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.5);
+        }
+        .input-box input {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            outline: none;
+            background: rgba(255, 255, 255, 0.04);
+            color: #fff;
+            font-size: 15px;
+            transition: 0.3s;
+        }
+        .input-box input::placeholder {
+            color: rgba(255, 255, 255, 0.2);
+        }
+        .input-box input:focus {
+            border-color: #00ffc3;
+            background: rgba(0, 255, 195, 0.04);
+            box-shadow: 0 0 0 4px rgba(0, 255, 195, 0.08);
+        }
 
-input{
-  width:100%;
-  padding:12px;
-  margin-top:10px;
-  border-radius:8px;
-  border:none;
-  outline:none;
-}
+        .btn-primary {
+            width: 100%;
+            padding: 16px;
+            border: none;
+            border-radius: 16px;
+            background: #00ffc3;
+            color: #0b1a2e;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 6px;
+            transition: 0.25s;
+            letter-spacing: 0.2px;
+        }
+        .btn-primary:hover {
+            background: #66ffd6;
+            transform: scale(1.01);
+            box-shadow: 0 8px 30px rgba(0, 255, 195, 0.25);
+        }
 
-button{
-  width:100%;
-  margin-top:20px;
-  padding:12px;
-  background:#00ffc3;
-  border:none;
-  border-radius:8px;
-  font-weight:bold;
-  cursor:pointer;
-}
+        .message {
+            margin-top: 16px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: 500;
+            min-height: 22px;
+            color: #ffc857;
+        }
+        .message.error {
+            color: #ff6b6b;
+        }
+        .message.success {
+            color: #00ffc3;
+        }
 
-button:hover{
-  background:#00d6a6;
-}
+        .bottom-text {
+            text-align: center;
+            margin-top: 20px;
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 14px;
+        }
+        .bottom-text a {
+            color: #00ffc3;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.2s;
+            border-bottom: 1px solid transparent;
+        }
+        .bottom-text a:hover {
+            color: #66ffd6;
+            border-bottom-color: rgba(0, 255, 195, 0.3);
+        }
 
-.msg{
-  color:white;
-  text-align:center;
-  margin-top:10px;
-}
-
-a{
-  color:#38bdf8;
-  text-decoration:none;
-}
-</style>
+        @media (max-width: 480px) {
+            .container {
+                padding: 32px 22px 30px;
+            }
+            .container h1 {
+                font-size: 22px;
+            }
+            .logo-wrapper img {
+                width: 60px;
+            }
+        }
+    </style>
 </head>
-
 <body>
 
 <div class="container">
+    <!-- ─── LOGO ─── -->
+    <div class="logo-wrapper">
+        <img src="./pictures/pca logo.png" alt="Positive Change College Logo" />
+    </div>
 
-  <h2>Parent Sign In</h2>
+    <h1>Positive Change <span>College</span></h1>
+    <p class="subtitle">Parent Portal · Sign In</p>
 
-  <form id="signinForm">
+    <form id="signinForm">
+        <div class="input-box">
+            <label>Email</label>
+            <input type="email" id="email" placeholder="parent@positive.edu" required />
+        </div>
+        <div class="input-box">
+            <label>Password</label>
+            <input type="password" id="password" placeholder="Enter your password" required />
+        </div>
+        <button type="submit" class="btn-primary">Sign In</button>
+        <div class="message" id="msg"></div>
+    </form>
 
-    <input type="email" id="email" placeholder="Email" required>
-    <input type="password" id="password" placeholder="Password" required>
-
-    <button type="submit">Sign In</button>
-
-    <div class="msg" id="msg"></div>
-
-  </form>
-
-  <p style="text-align:center;color:white;margin-top:15px;">
-    No account? <a href="parent signup.html">Create Account</a>
-  </p>
-
+    <div class="bottom-text">
+        No account? <a href="parent signup.html">Create Account</a>
+    </div>
 </div>
 
 <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
+    import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-auth.js";
 
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
-import {
-  getAuth,
-  signInWithEmailAndPassword
-} from "https://www.gstatic.com/firebasejs/12.13.0/firebase-auth.js";
+    const firebaseConfig = {
+        apiKey: "AIzaSyDmvmqTgjhbtgLxrbvgmT3LQgEsNoj3x_g",
+        authDomain: "positivechangecollege-4d2cb.firebaseapp.com",
+        projectId: "positivechangecollege-4d2cb",
+        storageBucket: "positivechangecollege-4d2cb.firebasestorage.app",
+        messagingSenderId: "847572892577",
+        appId: "1:847572892577:web:1f6184c056ca46cf3ce9e0",
+        measurementId: "G-CVGTLPDR5M"
+    };
 
-// Firebase config
-const firebaseConfig = {
-  apiKey: "AIzaSyDmvmqTgjhbtgLxrbvgmT3LQgEsNoj3x_g",
-  authDomain: "positivechangecollege-4d2cb.firebaseapp.com",
-  projectId: "positivechangecollege-4d2cb",
-  storageBucket: "positivechangecollege-4d2cb.firebasestorage.app",
-  messagingSenderId: "847572892577",
-  appId: "1:847572892577:web:1f6184c056ca46cf3ce9e0",
-  measurementId: "G-CVGTLPDR5M"
-};
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
 
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
+    const form = document.getElementById("signinForm");
+    const msg = document.getElementById("msg");
+    let loading = false;
 
-const form = document.getElementById("signinForm");
-const msg = document.getElementById("msg");
+    form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        if (loading) return;
+        loading = true;
 
-let loading = false;
+        const email = document.getElementById("email").value.trim();
+        const password = document.getElementById("password").value;
 
-form.addEventListener("submit", async (e) => {
-  e.preventDefault();
+        msg.textContent = '';
+        msg.className = 'message';
 
-  if (loading) return;
-  loading = true;
+        if (!email || !password) {
+            msg.textContent = 'Please fill in all fields.';
+            msg.className = 'message error';
+            loading = false;
+            return;
+        }
 
-  const email = document.getElementById("email").value.trim();
-  const password = document.getElementById("password").value;
+        try {
+            msg.textContent = 'Logging in…';
+            msg.className = 'message';
 
-  try {
-    msg.innerText = "Logging in...";
+            await signInWithEmailAndPassword(auth, email, password);
 
-    await signInWithEmailAndPassword(auth, email, password);
+            msg.textContent = 'Login successful! Redirecting…';
+            msg.className = 'message success';
 
-    msg.innerText = "Login successful ✔";
+            setTimeout(() => {
+                window.location.href = "parent-dashboard.html";
+            }, 1200);
 
-    setTimeout(() => {
-      window.location.href = "parent-dashboard.html";
-    }, 1200);
+        } catch (error) {
+            console.error(error);
+            let errMsg = error.message;
+            if (error.code === 'auth/user-not-found') errMsg = 'No account found with this email.';
+            else if (error.code === 'auth/wrong-password') errMsg = 'Incorrect password. Please try again.';
+            else if (error.code === 'auth/invalid-email') errMsg = 'Please enter a valid email address.';
+            else if (error.code === 'auth/too-many-requests') errMsg = 'Too many failed attempts. Please try again later.';
+            msg.textContent = errMsg;
+            msg.className = 'message error';
+        }
 
-  } catch (error) {
-    msg.innerText = error.message;
-  }
-
-  loading = false;
-});
+        loading = false;
+    });
 </script>
 
 </body>
