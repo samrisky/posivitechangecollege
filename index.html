@@ -2,1760 +2,2634 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Positive Change Secondary School | JSS1 – SS3 | WAEC & NECO</title>
-  <!-- Google Fonts: clean, readable for education -->
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
-    rel="stylesheet">
-  <!-- Bootstrap Icons -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Positive Change Secondary School | JSS1 – SS3 | WAEC & NECO</title>
+    <!-- Google Fonts: clean, readable for education -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <style>
+        /* ===== RESET & BASE ===== */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: white;
+            scroll-behavior: smooth;
+            line-height: 1.5;
+            background: radial-gradient(circle at 10% 20%, rgba(10, 25, 47, 0.98), rgba(2, 12, 27, 1));
+            min-height: 100vh;
+            overflow-x: hidden;
+            width: 100%;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 20px;
+            width: 100%;
+        }
+
+        h1,
+        h2,
+        h3,
+        .logo {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #00ffc3;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: white;
+            max-width: 680px;
+            margin-bottom: 2.5rem;
+        }
+
+        .section-sub {
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 1.05rem;
+            max-width: 700px;
+            margin-bottom: 2rem;
+        }
+
+        .jjc {
+            color: white;
+        }
+
+        /* ===== BUTTONS ===== */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 28px;
+            font-weight: 600;
+            border-radius: 40px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            font-size: 0.95rem;
+            cursor: pointer;
+            border: none;
+            text-align: center;
+            justify-content: center;
+        }
+
+        .btn-primary {
+            background: linear-gradient(95deg, #00ffc3, #00b38f);
+            color: #041c1a;
+            box-shadow: 0 8px 20px rgba(0, 255, 195, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 18px 30px rgba(0, 255, 195, 0.4);
+            filter: brightness(1.05);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1.5px solid #00ffc3;
+            color: #00ffc3;
+        }
+
+        .btn-outline:hover {
+            background: #00ffc3;
+            color: black;
+            transform: translateY(-2px);
+        }
+
+        .btn-success {
+            background: #27AE60;
+            color: white;
+        }
+
+        .btn-success:hover {
+            background: #1E8449;
+        }
+
+        /* ===== NAVIGATION ===== */
+        .navbar {
+            position: sticky;
+            top: 0;
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 12px 0;
+            border-bottom: 3px solid #00ffc3;
+            background: rgba(2, 12, 27, 0.92);
+            width: 100%;
+        }
+
+        .navbar .container {
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .nav-flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            width: 100%;
+            gap: 0.5rem;
+        }
+
+        .nav-brand {
+            flex: 1 1 auto;
+            min-width: 0;
+        }
+
+        .logo {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: white;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .logo span {
+            color: #00ffc3;
+        }
+
+        .nav-brand p {
+            font-size: 0.7rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-top: 0;
+            line-height: 1.2;
+        }
+
+        .navbar img {
+            flex-shrink: 0;
+        }
+
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: #00ffc3;
+            font-size: 1.8rem;
+            cursor: pointer;
+            padding: 4px 8px;
+            z-index: 10;
+            flex-shrink: 0;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 15px;
+            list-style: none;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .nav-links li {
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            font-weight: 500;
+            color: #00ffc3;
+            transition: 0.2s;
+            padding: 6px 2px;
+            white-space: nowrap;
+        }
+
+        .nav-links a:hover {
+            color: #00b38f;
+        }
+
+        /* ===== RESPONSIVE NAV ===== */
+        @media (max-width: 992px) {
+            .nav-toggle {
+                display: inline-flex;
+            }
+
+            .nav-links {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0;
+                padding: 0;
+                background: rgba(2, 12, 27, 0.98);
+                border-radius: 0 0 24px 24px;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.35s ease, opacity 0.3s ease, padding 0.3s ease;
+                opacity: 0;
+                visibility: hidden;
+                border: 1px solid rgba(0, 255, 195, 0.18);
+                border-top: none;
+                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+                width: 100%;
+                z-index: 100;
+            }
+
+            .nav-links.show {
+                max-height: 500px;
+                opacity: 1;
+                visibility: visible;
+                padding: 12px 0;
+            }
+
+            .nav-links li {
+                width: 100%;
+                border-bottom: 1px solid rgba(0, 255, 195, 0.06);
+            }
+
+            .nav-links li:last-child {
+                border-bottom: none;
+            }
+
+            .nav-links a {
+                padding: 14px 22px;
+                width: 100%;
+                text-align: center;
+                display: block;
+                font-size: 1rem;
+            }
+
+            .nav-links a:hover {
+                background: rgba(0, 255, 195, 0.08);
+            }
+
+            .nav-brand .logo {
+                font-size: 1.1rem;
+            }
+
+            .nav-brand p {
+                font-size: 0.6rem;
+            }
+
+            .navbar img {
+                width: 40px;
+                height: 40px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .navbar {
+                padding: 8px 0;
+            }
+
+            .nav-brand .logo {
+                font-size: 0.95rem;
+            }
+
+            .nav-brand p {
+                font-size: 0.55rem;
+            }
+
+            .navbar img {
+                width: 34px;
+                height: 34px;
+            }
+
+            .nav-toggle {
+                font-size: 1.5rem;
+            }
+
+            .container {
+                padding: 0 12px;
+            }
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            padding: 50px 0 70px;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .hero-grid {
+            display: flex;
+            align-items: center;
+            gap: 2.5rem;
+            flex-wrap: wrap;
+            width: 100%;
+        }
+
+        .hero-content {
+            flex: 1 1 45%;
+            min-width: 280px;
+        }
+
+        .hero-badge {
+            background: rgba(0, 255, 195, 0.15);
+            backdrop-filter: blur(4px);
+            display: inline-block;
+            padding: 6px 18px;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #00ffc3;
+            border: 1px solid rgba(0, 255, 195, 0.3);
+            margin-bottom: 1.2rem;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            line-height: 1.2;
+            margin-bottom: 0.8rem;
+            color: white;
+        }
+
+        .hero-content h1:last-of-type {
+            margin-bottom: 1rem;
+        }
+
+        .hero-highlight {
+            color: #4affd5;
+        }
+
+        .hero-content p {
+            font-size: 1.05rem;
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 1.5rem;
+            max-width: 550px;
+        }
+
+        .exam-badges {
+            display: flex;
+            gap: 0.8rem;
+            margin: 1.2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .exam-badge {
+            background: #00ffc3;
+            color: black;
+            padding: 5px 16px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 2rem;
+            margin-top: 1.8rem;
+            flex-wrap: wrap;
+        }
+
+        .stat-item h3 {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: #00ffc3;
+        }
+
+        .stat-item span {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .hero-image {
+            flex: 1 1 40%;
+            min-width: 240px;
+            background: linear-gradient(125deg, #00ffc3, #6cffdf);
+            border-radius: 40px;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 20px;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                padding: 30px 0 50px;
+            }
+
+            .hero-grid {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            .hero-content {
+                flex: 1 1 100%;
+                min-width: 0;
+                text-align: center;
+            }
+
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero-content p {
+                font-size: 0.95rem;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .hero-image {
+                flex: 1 1 100%;
+                min-width: 0;
+                padding: 1rem;
+                order: -1;
+            }
+
+            .exam-badges {
+                justify-content: center;
+            }
+
+            .hero-stats {
+                justify-content: center;
+                gap: 1.2rem;
+            }
+
+            .stat-item h3 {
+                font-size: 1.3rem;
+            }
+
+            .hero-actions {
+                justify-content: center;
+            }
+
+            .hero-badge {
+                font-size: 0.7rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 1.8rem;
+            }
+
+            .hero-content p {
+                font-size: 0.85rem;
+            }
+
+            .exam-badge {
+                font-size: 0.7rem;
+                padding: 4px 12px;
+            }
+
+            .hero-stats {
+                gap: 0.8rem;
+            }
+
+            .stat-item h3 {
+                font-size: 1.1rem;
+            }
+
+            .stat-item span {
+                font-size: 0.75rem;
+            }
+        }
+
+        /* ===== GALLERY ===== */
+        .gallery-preview {
+            padding: 50px 0;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            margin-top: 25px;
+            width: 100%;
+        }
+
+        .gallery-item {
+            height: 200px;
+            overflow: hidden;
+            border-radius: 12px;
+            border: 1px solid #00ffc3;
+            border-bottom: 3px solid #00ffc3;
+            background: rgba(0, 255, 195, 0.05);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+            display: block;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .view-more {
+            text-align: center;
+            margin-top: 25px;
+        }
+
+        .view-more a {
+            color: #00ffc3;
+            font-weight: bold;
+            text-decoration: none;
+            font-size: 18px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .view-more a:hover {
+            text-decoration: underline;
+            color: white;
+        }
+
+        @media (max-width: 600px) {
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+                gap: 10px;
+            }
+
+            .gallery-item {
+                height: 150px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .gallery-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 8px;
+            }
+
+            .gallery-item {
+                height: 120px;
+            }
+        }
+
+        /* ===== PROGRAMS ===== */
+        #programs {
+            padding: 60px 0;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .programs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 1.8rem;
+            margin-top: 1.5rem;
+            width: 100%;
+        }
+
+        .program-card {
+            background: rgba(0, 255, 195, 0.08);
+            border-radius: 28px;
+            padding: 1.8rem;
+            transition: all 0.25s ease;
+            border: 1px solid rgba(0, 255, 195, 0.25);
+            box-shadow: 0 5px 14px rgba(0, 0, 0, 0.02);
+            backdrop-filter: blur(4px);
+        }
+
+        .program-card:hover {
+            transform: translateY(-6px);
+            border-color: #00ffc3;
+            box-shadow: 0 24px 32px -20px rgba(0, 0, 0, 0.12);
+        }
+
+        .program-icon {
+            font-size: 2.5rem;
+            color: #00ffc3;
+            margin-bottom: 1rem;
+        }
+
+        .program-card h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 0.6rem;
+            color: white;
+        }
+
+        .program-card p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.95rem;
+        }
+
+        @media (max-width: 600px) {
+            .programs-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 1rem;
+            }
+
+            .program-card {
+                padding: 1.2rem;
+            }
+
+            .program-card h3 {
+                font-size: 1.1rem;
+            }
+
+            .program-card p {
+                font-size: 0.8rem;
+            }
+
+            .program-icon {
+                font-size: 1.8rem;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .programs-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ===== CLASSES ===== */
+        .classes {
+            padding: 60px 0;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .classes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 1.2rem;
+            margin-top: 1rem;
+            width: 100%;
+        }
+
+        .class-card {
+            background: rgba(0, 255, 195, 0.08);
+            border-radius: 20px;
+            padding: 1.2rem;
+            text-align: center;
+            transition: 0.2s;
+            border: 1px solid rgba(0, 255, 195, 0.2);
+            backdrop-filter: blur(4px);
+        }
+
+        .class-card:hover {
+            transform: translateY(-5px);
+            border-color: #00ffc3;
+        }
+
+        .class-card h3 {
+            font-size: 1.6rem;
+            color: #00ffc3;
+        }
+
+        .class-card p {
+            color: rgba(255, 255, 255, 0.75);
+            font-size: 0.85rem;
+            margin: 4px 0 8px;
+        }
+
+        @media (max-width: 600px) {
+            .classes-grid {
+                grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+                gap: 0.8rem;
+            }
+
+            .class-card {
+                padding: 0.8rem;
+            }
+
+            .class-card h3 {
+                font-size: 1.2rem;
+            }
+
+            .class-card p {
+                font-size: 0.7rem;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .classes-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 0.6rem;
+            }
+
+            .class-card {
+                padding: 0.6rem;
+            }
+
+            .class-card h3 {
+                font-size: 1rem;
+            }
+        }
+
+        /* ===== IMMERSIVE ===== */
+        #campus {
+            padding: 40px 0 20px;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .immersive-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.8rem;
+            width: 100%;
+        }
+
+        .immersive-card {
+            background: rgba(0, 255, 195, 0.06);
+            color: white;
+            backdrop-filter: blur(8px);
+            border-radius: 2rem;
+            padding: 1.8rem;
+            text-align: center;
+            border-bottom: 2px solid #00ffc3;
+            border: 1px solid rgba(0, 255, 195, 0.15);
+        }
+
+        .immersive-card i {
+            font-size: 2.5rem;
+            color: #00ffc3;
+        }
+
+        .immersive-card h3 {
+            margin: 0.8rem 0;
+            font-size: 1.3rem;
+        }
+
+        .immersive-card p {
+            color: rgba(255, 255, 255, 0.75);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 600px) {
+            .immersive-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 1rem;
+            }
+
+            .immersive-card {
+                padding: 1.2rem;
+            }
+
+            .immersive-card h3 {
+                font-size: 1rem;
+            }
+
+            .immersive-card p {
+                font-size: 0.8rem;
+            }
+
+            .immersive-card i {
+                font-size: 1.8rem;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .immersive-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ===== ABOUT ===== */
+        #about {
+            padding: 40px 0;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .about-wrap {
+            display: grid;
+            grid-template-columns: 1.4fr 1fr;
+            gap: 2.5rem;
+            width: 100%;
+        }
+
+        .about-text {
+            color: white;
+        }
+
+        .about-text p {
+            margin-bottom: 1rem;
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 1rem;
+        }
+
+        .exp-box {
+            background: rgba(0, 255, 195, 0.06);
+            border-radius: 28px;
+            padding: 1.8rem;
+            border: 1px solid rgba(0, 255, 195, 0.2);
+            border-bottom: 5px solid #00ffc3;
+        }
+
+        .exp-box h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1.2rem;
+            color: #00ffc3;
+        }
+
+        .exp-item {
+            margin-bottom: 1.4rem;
+            border-left: 3px solid #00ffc3;
+            padding-left: 1rem;
+        }
+
+        .exp-item h4 {
+            font-weight: 700;
+            font-size: 1.05rem;
+            color: white;
+        }
+
+        .exp-date {
+            font-size: 0.75rem;
+            color: #00ffc3;
+            margin: 0.2rem 0;
+        }
+
+        .exp-item p {
+            color: rgba(255, 255, 255, 0.75);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .about-wrap {
+                grid-template-columns: 1fr;
+                gap: 1.8rem;
+            }
+
+            .about-text {
+                text-align: center;
+            }
+
+            .exp-box h3 {
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .exp-box {
+                padding: 1.2rem;
+            }
+
+            .exp-item {
+                padding-left: 0.7rem;
+            }
+
+            .exp-item h4 {
+                font-size: 0.95rem;
+            }
+        }
+
+        /* ===== EXAMS ===== */
+        .exam-section {
+            padding: 60px 0;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .exam-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.8rem;
+            width: 100%;
+        }
+
+        .exam-card {
+            background: rgba(0, 255, 195, 0.06);
+            color: white;
+            border-radius: 24px;
+            padding: 1.8rem;
+            text-align: center;
+            border: 1px solid rgba(0, 255, 195, 0.2);
+            border-bottom: 2px solid #00ffc3;
+        }
+
+        .exam-card i {
+            font-size: 2.8rem;
+            color: #00ffc3;
+            margin-bottom: 0.8rem;
+        }
+
+        .exam-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.4rem;
+        }
+
+        .exam-card p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 600px) {
+            .exam-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 1rem;
+            }
+
+            .exam-card {
+                padding: 1.2rem;
+            }
+
+            .exam-card h3 {
+                font-size: 1.1rem;
+            }
+
+            .exam-card i {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .exam-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ===== REGISTRATION ===== */
+        .registration-section {
+            padding: 60px 0;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .registration-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.25fr;
+            gap: 2.5rem;
+            align-items: start;
+            width: 100%;
+        }
+
+        .reg-info h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #00ffc3;
+        }
+
+        .reg-info p {
+            color: rgba(255, 255, 255, 0.85);
+            margin: 0.8rem 0;
+        }
+
+        .reg-info ul {
+            list-style: none;
+            padding: 0;
+            margin: 0.8rem 0;
+        }
+
+        .reg-info ul li {
+            padding: 4px 0;
+            color: rgba(255, 255, 255, 0.85);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .reg-info ul li i {
+            color: #00ffc3;
+        }
+
+        .reg-form {
+            background: rgba(0, 255, 195, 0.06);
+            border-radius: 28px;
+            padding: 2rem;
+            color: white;
+            border: 1px solid rgba(0, 255, 195, 0.15);
+        }
+
+        .reg-form h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1.5rem;
+            color: #00ffc3;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            font-family: 'Inter', sans-serif;
+            background: rgba(255, 255, 255, 0.05);
+            color: white;
+            font-size: 0.95rem;
+            transition: border-color 0.2s;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #00ffc3;
+        }
+
+        .form-group select option {
+            background: #0a192f;
+            color: white;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .form-row .form-group {
+            flex: 1;
+            min-width: 140px;
+        }
+
+        .reg-form .btn {
+            width: 100%;
+            justify-content: center;
+        }
+
+        .reg-form label {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .registration-grid {
+                grid-template-columns: 1fr;
+                gap: 1.8rem;
+            }
+
+            .reg-info {
+                text-align: center;
+            }
+
+            .reg-info ul {
+                display: inline-block;
+                text-align: left;
+            }
+
+            .reg-form {
+                padding: 1.5rem;
+            }
+
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+
+            .form-row .form-group {
+                min-width: 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .reg-form {
+                padding: 1.2rem;
+            }
+
+            .reg-form h3 {
+                font-size: 1.2rem;
+            }
+
+            .form-group input,
+            .form-group select,
+            .form-group textarea {
+                padding: 10px 14px;
+                font-size: 0.85rem;
+            }
+
+            .reg-info h2 {
+                font-size: 1.6rem;
+            }
+        }
+
+        /* ===== PORTAL ===== */
+        .portal-section {
+            padding: 60px 0;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .portal-flex {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 1.8rem;
+            width: 100%;
+        }
+
+        .portal-create-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+            width: 100%;
+        }
+
+        .portal-card {
+            background: rgba(0, 255, 195, 0.06);
+            color: white;
+            border-radius: 24px;
+            padding: 1.8rem;
+            text-align: center;
+            border: 1px solid rgba(0, 255, 195, 0.15);
+            transition: all 0.2s;
+        }
+
+        .portal-card:hover {
+            border-color: #00ffc3;
+        }
+
+        .portal-card i {
+            font-size: 2.5rem;
+            color: #00ffc3;
+        }
+
+        .portal-card h3 {
+            margin: 0.8rem 0;
+            font-size: 1.2rem;
+        }
+
+        .portal-card p {
+            color: rgba(255, 255, 255, 0.75);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .portal-card .btn {
+            width: 100%;
+            justify-content: center;
+        }
+
+        @media (max-width: 600px) {
+            .portal-flex {
+                grid-template-columns: 1fr 1fr;
+                gap: 1rem;
+            }
+
+            .portal-create-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 1rem;
+            }
+
+            .portal-card {
+                padding: 1.2rem;
+            }
+
+            .portal-card h3 {
+                font-size: 1rem;
+            }
+
+            .portal-card p {
+                font-size: 0.8rem;
+            }
+
+            .portal-card i {
+                font-size: 1.8rem;
+            }
+        }
+
+        @media (max-width: 400px) {
+
+            .portal-flex,
+            .portal-create-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ===== CTA ===== */
+        .cta-section {
+            background: linear-gradient(125deg, #0f172a 0%, #1e293b 100%);
+            border-radius: 48px;
+            padding: 50px 30px;
+            text-align: center;
+            margin: 40px auto 30px;
+            color: white;
+            width: 100%;
+        }
+
+        .cta-section h2 {
+            font-size: 2.2rem;
+            margin-bottom: 14px;
+        }
+
+        .cta-section p {
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 10px auto;
+            font-size: 1rem;
+        }
+
+        .cta-button {
+            background: white;
+            color: #0f172a;
+            padding: 14px 40px;
+            border-radius: 60px;
+            font-weight: 700;
+            font-size: 1rem;
+            border: none;
+            margin-top: 20px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .cta-button:hover {
+            transform: scale(0.97);
+            background: #f1f5f9;
+        }
+
+        @media (max-width: 600px) {
+            .cta-section {
+                padding: 30px 20px;
+                border-radius: 32px;
+                margin: 20px auto;
+            }
+
+            .cta-section h2 {
+                font-size: 1.6rem;
+            }
+
+            .cta-section p {
+                font-size: 0.9rem;
+            }
+
+            .cta-button {
+                padding: 12px 28px;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .cta-section {
+                padding: 24px 16px;
+                border-radius: 24px;
+            }
+
+            .cta-section h2 {
+                font-size: 1.3rem;
+            }
+        }
+
+        /* ===== TESTIMONIALS ===== */
+        #testimonials {
+            padding: 50px 0;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .testimonial-flex {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.8rem;
+            width: 100%;
+        }
+
+        .testimonial {
+            background: rgba(0, 255, 195, 0.06);
+            color: white;
+            border-radius: 28px;
+            padding: 1.8rem;
+            border: 1px solid rgba(0, 255, 195, 0.15);
+        }
+
+        .testimonial i.bi-quote {
+            color: #00ffc3;
+            font-size: 1.8rem;
+        }
+
+        .testimonial p {
+            margin: 0.8rem 0;
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .testimonial h4 {
+            font-weight: 700;
+            color: white;
+            margin-top: 0.4rem;
+        }
+
+        .testimonial span {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 600px) {
+            .testimonial-flex {
+                grid-template-columns: 1fr 1fr;
+                gap: 1rem;
+            }
+
+            .testimonial {
+                padding: 1.2rem;
+            }
+
+            .testimonial p {
+                font-size: 0.85rem;
+            }
+
+            .testimonial i.bi-quote {
+                font-size: 1.4rem;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .testimonial-flex {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ===== CONTACT ===== */
+        #contact {
+            padding: 60px 0;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        #contact>div {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2.5rem;
+            width: 100%;
+        }
+
+        #contact>div>div:first-child {
+            flex: 1 1 40%;
+            min-width: 240px;
+        }
+
+        #contact>div>div:last-child {
+            flex: 1 1 45%;
+            min-width: 260px;
+            background: rgba(0, 255, 195, 0.06);
+            border-radius: 28px;
+            padding: 2rem;
+            border-bottom: 2px solid #00ffc3;
+            border: 1px solid rgba(0, 255, 195, 0.15);
+        }
+
+        #contact .form-group input,
+        #contact .form-group textarea {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            color: white;
+            width: 100%;
+            padding: 12px 16px;
+            border-radius: 12px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+        }
+
+        #contact .form-group input::placeholder,
+        #contact .form-group textarea::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        #contact .form-group input:focus,
+        #contact .form-group textarea:focus {
+            outline: none;
+            border-color: #00ffc3;
+        }
+
+        #contact>div>div:last-child h3 {
+            color: #00ffc3;
+            margin-bottom: 1.2rem;
+            font-size: 1.4rem;
+        }
+
+        .contact-info p {
+            color: rgba(255, 255, 255, 0.85);
+            margin: 0.6rem 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .contact-info p i {
+            color: #00ffc3;
+            width: 24px;
+            font-size: 1.2rem;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1.2rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-icons i {
+            font-size: 1.8rem;
+            color: #00ffc3;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .social-icons i:hover {
+            color: white;
+            transform: scale(1.1);
+        }
+
+        @media (max-width: 768px) {
+            #contact>div {
+                flex-direction: column;
+                gap: 1.8rem;
+            }
+
+            #contact>div>div:first-child,
+            #contact>div>div:last-child {
+                flex: 1 1 100%;
+                min-width: 0;
+            }
+
+            #contact>div>div:first-child {
+                text-align: center;
+            }
+
+            .contact-info p {
+                justify-content: center;
+            }
+
+            .social-icons {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            #contact>div>div:last-child {
+                padding: 1.2rem;
+            }
+
+            #contact .form-group input,
+            #contact .form-group textarea {
+                padding: 10px 14px;
+                font-size: 0.85rem;
+            }
+
+            .contact-info p {
+                font-size: 0.9rem;
+                flex-wrap: wrap;
+                justify-content: center;
+                text-align: center;
+            }
+
+            .social-icons i {
+                font-size: 1.5rem;
+            }
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: radial-gradient(circle at 10% 20%, rgba(10, 25, 47, 0.98), rgba(2, 12, 27, 1));
+            color: #C5DDD0;
+            padding: 40px 0 20px;
+            width: 100%;
+            overflow: hidden;
+            border-top: 1px solid rgba(0, 255, 195, 0.1);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+            width: 100%;
+        }
+
+        .footer-col h4 {
+            color: white;
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+        }
+
+        .footer-col p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .footer-col a {
+            color: #C5DDD0;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            transition: 0.2s;
+        }
+
+        .footer-col a:hover {
+            color: #00ffc3;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        @media (max-width: 600px) {
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 1.5rem;
+            }
+
+            .footer-col h4 {
+                font-size: 0.95rem;
+            }
+
+            .footer-col a,
+            .footer-col p {
+                font-size: 0.8rem;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 1.2rem;
+                text-align: center;
+            }
+
+            .footer-col h4 {
+                margin-bottom: 0.6rem;
+            }
+        }
+
+        /* ===== NEWS TICKER ===== */
+        .news-ticker {
+            display: flex;
+            align-items: center;
+            color: white;
+            padding: 8px 16px;
+            overflow: hidden;
+            font-family: 'Inter', sans-serif;
+            background: rgba(0, 255, 195, 0.05);
+            border-bottom: 1px solid rgba(0, 255, 195, 0.1);
+            width: 100%;
+            gap: 12px;
+            flex-wrap: nowrap;
+        }
+
+        .news-label {
+            font-weight: 700;
+            white-space: nowrap;
+            color: #00ffc3;
+            font-size: 0.85rem;
+            flex-shrink: 0;
+        }
+
+        .news-content {
+            overflow: hidden;
+            flex: 1;
+            min-width: 0;
+        }
+
+        .news-text {
+            display: inline-block;
+            white-space: nowrap;
+            animation: scrollNews 25s linear infinite;
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 0.85rem;
+            padding-left: 20px;
+        }
+
+        @keyframes scrollNews {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .news-ticker {
+                padding: 6px 10px;
+                gap: 8px;
+            }
+
+            .news-label {
+                font-size: 0.7rem;
+            }
+
+            .news-text {
+                font-size: 0.7rem;
+                padding-left: 10px;
+                animation-duration: 20s;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .news-ticker {
+                padding: 4px 8px;
+                gap: 6px;
+                flex-wrap: nowrap;
+            }
+
+            .news-label {
+                font-size: 0.6rem;
+            }
+
+            .news-text {
+                font-size: 0.6rem;
+                animation-duration: 18s;
+            }
+        }
+
+        /* ===== MODAL ===== */
+        .modal-overlay,
+        .modal {
+            position: fixed;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(2, 12, 27, 0.8);
+            z-index: 2000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.25s ease;
+            padding: 20px;
+        }
+
+        .modal-overlay.show,
+        .modal.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-box,
+        .modal-content {
+            background: radial-gradient(circle at 10% 20%, rgba(10, 25, 47, 0.98), rgba(2, 12, 27, 1));
+            color: white;
+            padding: 28px 24px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(0, 255, 195, 0.2);
+            max-width: 520px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+        }
+
+        .modal-success-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 6px;
+        }
+
+        .modal-success-body {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 6px;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 10px;
+            right: 14px;
+            background: transparent;
+            border: none;
+            font-size: 22px;
+            color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .modal-close:hover {
+            color: white;
+        }
+
+        .modal-icon {
+            font-size: 3rem;
+            color: #00ffc3;
+            margin-bottom: 0.8rem;
+        }
+
+        @media (max-width: 480px) {
+            .modal-content {
+                padding: 20px 16px;
+            }
+
+            .modal-success-title {
+                font-size: 1rem;
+            }
+
+            .modal-success-body {
+                font-size: 0.85rem;
+            }
+
+            .modal-icon {
+                font-size: 2.2rem;
+            }
+        }
+
+        /* ===== SECTION TITLE RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 2rem;
+                text-align: center;
+            }
+
+            .section-subtitle {
+                font-size: 0.95rem;
+                text-align: center;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .section-sub {
+                font-size: 0.9rem;
+                text-align: center;
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .section-title {
+                font-size: 1.6rem;
+            }
+
+            .section-subtitle {
+                font-size: 0.85rem;
+            }
+
+            .section-sub {
+                font-size: 0.8rem;
+            }
+        }
+
+        /* ===== UTILITY ===== */
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .w-full {
+            width: 100%;
+        }
+
+        /* ===== FIX FOR MODAL OVERLAY (from original) ===== */
+        .modal-overlay.show,
+        .modal.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+    </style>
 </head>
 
-<style>
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-
-  body {
-    font-family: 'Inter', sans-serif;
-    /* background: #FEFEFC; */
-    color: white;
-    scroll-behavior: smooth;
-    line-height: 1.5;
-    background: radial-gradient(circle at 10% 20%, rgba(10, 25, 47, 0.98), rgba(2, 12, 27, 1));
-  }
-
-  .container {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 0 32px;
-
-  }
-
-  h1,
-  h2,
-  h3,
-  .logo {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-weight: 700;
-    letter-spacing: -0.02em;
-  }
-
-  .section-title {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-    color: #00ffc3;
-  }
-
-  .section-subtitle {
-    font-size: 1.1rem;
-    color: white;
-    max-width: 680px;
-    margin-bottom: 2.5rem;
-  }
-
-  /* Buttons */
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    padding: 12px 28px;
-    font-weight: 600;
-    border-radius: 40px;
-    transition: all 0.3s ease;
-    text-decoration: none;
-    font-size: 0.95rem;
-    cursor: pointer;
-    border: none;
-  }
-
-  .btn-primary {
-    background: linear-gradient(95deg, #00ffc3, #00b38f);
-    color: #041c1a;
-    box-shadow: 0 8px 20px rgba(0, 255, 195, 0.3);
-  }
-
-  .btn-primary:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 18px 30px rgba(0, 255, 195, 0.4);
-    filter: brightness(1.05);
-  }
-
-  .btn-outline {
-    background: transparent;
-    border: 1.5px solid #00ffc3;
-    color: #00ffc3;
-  }
-
-  .btn-outline:hover {
-    background: #00ffc3;
-    color: black;
-    transform: translateY(-2px);
-  }
-
-  .btn-success {
-    background: #27AE60;
-    color: white;
-  }
-
-  .btn-success:hover {
-    background: #1E8449;
-  }
-
-  /* Navigation */
-  .navbar {
-    position: sticky;
-    top: 0;
-    /* background: rgba(255, 255, 255, 0.97); */
-    backdrop-filter: blur(10px);
-    z-index: 1000;
-    padding: 16px 0;
-    border-radius: 25px;
-    border-bottom: 3px solid #00ffc3;
-
-  }
-
-  .nav-flex {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-  }
-
-  .logo {
-    font-size: 1.5rem;
-    font-weight: 800;
-    color: white;
-    text-decoration: none;
-  }
-
-  .logo span {
-    color: #00ffc3;
-  }
-
-  .nav-links {
-    display: flex;
-    gap: 15px;
-    list-style: none;
-  }
-
-  .nav-links li {
-    list-style: none;
-  }
-
-  .nav-links a {
-    text-decoration: none;
-    font-weight: 500;
-    color: #00ffc3;
-    transition: 0.2s;
-  }
-
-  .nav-links a:hover {
-    color: #00b38f;
-  }
-
-  .nav-toggle {
-    display: none;
-    background: none;
-    border: none;
-    color: #00ffc3;
-    font-size: 1.8rem;
-    cursor: pointer;
-  }
-
-  .navbar .container {
-    position: relative;
-  }
-
-  @media (max-width: 900px) {
-    .nav-flex {
-      gap: 1rem;
-      align-items: center;
-    }
-
-    .nav-toggle {
-      display: inline-flex;
-    }
-
-    .nav-links {
-      position: absolute;
-      top: 100%;
-      left: 0;
-      right: 0;
-      margin: 0;
-      flex-direction: column;
-      align-items: center;
-      gap: 0;
-      padding: 16px 0;
-      background: rgba(2, 12, 27, 0.98);
-      border-radius: 0 0 24px 24px;
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.3s ease, opacity 0.3s ease;
-      opacity: 0;
-      visibility: hidden;
-      border: 1px solid rgba(0, 255, 195, 0.18);
-    }
-
-    .nav-links.show {
-      max-height: 420px;
-      opacity: 1;
-      visibility: visible;
-    }
-
-    .nav-links li {
-      width: 100%;
-    }
-
-    .nav-links a {
-      padding: 14px 22px;
-      width: 100%;
-      text-align: center;
-    }
-
-    .nav-links a:hover {
-      background: rgba(0, 255, 195, 0.08);
-    }
-
-    .nav-flex>.nav-brand {
-      flex: 1 1 auto;
-    }
-
-    .hero-content h1 {
-      font-size: 2.2rem;
-    }
-
-    .section-title {
-      font-size: 1.8rem;
-    }
-
-    .nav-links {
-      gap: 1rem;
-      margin-top: 0.5rem;
-    }
-
-    .portal-create-grid {
-      grid-template-columns: 1fr;
-    }
-  }
-
-  /* Hero Section */
-  .hero {
-    background: radial-gradient(circle at 10% 20%, rgba(10, 25, 47, 0.98), rgba(2, 12, 27, 1));
-    padding: 70px 0 90px;
-  }
-
-  .hero-grid {
-    display: flex;
-    align-items: center;
-    gap: 3rem;
-    flex-wrap: wrap;
-  }
-
-  .hero-content {
-    flex: 1.2;
-  }
-
-  .hero-badge {
-    background: rgba(0, 255, 195, 0.15);
-    backdrop-filter: blur(4px);
-    display: inline-block;
-    padding: 6px 18px;
-    border-radius: 40px;
-    font-size: 0.8rem;
-    font-weight: 600;
-    color: #00ffc3;
-    border: 1px solid rgba(0, 255, 195, 0.3);
-    margin-bottom: 1.5rem;
-  }
-
-  .hero-content h1 {
-    font-size: 3.2rem;
-    line-height: 1.2;
-    margin-bottom: 1.2rem;
-    color: white;
-  }
-
-  .hero-highlight {
-    color: #4affd5;
-  }
-
-  .hero-content p {
-    font-size: 1.1rem;
-    color: white;
-    margin-bottom: 1.8rem;
-    max-width: 550px;
-  }
-
-  .exam-badges {
-    display: flex;
-    gap: 1rem;
-    margin: 1.5rem 0;
-    flex-wrap: wrap;
-  }
-
-  .exam-badge {
-    background: #00ffc3;
-    color: black;
-    padding: 6px 18px;
-    border-radius: 30px;
-    font-size: 0.85rem;
-    font-weight: 600;
-  }
-
-  .hero-stats {
-    display: flex;
-    gap: 2rem;
-    margin-top: 2rem;
-  }
-
-  .stat-item h3 {
-    font-size: 1.6rem;
-    font-weight: 800;
-    color: #00ffc3;
-  }
-
-  .hero-image {
-    flex: 0.9;
-    background: linear-gradient(125deg, #00ffc3, #6cffdf);
-    border-radius: 40px;
-    padding: 2rem;
-    text-align: center;
-  }
-
-  .hero-image i {
-    font-size: 180px;
-    color: #0F3B2C;
-    opacity: 0.8;
-  }
-
-
-
-  /* GALLERY SECTION */
-  .gallery-preview {
-    background: radial-gradient(circle at 10% 20%, rgba(10, 25, 47, 0.98), rgba(2, 12, 27, 1));
-    padding: 60px 20px;
-  }
-
-  .gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 15px;
-    margin-top: 30px;
-  }
-
-  .gallery-item {
-    height: 250px;
-    overflow: hidden;
-    border-radius: 5px;
-    border: 1px solid #00ffc3;
-    border-bottom: 3px solid #00ffc3;
-  }
-
-  .gallery-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.3s;
-  }
-
-  .gallery-item:hover img {
-    transform: scale(1.05);
-  }
-
-  .view-more {
-    text-align: center;
-    margin-top: 30px;
-  }
-
-  .view-more a {
-    color: #00ffc3;
-    font-weight: bold;
-    text-decoration: none;
-    font-size: 18px;
-  }
-
-  .view-more a:hover {
-    text-decoration: underline;
-    color: white;
-  }
-
-  /* programs */
-  .programs-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 2rem;
-    margin-top: 1.5rem;
-
-  }
-
-  .program-card {
-    background: rgba(0, 255, 195, 0.4);
-    border-radius: 28px;
-    padding: 2rem;
-    transition: all 0.25s ease;
-    border: 1px solid #00ffc3;
-    box-shadow: 0 5px 14px rgba(0, 0, 0, 0.02);
-  }
-
-  .program-card:hover {
-    transform: translateY(-6px);
-    border-color: #f0cdb8;
-    box-shadow: 0 24px 32px -20px rgba(0, 0, 0, 0.12);
-  }
-
-  .program-icon {
-    font-size: 2.5rem;
-    color: #00ffc3;
-    margin-bottom: 1.2rem;
-  }
-
-  .program-card h3 {
-    font-size: 1.6rem;
-    font-weight: 700;
-    margin-bottom: 0.7rem;
-  }
-
-
-  /* Classes Section */
-  .classes {
-    padding: 80px 0;
-    /* background: #FFFFFF; */
-    background: radial-gradient(circle at 10% 20%, rgba(10, 25, 47, 0.98), rgba(2, 12, 27, 1));
-  }
-
-  .classes-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1.5rem;
-    margin-top: 1rem;
-  }
-
-  .class-card {
-    background: rgba(0, 255, 195, 0.4);
-    border-radius: 20px;
-    padding: 1.5rem;
-    text-align: center;
-    transition: 0.2s;
-    border: 1px solid #00ffc3;
-  }
-
-  .class-card:hover {
-    transform: translateY(-5px);
-    border-color: #00ffc3;
-  }
-
-  .class-card h3 {
-    font-size: 1.8rem;
-    color: #00ffc3;
-  }
-
-  /* campus + immersive */
-  .immersive-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 2rem;
-  }
-
-  .immersive-card {
-    background: #00ffc323;
-    color: white;
-    backdrop-filter: blur(8px);
-    border-radius: 2rem;
-    padding: 2rem;
-    text-align: center;
-    border-bottom: 2px solid #00ffc3;
-  }
-
-  /* about + experience */
-  .about-wrap {
-    display: grid;
-    grid-template-columns: minmax(280px, 1.4fr) minmax(280px, 1fr);
-    gap: 3rem;
-  }
-
-  .about-text {
-    color: white;
-  }
-
-  .about-text p {
-    margin-bottom: 1.2rem;
-    color: white;
-  }
-
-  .exp-box {
-    background: rgba(0, 255, 195, 0.1);
-    border-radius: 28px;
-    padding: 1.8rem;
-    border: 1px solid #00ffc3;
-    border-bottom: 5px solid #00ffc3;
-  }
-
-  .exp-item {
-    margin-bottom: 1.6rem;
-    border-left: 3px solid #00ffc3;
-    padding-left: 1.2rem;
-  }
-
-  .exp-item h4 {
-    font-weight: 700;
-    font-size: 1.1rem;
-  }
-
-  .exp-date {
-    font-size: 0.8rem;
-    color: #00ffc3;
-    margin: 0.3rem 0;
-  }
-
-  /* Registration Section */
-  .registration-section {
-    /* background: #0F3B2C; */
-    background: radial-gradient(ellipse at 40% 50%, rgba(0, 255, 196, 0.08), transparent 70%);
-    color: white;
-    /* filter: blur(10px); */
-    padding: 80px 0;
-  }
-
-  .registration-grid {
-    display: grid;
-    grid-template-columns: minmax(300px, 1fr) minmax(380px, 1.25fr);
-    gap: 2rem;
-    align-items: start;
-  }
-
-  .reg-info {
-    flex: unset;
-  }
-
-  .reg-info h2 {
-    font-size: 2.2rem;
-    margin-bottom: 1rem;
-  }
-
-  .reg-form {
-    flex: 1.2;
-    background: #00ffc323;
-    border-radius: 28px;
-    padding: 2rem;
-    color: white;
-  }
-
-  .form-group {
-    margin-bottom: 1.2rem;
-  }
-
-  .form-group input,
-  .form-group select,
-  .form-group textarea {
-    width: 100%;
-    padding: 12px 16px;
-    border-radius: 12px;
-    border: 1px solid #D1D9D0;
-    font-family: 'Inter', sans-serif;
-  }
-
-  .form-row {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-  }
-
-  .form-row .form-group {
-    flex: 1;
-  }
-
-  /* WAEC/NECO Section */
-  .exam-section {
-    padding: 80px 0;
-    /* background: #FEF9F0; */
-    background: radial-gradient(circle at 10% 20%, rgba(10, 25, 47, 0.98), rgba(2, 12, 27, 1));
-  }
-
-  .exam-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
-  }
-
-  .exam-card {
-    background: #00ffc323;
-    color: white;
-    border-radius: 24px;
-    padding: 2rem;
-    text-align: center;
-    border: 1px solid #00ffc3;
-    border-bottom: 2px solid #00ffc3;
-  }
-
-  .exam-card i {
-    font-size: 3rem;
-    color: #00ffc3;
-    margin-bottom: 1rem;
-  }
-
-  /* Portal Section */
-  .portal-section {
-    padding: 80px 0;
-  }
-
-  .portal-flex {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-  }
-
-  .portal-create-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 1.5rem;
-    margin-top: 2rem;
-  }
-
-  .portal-card {
-    flex: 1;
-    background: #00ffc323;
-    color: white;
-    border-radius: 24px;
-    padding: 2rem;
-    text-align: center;
-    border: 1px solid #00ffc3;
-  }
-
-  .portal-card input {
-    width: 100%;
-    margin-bottom: 10px;
-    padding: 10px;
-    border-radius: 30px;
-    border: 1px solid #ddd;
-  }
-
-  .portal-card form {
-    margin-top: 1.2rem;
-  }
-
-
-  /* cta */
-  .cta-section {
-    background: linear-gradient(125deg, #0f172a 0%, #1e293b 100%);
-    border-radius: 48px;
-    padding: 70px 40px;
-    text-align: center;
-    margin: 40px auto 30px;
-    color: white;
-  }
-
-  .cta-section h2 {
-    font-size: 2.4rem;
-    margin-bottom: 18px;
-  }
-
-  .cta-button {
-    background: white;
-    color: #0f172a;
-    padding: 14px 40px;
-    border-radius: 60px;
-    font-weight: 700;
-    font-size: 1rem;
-    border: none;
-    margin-top: 20px;
-    cursor: pointer;
-    transition: 0.2s;
-  }
-
-  .cta-button:hover {
-    transform: scale(0.97);
-    background: #f1f5f9;
-  }
-
-  /* testimonials */
-  .testimonial-flex {
-    display: flex;
-    gap: 2rem;
-    flex-wrap: wrap;
-  }
-
-  .testimonial {
-    background: #00ffc323;
-    color: white;
-    border-radius: 28px;
-    padding: 2rem;
-    flex: 1;
-    border: 1px solid #00ffc3;
-  }
-
-  /* Footer */
-  footer {
-    background: radial-gradient(circle at 10% 20%, rgba(10, 25, 47, 0.98), rgba(2, 12, 27, 1));
-    color: #C5DDD0;
-    padding: 50px 0 30px;
-  }
-
-  .footer-grid {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 2rem;
-    margin-bottom: 2rem;
-  }
-
-  .footer-col h4 {
-    color: white;
-    margin-bottom: 1rem;
-  }
-
-  .footer-col a {
-    color: #C5DDD0;
-    text-decoration: none;
-    display: block;
-    margin-bottom: 0.6rem;
-  }
-
-  .copyright {
-    text-align: center;
-    padding-top: 2rem;
-    border-top: 1px solid #2A4A3A;
-    font-size: 0.85rem;
-  }
-
-  .jjc {
-    color: white;
-  }
-
-  /* Success modal for registration (supports both .modal and .modal-overlay markup) */
-  .modal-overlay,
-  .modal {
-    position: fixed;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(2, 12, 27, 0.7);
-    z-index: 2000;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.2s ease;
-  }
-
-  .modal-overlay.show,
-  .modal.show {
-    opacity: 1;
-    pointer-events: auto;
-  }
-
-  .modal-box,
-  .modal-content {
-    /* background: linear-gradient(180deg, #F7FFF9 0%, #E6FFF2 100%); */
-    /* background:  rgba(0, 255, 195, 0.4); */
-    background: radial-gradient(circle at 10% 20%, rgba(10, 25, 47, 0.98), rgba(2, 12, 27, 1));
-    color: white;
-    padding: 22px 20px;
-    border-radius: 14px;
-    /* box-shadow: 0 12px 30px rgba(3, 12, 10, 0.45); */
-    box-shadow: 0 5px 14px rgba(0, 0, 0, 0.02);
-    border: 1px solid rgba(0, 255, 195, 0.25);
-    max-width: 520px;
-    width: 92%;
-    text-align: center;
-    position: relative;
-  }
-
-  .modal-success-title {
-    font-size: 1.15rem;
-    font-weight: 700;
-    color: white;
-    margin-bottom: 8px;
-  }
-
-  .modal-success-body {
-    font-size: 0.95rem;
-    color: white;
-    margin-bottom: 8px;
-  }
-
-  .modal-close {
-    position: absolute;
-    top: 8px;
-    right: 10px;
-    background: transparent;
-    border: none;
-    font-size: 20px;
-    color: white;
-    cursor: button;
-  }
-
-  @media (max-width: 768px) {
-    .hero-content h1 {
-      font-size: 2.2rem;
-    }
-
-    .section-title {
-      font-size: 1.8rem;
-    }
-
-    .nav-links {
-      gap: 1rem;
-      margin-top: 0.5rem;
-    }
-
-    .about-wrap,
-    .registration-grid,
-    .portal-flex,
-    .portal-create-grid,
-    .testimonial-flex {
-      grid-template-columns: 1fr;
-    }
-
-    .about-wrap,
-    .registration-grid {
-      gap: 1.5rem;
-    }
-
-    .hero-grid {
-      gap: 2rem;
-    }
-
-    .hero-image {
-      order: -1;
-    }
-  }
-
-  .news-ticker {
-    display: flex;
-    align-items: center;
-    /* background: #0d47a1; */
-    color: white;
-    padding: 10px;
-    overflow: hidden;
-    font-family: Arial;
-    /* border-radius: 20px; */
-}
-
-.news-label {
-    font-weight: bold;
-    margin-right: 15px;
-    white-space: nowrap;
-}
-
-.news-content {
-    overflow: hidden;
-    flex: 1;
-}
-
-.news-text {
-    display: inline-block;
-    white-space: nowrap;
-    padding-left: 100%;
-    animation: scrollNews 20s linear infinite;
-}
-
-@keyframes scrollNews {
-    0% {
-        transform: translateX(0%);
-    }
-    100% {
-        transform: translateX(-100%);
-    }
-}
-</style>
-
 <body>
-  <nav class="navbar">
-    <div class="container nav-flex">
-      <img src="./pictures/pca logo.png" alt="" width="50px" height="50px">
-      <div class="nav-brand">
-        <a href="#home" class="logo"> Positive Change College <span>Secondary School</span></a>
-        <p>Motto: We Teach, God Give Understanding</p>
-      </div>
-      <button class="nav-toggle" aria-expanded="false" aria-label="Open navigation">
-        <i class="bi bi-list"></i>
-      </button>
-      <ul class="nav-links">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#classes">Classes</a></li>
-        <li><a href="#exams">WAEC/NECO</a></li>
-        <li><a href="#register">Register</a></li>
-        <li><a href="#portal">Portal</a></li>
-        <li><a href="#contact">Contact</a></li>
-        <li><a href="#Gallery">Gallery</a></li>
-        <li><a href="#cbt">C.B.T</a></li>
-      </ul>
+
+    <!-- ===== NAVBAR ===== -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-flex">
+                <img src="./pictures/pca logo.png" alt="School Logo" width="50" height="50" style="flex-shrink:0;">
+                <div class="nav-brand">
+                    <a href="#home" class="logo">Positive Change College <span>Secondary School</span></a>
+                    <p>Motto: We Teach, God Give Understanding</p>
+                </div>
+                <button class="nav-toggle" aria-expanded="false" aria-label="Open navigation">
+                    <i class="bi bi-list"></i>
+                </button>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#classes">Classes</a></li>
+                    <li><a href="#exams">WAEC/NECO</a></li>
+                    <li><a href="#register">Register</a></li>
+                    <li><a href="#portal">Portal</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#Gallery">Gallery</a></li>
+                    <li><a href="#cbt">C.B.T</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ===== NEWS TICKER ===== -->
+    <div class="news-ticker">
+        <span class="news-label">📢 School News:</span>
+        <div class="news-content">
+            <span class="news-text">
+                🔔 Admission is now open for 2026 session &bull;
+                🏫 First term begins September 10 &bull;
+                📚 WAEC registration deadline is August 30 &bull;
+                💳 All students should clear school fees before resumption &bull;
+                🚌 New school bus service available &bull;
+            </span>
+        </div>
     </div>
-  </nav>
-<div class="news-ticker">
-    <div class="news-label">📢 School News:</div>
 
-    <div class="news-content">
-        <div class="news-text">
-            🔔 Admission is now open for 2026 session • 
-            🏫 First term begins September 10 • 
-            📚 WAEC registration deadline is August 30 • 
-            💳 All students should clear school fees before resumption • 
-            🚌 New school bus service available • 
-        </div>
-    </div>
-</div>
-  <main>
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-      <div class="container hero-grid">
-        <div class="hero-content">
-          <span class="hero-badge"><i class="bi bi-eye"></i> Excellence in Education Since 2010</span>
-          <h1>Positive Change College </h1>
-          <h1>Shaping Futures from <span class="hero-highlight">JSS1 to SS3</span></h1>
-          <p>Positive Change Secondary School provides quality education, character development, and exam success. We
-            prepare students for WAEC, NECO, and life beyond.</p>
-          <div class="exam-badges">
-            <span class="exam-badge"><i class="bi bi-check-circle"></i> WAEC Accredited</span>
-            <span class="exam-badge"><i class="bi bi-check-circle"></i> NECO Approved</span>
-            <span class="exam-badge"><i class="bi bi-check-circle"></i> 98% Pass Rate</span>
-          </div>
-          <div class="hero-stats">
-            <div class="stat-item">
-              <h3>450+</h3><span class="jjc">Students</span>
+    <main>
+        <!-- ===== HERO ===== -->
+        <section id="home" class="hero">
+            <div class="container hero-grid">
+                <div class="hero-content">
+                    <span class="hero-badge"><i class="bi bi-eye"></i> Excellence in Education Since 2010</span>
+                    <h1>Positive Change College</h1>
+                    <h1>Shaping Futures from <span class="hero-highlight">JSS1 to SS3</span></h1>
+                    <p>Positive Change Secondary School provides quality education, character development, and exam
+                        success. We prepare students for WAEC, NECO, and life beyond.</p>
+                    <div class="exam-badges">
+                        <span class="exam-badge"><i class="bi bi-check-circle"></i> WAEC Accredited</span>
+                        <span class="exam-badge"><i class="bi bi-check-circle"></i> NECO Approved</span>
+                        <span class="exam-badge"><i class="bi bi-check-circle"></i> 98% Pass Rate</span>
+                    </div>
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <h3>450+</h3><span>Students</span>
+                        </div>
+                        <div class="stat-item">
+                            <h3>35+</h3><span>Teachers</span>
+                        </div>
+                        <div class="stat-item">
+                            <h3>15+</h3><span>Years of Excellence</span>
+                        </div>
+                    </div>
+                    <div class="hero-actions">
+                        <a href="#register" class="btn btn-primary"><i class="bi bi-person-plus"></i> Register Now</a>
+                        <a href="exam info.html" class="btn btn-outline"><i class="bi bi-book"></i> Exam Info</a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <img src="./pictures/sec view.png" alt="School Campus" loading="lazy">
+                </div>
             </div>
-            <div class="stat-item">
-              <h3>35+</h3><span class="jjc">Teachers</span>
+        </section>
+
+        <!-- ===== GALLERY ===== -->
+        <section id="Gallery" class="gallery-preview">
+            <div class="container">
+                <h2 class="section-title">School Gallery</h2>
+                <p class="section-subtitle">See life at our school through photos.</p>
+                <div class="gallery-grid">
+                    <div class="gallery-item">
+                        <img src="./pictures/sec view 2.png" alt="Campus" loading="lazy">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="./pictures/img5.png" alt="Library" loading="lazy">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="./pictures/sec view 5.png" alt="School Event" loading="lazy">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="./pictures/sec view 4.png" alt="Classroom" loading="lazy">
+                    </div>
+                </div>
+                <div class="view-more">
+                    <a href="school gallery.html">
+                        View More Photos <i class="bi bi-arrow-right"></i>
+                    </a>
+                </div>
             </div>
-            <div class="stat-item">
-              <h3>15+</h3><span class="jjc">Years of Excellence</span>
+        </section>
+
+        <!-- ===== PROGRAMS ===== -->
+        <section id="programs">
+            <div class="container">
+                <h2 class="section-title">Academic pathways for changemakers</h2>
+                <div class="section-sub">From business to tech, arts to social sciences — we prepare leaders who shape
+                    tomorrow.</div>
+                <div class="programs-grid">
+                    <div class="program-card">
+                        <div class="program-icon"><i class="bi bi-graph-up"></i></div>
+                        <h3>Business & Innovation</h3>
+                        <p>Entrepreneurship, sustainable management &amp; global markets.</p>
+                    </div>
+                    <div class="program-card">
+                        <div class="program-icon"><i class="bi bi-laptop"></i></div>
+                        <h3>Tech &amp; Data Science</h3>
+                        <p>AI, full-stack development, cybersecurity &amp; analytics.</p>
+                    </div>
+                    <div class="program-card">
+                        <div class="program-icon"><i class="bi bi-heart"></i></div>
+                        <h3>Social Impact</h3>
+                        <p>Public policy, NGO leadership &amp; community organizing.</p>
+                    </div>
+                    <div class="program-card">
+                        <div class="program-icon"><i class="bi bi-palette"></i></div>
+                        <h3>Creative Arts</h3>
+                        <p>Digital media, design thinking &amp; visual storytelling.</p>
+                    </div>
+                </div>
             </div>
-          </div>
-          <div style="display: flex; gap: 1rem; margin-top: 1rem;">
-            <a href="#register" class="btn btn-primary"><i class="bi bi-person-plus"></i> Register Now</a>
-            <a href="exam info.html" class="btn btn-outline"><i class="bi bi-book"></i> Exam Info</a>
-          </div>
-        </div>
-        <div class="hero-image">
-          <!-- <i class="bi bi-person-chalkboard"></i> -->
-          <img src="./pictures/sec view.png" alt="" width="100%">
-        </div>
-      </div>
-    </section>
+        </section>
 
-
-    <section id="Gallery" class="gallery-preview">
-      <div class="container">
-        <h2 class="section-title">School Gallery</h2>
-        <p class="section-subtitle">See life at our school through photos.</p>
-
-        <div class="gallery-grid">
-          <div class="gallery-item">
-            <img src="./pictures/sec view 2.png" alt="Campus">
-          </div>
-          <!-- <div class="gallery-item">
-                    <img src="sec view3.png" alt="Classroom">
-                </div> -->
-          <div class="gallery-item">
-            <img src="./pictures/img5.png" alt="Library">
-          </div>
-          <div class="gallery-item">
-            <img src="./pictures/sec view 5.png" alt="Library">
-          </div>
-          <div class="gallery-item">
-            <img src="./pictures/sec view 4.png" alt="Library">
-          </div>
-        </div>
-
-        <div class="view-more">
-          <a href="school gallery.html">
-            View More Photos <i class="bi bi-arrow-right"></i>
-          </a>
-        </div>
-      </div>
-    </section>
-
-
-    <!-- Programs / Academics -->
-    <section id="programs">
-      <div class="container">
-        <h2 class="section-title">Academic pathways for changemakers</h2>
-        <div class="section-sub"><span class="jjc">From business to tech, arts to social sciences — we prepare leaders
-            who shape tomorrow.</span>
-        </div>
-        <div class="programs-grid">
-          <div class="program-card">
-            <div class="program-icon"><i class="bi bi-graph-up"></i></div>
-            <h3>Business & Innovation</h3>
-            <p>Entrepreneurship, sustainable management & global markets.</p>
-          </div>
-          <div class="program-card">
-            <div class="program-icon"><i class="bi bi-laptop"></i></div>
-            <h3>Tech & Data Science</h3>
-            <p>AI, full-stack development, cybersecurity & analytics.</p>
-          </div>
-          <div class="program-card">
-            <div class="program-icon"><i class="bi bi-heart"></i></div>
-            <h3>Social Impact</h3>
-            <p>Public policy, NGO leadership & community organizing.</p>
-          </div>
-          <div class="program-card">
-            <div class="program-icon"><i class="bi bi-palette"></i></div>
-            <h3>Creative Arts</h3>
-            <p>Digital media, design thinking & visual storytelling.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-
-    <!-- Classes (JSS1 - SS3) -->
-    <section id="classes" class="classes">
-      <div class="container">
-        <h2 class="section-title">Our Classes</h2>
-        <div class="section-subtitle">Comprehensive curriculum from Junior Secondary to Senior Secondary, fully
-          preparing students for external exams.</div>
-        <div class="classes-grid">
-          <div class="class-card">
-            <h3>JSS 1</h3>
-            <p>Foundation & Core Subjects</p><i class="bi bi-book-half" style="color:#00ffc3; margin-top: 8px;"></i>
-          </div>
-          <div class="class-card">
-            <h3>JSS 2</h3>
-            <p>Building Knowledge</p><i class="bi bi-graph-up" style="color:#00ffc3; margin-top: 8px;"></i>
-          </div>
-          <div class="class-card">
-            <h3>JSS 3</h3>
-            <p>Basic Exam Prep</p><i class="bi bi-flag" style="color:#00ffc3; margin-top: 8px;"></i>
-          </div>
-          <div class="class-card">
-            <h3>SS 1</h3>
-            <p>Senior Secondary Begins</p><i class="bi bi-microscope" style="color:#00ffc3; margin-top: 8px;"></i>
-          </div>
-          <div class="class-card">
-            <h3>SS 2</h3>
-            <p>Deep Dive & Projects</p><i class="bi bi-flask" style="color:#00ffc3; margin-top: 8px;"></i>
-          </div>
-          <div class="class-card">
-            <h3>SS 3</h3>
-            <p>WAEC/NECO Focus</p><i class="bi bi-trophy" style="color:#00ffc3; margin-top: 8px;"></i>
-          </div>
-        </div>
-      </div>
-    </section>
-
-
-
-    <!-- Campus Life - immersive -->
-    <section id="campus">
-      <div class="container">
-        <h2 class="section-title">Why Choose Our School</h2>
-        <div class="section-sub"> <span class="jjc"> We focus on developing well-rounded individuals prepared for
-            tomorrow's challenges.</span>
-        </div><br><br>
-        <div class="immersive-grid">
-          <div class="immersive-card"><i class="bi bi-cpu" style="font-size: 2.5rem; color:#00ffc3;"></i>
-            <h3 style="margin: 1rem 0;">Academic Excellence</h3>
-            <p>Outstanding curriculum with track record of excellent exam results.</p>
-          </div>
-          <div class="immersive-card"><i class="bi bi-flower1" style="font-size: 2.5rem; color:#00ffc3;"></i>
-            <h3 style="margin: 1rem 0;">Character Building</h3>
-            <p>We teach values, ethics, and social responsibility.</p>
-          </div>
-          <div class="immersive-card"><i class="bi bi-people" style="font-size: 2.5rem; color:#00ffc3;"></i>
-            <h3 style="margin: 1rem 0;">Experienced Teachers</h3>
-            <p>Dedicated teachers committed to student success.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-    <br><br>
-
-    <section id="about">
-      <div class="container about-wrap">
-        <div class="about-text">
-          <h2 class="section-title" style="margin-bottom: 2rem;">About Our School</h2>
-          <p>Positive Change College is a leading secondary school dedicated to academic excellence, character
-            formation, and high-stakes exam success. We support students from JSS1 through SS3 with a caring,
-            disciplined learning environment.</p>
-          <p>Our school blends strong classroom instruction with practical guidance for WAEC and NECO preparation,
-            leadership development, and community service. We are committed to helping every student reach their highest
-            potential.</p>
-          <p><i class="bi bi-geo-alt" style="color:#00ffc3; margin-right: 8px;"></i> Located in Ibadan, Nigeria · Serving
-            students across the region</p>
-          <div style="margin-top: 1.5rem;">
-            <a href="#contact" class="btn btn-outline"><i class="bi bi-telephone"></i> Contact Admissions</a>
-          </div>
-        </div>
-        <div class="exp-box">
-          <h3 style="font-size: 1.6rem; margin-bottom: 1.2rem;"><i class="bi bi-building"></i> School Strengths</h3>
-          <div class="exp-item">
-            <h4>Strong Exam Results</h4>
-            <div class="exp-date">Consistent top performers</div>
-            <p>Students regularly achieve high credit passes in WAEC and NECO exams.</p>
-          </div>
-          <div class="exp-item">
-            <h4>Qualified Teaching Staff</h4>
-            <div class="exp-date">Experienced educators</div>
-            <p>Our teachers combine exam expertise with supportive classroom mentoring.</p>
-          </div>
-          <div class="exp-item">
-            <h4>Student Support</h4>
-            <div class="exp-date">Holistic care</div>
-            <p>We provide guidance, counseling, and after-school tutorials for every learner.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- WAEC / NECO Information Section -->
-    <section id="exams" class="exam-section">
-      <div class="container">
-        <h2 class="section-title">WAEC & NECO Excellence</h2>
-        <div class="section-subtitle">We are a registered examination center. Our students consistently achieve
-          outstanding results.</div>
-        <div class="exam-grid">
-          <div class="exam-card">
-            <i class="bi bi-scroll"></i>
-            <h3>WAEC</h3>
-            <p>West African Examinations Council</p>
-            <p style="margin-top: 1rem; font-weight: 600;">Registration: Sept - Jan</p>
-            <p>Exam: May/June</p>
-            <span class="exam-badge" style="background: #00ffc3; display:inline-block; margin-top:12px;">98% Credit
-              Pass</span><br>
-            <span class="exam-badge" style="background: #00ffc3; display:inline-block; margin-top:12px;">Apply</span>
-          </div>
-          <div class="exam-card">
-            <i class="bi bi-award"></i>
-            <h3>NECO</h3>
-            <p>National Examinations Council</p>
-            <p style="margin-top: 1rem; font-weight: 600;">Registration: April - June</p>
-            <p>Exam: July/August</p>
-            <span class="exam-badge" style="background: #00ffc3; display:inline-block; margin-top:12px;">96% Credit
-              Pass</span><br>
-            <span class="exam-badge" style="background: #00ffc3; display:inline-block; margin-top:12px;">Apply</span>
-          </div>
-          <div class="exam-card">
-            <i class="bi bi-chalkboard"></i>
-            <h3>Mock Exams & Tutorials</h3>
-            <p>Intensive coaching for both WAEC and NECO. Afternoon classes and Saturday tutorials available.</p>
-            <a href="#register" class="btn btn-outline" style="margin-top: 1rem;">Register for Tutorials</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Student Registration Section (for both new admission and exam registration) -->
-    <section id="register" class="registration-section">
-      <div class="container registration-grid">
-        <div class="reg-info">
-          <h2>Register for Admission or Exam</h2>
-          <p style="margin: 1rem 0;">Secure your place at Positive Change Secondary School. Choose between:</p>
-          <ul style="margin-left: 1.5rem; line-height: 2;">
-            <li><i class="bi bi-check-circle"></i> New Student Admission (JSS1 - SS3)</li>
-            <li><i class="bi bi-check-circle"></i> WAEC Registration (SS3 Students)</li>
-            <li><i class="bi bi-check-circle"></i> NECO Registration (SS3 Students)</li>
-            <li><i class="bi bi-check-circle"></i> Transfer Students</li>
-          </ul>
-          <p style="margin-top: 1.5rem;"><strong>Registration Fee:</strong> ₦15,000 (Admission) | ₦25,000 (WAEC/NECO)
-          </p>
-        </div>
-        <div class="reg-form">
-          <h3 style="margin-bottom: 1.5rem; font-size: 1.5rem;"><i class="bi bi-pencil"></i> Student Registration Form
-          </h3>
-
-
-
-          <form id="registrationForm">
-            <div class="form-row">
-              <div class="form-group"><input id="studentName" name="studentName" type="text" placeholder="Full Name"
-                  required></div>
-              <div class="form-group"><input id="studentDob" name="studentDob" type="date" placeholder="Date of Birth">
-              </div>
+        <!-- ===== CLASSES ===== -->
+        <section id="classes" class="classes">
+            <div class="container">
+                <h2 class="section-title">Our Classes</h2>
+                <div class="section-subtitle">Comprehensive curriculum from Junior Secondary to Senior Secondary, fully
+                    preparing students for external exams.</div>
+                <div class="classes-grid">
+                    <div class="class-card">
+                        <h3>JSS 1</h3>
+                        <p>Foundation &amp; Core Subjects</p>
+                        <i class="bi bi-book-half" style="color:#00ffc3; margin-top: 6px; display:inline-block;"></i>
+                    </div>
+                    <div class="class-card">
+                        <h3>JSS 2</h3>
+                        <p>Building Knowledge</p>
+                        <i class="bi bi-graph-up" style="color:#00ffc3; margin-top: 6px; display:inline-block;"></i>
+                    </div>
+                    <div class="class-card">
+                        <h3>JSS 3</h3>
+                        <p>Basic Exam Prep</p>
+                        <i class="bi bi-flag" style="color:#00ffc3; margin-top: 6px; display:inline-block;"></i>
+                    </div>
+                    <div class="class-card">
+                        <h3>SS 1</h3>
+                        <p>Senior Secondary Begins</p>
+                        <i class="bi bi-microscope" style="color:#00ffc3; margin-top: 6px; display:inline-block;"></i>
+                    </div>
+                    <div class="class-card">
+                        <h3>SS 2</h3>
+                        <p>Deep Dive &amp; Projects</p>
+                        <i class="bi bi-flask" style="color:#00ffc3; margin-top: 6px; display:inline-block;"></i>
+                    </div>
+                    <div class="class-card">
+                        <h3>SS 3</h3>
+                        <p>WAEC/NECO Focus</p>
+                        <i class="bi bi-trophy" style="color:#00ffc3; margin-top: 6px; display:inline-block;"></i>
+                    </div>
+                </div>
             </div>
-            <div class="form-row">
-              <div class="form-group">
-                <select id="studentClass" name="studentClass" required>
-                  <option value="">Select Class</option>
-                  <option>JSS 1</option>
-                  <option>JSS 2</option>
-                  <option>JSS 3</option>
-                  <option>SS 1</option>
-                  <option>SS 2</option>
-                  <option>SS 3</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <select id="registrationType" name="registrationType">
-                  <option value="">Select Registration Type</option>
-                  <option>New Admission</option>
-                  <option>WAEC Registration (SS3 only)</option>
-                  <option>NECO Registration (SS3 only)</option>
-                  <option>Both WAEC & NECO</option>
-                  <option>Transfer Student</option>
-                </select>
-              </div>
+        </section>
+
+        <!-- ===== CAMPUS ===== -->
+        <section id="campus">
+            <div class="container">
+                <h2 class="section-title">Why Choose Our School</h2>
+                <div class="section-sub">We focus on developing well-rounded individuals prepared for tomorrow's
+                    challenges.</div>
+                <div class="immersive-grid">
+                    <div class="immersive-card">
+                        <i class="bi bi-cpu"></i>
+                        <h3>Academic Excellence</h3>
+                        <p>Outstanding curriculum with track record of excellent exam results.</p>
+                    </div>
+                    <div class="immersive-card">
+                        <i class="bi bi-flower1"></i>
+                        <h3>Character Building</h3>
+                        <p>We teach values, ethics, and social responsibility.</p>
+                    </div>
+                    <div class="immersive-card">
+                        <i class="bi bi-people"></i>
+                        <h3>Experienced Teachers</h3>
+                        <p>Dedicated teachers committed to student success.</p>
+                    </div>
+                </div>
             </div>
-            <div class="form-row">
-              <div class="form-group"><input id="parentEmail" name="parentEmail" type="email"
-                  placeholder="Parent/Guardian Email"></div>
-              <div class="form-group"><input id="parentPhone" name="parentPhone" type="tel" placeholder="Phone Number">
-              </div>
+        </section>
+
+        <!-- ===== ABOUT ===== -->
+        <section id="about">
+            <div class="container about-wrap">
+                <div class="about-text">
+                    <h2 class="section-title" style="margin-bottom: 1.8rem;">About Our School</h2>
+                    <p>Positive Change College is a leading secondary school dedicated to academic excellence, character
+                        formation, and high-stakes exam success. We support students from JSS1 through SS3 with a caring,
+                        disciplined learning environment.</p>
+                    <p>Our school blends strong classroom instruction with practical guidance for WAEC and NECO
+                        preparation, leadership development, and community service. We are committed to helping every
+                        student reach their highest potential.</p>
+                    <p><i class="bi bi-geo-alt" style="color:#00ffc3; margin-right: 8px;"></i> Located in Ibadan,
+                        Nigeria · Serving students across the region</p>
+                    <div style="margin-top: 1.5rem;">
+                        <a href="#contact" class="btn btn-outline"><i class="bi bi-telephone"></i> Contact Admissions</a>
+                    </div>
+                </div>
+                <div class="exp-box">
+                    <h3><i class="bi bi-building"></i> School Strengths</h3>
+                    <div class="exp-item">
+                        <h4>Strong Exam Results</h4>
+                        <div class="exp-date">Consistent top performers</div>
+                        <p>Students regularly achieve high credit passes in WAEC and NECO exams.</p>
+                    </div>
+                    <div class="exp-item">
+                        <h4>Qualified Teaching Staff</h4>
+                        <div class="exp-date">Experienced educators</div>
+                        <p>Our teachers combine exam expertise with supportive classroom mentoring.</p>
+                    </div>
+                    <div class="exp-item">
+                        <h4>Student Support</h4>
+                        <div class="exp-date">Holistic care</div>
+                        <p>We provide guidance, counseling, and after-school tutorials for every learner.</p>
+                    </div>
+                </div>
             </div>
-            <div class="form-group"><textarea id="previousSchool" name="previousSchool" rows="2"
-                placeholder="Previous School (if applicable)"></textarea></div>
-            <div class="form-group">
-              <label style="display: flex; align-items: center; gap: 10px;">
-                <input id="agreeTerms" name="agreeTerms" type="checkbox" required> I confirm that the information
-                provided is correct.
-              </label>
+        </section>
+
+        <!-- ===== WAEC / NECO ===== -->
+        <section id="exams" class="exam-section">
+            <div class="container">
+                <h2 class="section-title">WAEC &amp; NECO Excellence</h2>
+                <div class="section-subtitle">We are a registered examination center. Our students consistently achieve
+                    outstanding results.</div>
+                <div class="exam-grid">
+                    <div class="exam-card">
+                        <i class="bi bi-scroll"></i>
+                        <h3>WAEC</h3>
+                        <p>West African Examinations Council</p>
+                        <p style="margin-top: 0.8rem; font-weight: 600;">Registration: Sept - Jan</p>
+                        <p>Exam: May/June</p>
+                        <span class="exam-badge" style="background:#00ffc3; display:inline-block; margin-top:10px;">98%
+                            Credit Pass</span><br>
+                        <span class="exam-badge" style="background:#00ffc3; display:inline-block; margin-top:8px;">Apply</span>
+                    </div>
+                    <div class="exam-card">
+                        <i class="bi bi-award"></i>
+                        <h3>NECO</h3>
+                        <p>National Examinations Council</p>
+                        <p style="margin-top: 0.8rem; font-weight: 600;">Registration: April - June</p>
+                        <p>Exam: July/August</p>
+                        <span class="exam-badge" style="background:#00ffc3; display:inline-block; margin-top:10px;">96%
+                            Credit Pass</span><br>
+                        <span class="exam-badge" style="background:#00ffc3; display:inline-block; margin-top:8px;">Apply</span>
+                    </div>
+                    <div class="exam-card">
+                        <i class="bi bi-chalkboard"></i>
+                        <h3>Mock Exams &amp; Tutorials</h3>
+                        <p>Intensive coaching for both WAEC and NECO. Afternoon classes and Saturday tutorials available.
+                        </p>
+                        <a href="#register" class="btn btn-outline" style="margin-top: 1rem;">Register for Tutorials</a>
+                    </div>
+                </div>
             </div>
-            <button type="submit" class="btn btn-primary" style="width:100%; justify-content: center;"><i
-                class="bi bi-send"></i> Submit Registration</button>
-            <p style="text-align: center; margin-top: 1rem; font-size: 0.8rem;">After submission, you'll receive payment
-              details via SMS/Email.</p>
-          </form>
+        </section>
 
-          <!-- Success Modal -->
-          <div id="regSuccessModal" class="modal" aria-hidden="true">
-            <div class="modal-content">
-              <button class="modal-close" aria-label="Close">&times;</button>
-              <div class="modal-icon">✓</div>
-              <h3>Registration Submitted</h3>
-              <p>Thank you! Your registration was submitted successfully. You'll receive payment details via SMS/Email.
-              </p>
+        <!-- ===== REGISTRATION ===== -->
+        <section id="register" class="registration-section">
+            <div class="container registration-grid">
+                <div class="reg-info">
+                    <h2>Register for Admission or Exam</h2>
+                    <p style="margin: 0.8rem 0;">Secure your place at Positive Change Secondary School. Choose between:</p>
+                    <ul>
+                        <li><i class="bi bi-check-circle"></i> New Student Admission (JSS1 - SS3)</li>
+                        <li><i class="bi bi-check-circle"></i> WAEC Registration (SS3 Students)</li>
+                        <li><i class="bi bi-check-circle"></i> NECO Registration (SS3 Students)</li>
+                        <li><i class="bi bi-check-circle"></i> Transfer Students</li>
+                    </ul>
+                    <p style="margin-top: 1.2rem;"><strong>Registration Fee:</strong> ₦15,000 (Admission) | ₦25,000
+                        (WAEC/NECO)</p>
+                </div>
+                <div class="reg-form">
+                    <h3><i class="bi bi-pencil"></i> Student Registration Form</h3>
+                    <form id="registrationForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <input id="studentName" name="studentName" type="text" placeholder="Full Name" required>
+                            </div>
+                            <div class="form-group">
+                                <input id="studentDob" name="studentDob" type="date" placeholder="Date of Birth">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <select id="studentClass" name="studentClass" required>
+                                    <option value="">Select Class</option>
+                                    <option>JSS 1</option>
+                                    <option>JSS 2</option>
+                                    <option>JSS 3</option>
+                                    <option>SS 1</option>
+                                    <option>SS 2</option>
+                                    <option>SS 3</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <select id="registrationType" name="registrationType">
+                                    <option value="">Select Registration Type</option>
+                                    <option>New Admission</option>
+                                    <option>WAEC Registration (SS3 only)</option>
+                                    <option>NECO Registration (SS3 only)</option>
+                                    <option>Both WAEC &amp; NECO</option>
+                                    <option>Transfer Student</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <input id="parentEmail" name="parentEmail" type="email" placeholder="Parent/Guardian Email">
+                            </div>
+                            <div class="form-group">
+                                <input id="parentPhone" name="parentPhone" type="tel" placeholder="Phone Number">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="previousSchool" name="previousSchool" rows="2" placeholder="Previous School (if applicable)"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+                                <input id="agreeTerms" name="agreeTerms" type="checkbox" required> I confirm that the
+                                information provided is correct.
+                            </label>
+                        </div>
+                        <button type="submit" class="btn btn-primary"><i class="bi bi-send"></i> Submit Registration</button>
+                        <p style="text-align: center; margin-top: 0.8rem; font-size: 0.8rem; color: rgba(255,255,255,0.6);">
+                            After submission, you'll receive payment details via SMS/Email.</p>
+                    </form>
+
+                    <!-- Success Modal -->
+                    <div id="regSuccessModal" class="modal" aria-hidden="true">
+                        <div class="modal-content">
+                            <button class="modal-close" aria-label="Close">&times;</button>
+                            <div class="modal-icon">✓</div>
+                            <h3 class="modal-success-title">Registration Submitted</h3>
+                            <p class="modal-success-body">Thank you! Your registration was submitted successfully. You'll
+                                receive payment details via SMS/Email.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </section>
+        </section>
 
-
-
-
-
-
-
-
-
-
-
-
-
-    <!-- Student & Parent Portal -->
-    <section id="portal" class="portal-section">
-      <div class="container">
-        <h2 class="section-title">Student & Parent Portal</h2>
-        <div class="section-subtitle">Access results, exam schedules, fee payments, and school announcements.</div>
-        <div class="portal-flex">
-          <div class="portal-card">
-            <i class="bi bi-mortarboard" style="font-size: 2.5rem; color:  #00ffc3;"></i>
-            <h3 style="margin: 1rem 0;">Student Portal</h3>
-            <p>Check results, download timetables, and access learning materials on the dedicated portal page.</p>
-            <button class="btn btn-primary" style="width:100%; margin-top: 1rem;"
-              onclick="window.location.href='student potal signin.html'">Go to Student Portal</button>
-          </div>
-          <div class="portal-card">
-            <i class="bi bi-person-video2" style="font-size: 2.5rem; color:  #00ffc3;"></i>
-            <h3 style="margin: 1rem 0;">Parent Portal</h3>
-            <p>Monitor academic progress, fee payments, and school events on the parent portal page.</p>
-            <button class="btn btn-outline" style="width:100%; margin-top: 1rem;"
-              onclick="window.location.href='parent potalsignin.html'">Open Parent Portal</button>
-            <a href="#" style="display: block; margin-top: 1rem; font-size: 0.85rem;">Need help? Contact Admin</a>
-          </div>
-          <div class="portal-card">
-            <i class="bi bi-download" style="font-size: 2.5rem; color:  #00ffc3;"></i>
-            <h3 style="margin: 1rem 0;">Resources</h3>
-            <p>Download past WAEC/NECO questions, class notes, and exam syllabi.</p>
-            <button class="btn btn-success" style="margin-top: 1rem;"><i class="bi bi-download"></i> Download Past
-              Questions</button>
-          </div>
-        </div>
-        <div class="portal-create-grid">
-          <div class="portal-card">
-            <i class="bi bi-person-plus" style="font-size: 2.5rem; color:  #00ffc3;"></i>
-            <h3 style="margin: 1rem 0;">Student Account</h3>
-            <p>Create a portal account to access student results, schedules and learning resources.</p>
-            <button class="btn btn-primary" style="width:100%; margin-top: 1rem;"
-              onclick="window.location.href='studentsignup.html'">Create Student Account</button>
-          </div>
-          <div class="portal-card">
-            <i class="bi bi-person-plus-fill" style="font-size: 2.5rem; color:  #00ffc3;"></i>
-            <h3 style="margin: 1rem 0;">Parent Account</h3>
-            <p>Create a parent portal account to follow your child’s progress and receive school updates.</p>
-            <button class="btn btn-outline" style="width:100%; margin-top: 1rem;"
-              onclick="window.location.href='parent signup.html'">Create Parent Account</button>
-          </div>
-        </div>
-      </div>
-
-
-      <!-- CTA -->
-      <div class="container" id="cbt">
-        <div class="cta-section">
-          <h2>C.B.T</h2>
-          <p style="opacity:0.9; max-width:600px; margin: 10px auto;">Join the school CBT ecosystem for positive change
-            college.</p>
-            <a href="cbt.html">
-          <button class="cta-button"><i class="fas fa-graduation-cap"></i> Start free trial →</button>
-        </a></div>
-      </div>
-
-      <!-- Welcome Modal -->
-      <div id="welcomeModal" class="modal" aria-hidden="true">
-        <div class="modal-content">
-          <button class="modal-close" aria-label="Close">&times;</button>
-          <div style="font-size: 3rem; color: #00ffc3; margin-bottom: 1rem;">✓</div>
-          <h3 class="modal-success-title">Welcome Back!</h3>
-          <p class="modal-success-body" id="welcomeMessage">You have successfully logged in. Redirecting to your
-            dashboard...</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Testimonials / success stories -->
-    <section id="testimonials">
-      <div class="container">
-        <h2 class="section-title">School Voices, Real Impact</h2>
-        <div class="section-sub"><span class="jjc"> Parents, students, and alumni share why Positive Change College is
-            their trusted school.</span></div>
-        <div class="testimonial-flex">
-          <div class="testimonial"><i class="bi bi-quote" style="color: #00ffc3; font-size: 1.8rem;"></i>
-            <p style="margin: 1rem 0;">"My child’s grades improved quickly after joining Positive Change College. The
-              teachers are supportive and the school is focused on exam success."</p>
-            <h4>— Mrs. Adeola</h4><span>Parent</span>
-          </div>
-          <div class="testimonial"><i class="bi bi-quote" style="color: #00ffc3; font-size: 1.8rem;"></i>
-            <p style="margin: 1rem 0;">"The school keeps parents informed and helps us stay involved in our student’s
-              education every step of the way."</p>
-            <h4>— Mr. Chukwu</h4><span>Parent</span>
-          </div>
-          <div class="testimonial"><i class="bi bi-quote" style="color: #00ffc3; font-size: 1.8rem;"></i>
-            <p style="margin: 1rem 0;">"I passed WAEC and NECO with confidence because of the extra tutorials and exam
-              preparation at school."</p>
-            <h4>— Blessing</h4><span>Alumnus</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-
-    <!-- Contact Section -->
-    <section id="contact" style="padding: 80px 0;">
-      <div class="container">
-        <div style="display: flex; flex-wrap: wrap; gap: 3rem;">
-          <div style="flex:1">
-            <h2 class="section-title">Contact Us</h2>
-            <p>Visit our campus or reach out for inquiries about admissions, exams, and school fees.</p>
-            <div style="margin-top: 2rem;">
-              <p><i class="bi bi-geo-alt" style="color: #00ffc3; width: 30px;"></i> Plot 80, Zone c, Kuelu Area, Iyana Abgala,Ibadan. </p>
-              <p style="margin: 1rem 0;"><i class="bi bi-telephone" style="color: #00ffc3; width: 30px;"></i> +234 802
-                345
-                6789</p>
-              <p><i class="bi bi-envelope" style="color: #00ffc3; width: 30px;"></i> admissions@positivechangess.edu.ng
-              </p>
+        <!-- ===== PORTAL ===== -->
+        <section id="portal" class="portal-section">
+            <div class="container">
+                <h2 class="section-title">Student &amp; Parent Portal</h2>
+                <div class="section-subtitle">Access results, exam schedules, fee payments, and school announcements.</div>
+                <div class="portal-flex">
+                    <div class="portal-card">
+                        <i class="bi bi-mortarboard"></i>
+                        <h3>Student Portal</h3>
+                        <p>Check results, download timetables, and access learning materials on the dedicated portal page.</p>
+                        <button class="btn btn-primary" onclick="window.location.href='student potal signin.html'">Go to
+                            Student Portal</button>
+                    </div>
+                    <div class="portal-card">
+                        <i class="bi bi-person-video2"></i>
+                        <h3>Parent Portal</h3>
+                        <p>Monitor academic progress, fee payments, and school events on the parent portal page.</p>
+                        <button class="btn btn-outline" onclick="window.location.href='parent potalsignin.html'">Open Parent
+                            Portal</button>
+                        <a href="#" style="display: block; margin-top: 0.8rem; font-size: 0.8rem; color: rgba(255,255,255,0.5);">Need help? Contact Admin</a>
+                    </div>
+                    <div class="portal-card">
+                        <i class="bi bi-download"></i>
+                        <h3>Resources</h3>
+                        <p>Download past WAEC/NECO questions, class notes, and exam syllabi.</p>
+                        <button class="btn btn-success"><i class="bi bi-download"></i> Download Past Questions</button>
+                    </div>
+                </div>
+                <div class="portal-create-grid">
+                    <div class="portal-card">
+                        <i class="bi bi-person-plus"></i>
+                        <h3>Student Account</h3>
+                        <p>Create a portal account to access student results, schedules and learning resources.</p>
+                        <button class="btn btn-primary" onclick="window.location.href='studentsignup.html'">Create Student
+                            Account</button>
+                    </div>
+                    <div class="portal-card">
+                        <i class="bi bi-person-plus-fill"></i>
+                        <h3>Parent Account</h3>
+                        <p>Create a parent portal account to follow your child’s progress and receive school updates.</p>
+                        <button class="btn btn-outline" onclick="window.location.href='parent signup.html'">Create Parent
+                            Account</button>
+                    </div>
+                </div>
             </div>
-            <div style="margin-top: 2rem; display: flex; gap: 1rem;">
-              <i class="bi bi-facebook" style="font-size: 1.5rem; color: #00ffc3;"></i>
-              <i class="bi bi-instagram" style="font-size: 1.5rem; color: #00ffc3;"></i>
-              <i class="bi bi-whatsapp" style="font-size: 1.5rem; color: #00ffc3;"></i>
+
+            <!-- ===== CTA ===== -->
+            <div class="container" id="cbt">
+                <div class="cta-section">
+                    <h2>C.B.T</h2>
+                    <p>Join the school CBT ecosystem for positive change college.</p>
+                    <a href="cbt.html">
+                        <button class="cta-button"><i class="fas fa-graduation-cap"></i> Start free trial →</button>
+                    </a>
+                </div>
             </div>
-          </div>
-          <div
-            style="flex:1; background: radial-gradient(circle at 10% 20%, rgba(10, 25, 47, 0.98), rgba(2, 12, 27, 1)); border-radius: 28px; padding: 2rem; border-bottom:2px solid #00ffc3;">
-            <h3>Send a Message</h3>
-            <form>
-              <div class="form-group"><input type="text" placeholder="Your Name"></div>
-              <div class="form-group"><input type="email" placeholder="Email Address"></div>
-              <div class="form-group"><textarea rows="3" placeholder="Question about registration or exams"></textarea>
-              </div>
-              <button class="btn btn-primary">Send Message</button>
-            </form>
-          </div>
+
+            <!-- Welcome Modal -->
+            <div id="welcomeModal" class="modal" aria-hidden="true">
+                <div class="modal-content">
+                    <button class="modal-close" aria-label="Close">&times;</button>
+                    <div class="modal-icon">✓</div>
+                    <h3 class="modal-success-title">Welcome Back!</h3>
+                    <p class="modal-success-body" id="welcomeMessage">You have successfully logged in. Redirecting to your
+                        dashboard...</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== TESTIMONIALS ===== -->
+        <section id="testimonials">
+            <div class="container">
+                <h2 class="section-title">School Voices, Real Impact</h2>
+                <div class="section-sub">Parents, students, and alumni share why Positive Change College is their trusted
+                    school.</div>
+                <div class="testimonial-flex">
+                    <div class="testimonial">
+                        <i class="bi bi-quote"></i>
+                        <p>"My child’s grades improved quickly after joining Positive Change College. The teachers are
+                            supportive and the school is focused on exam success."</p>
+                        <h4>— Mrs. Adeola</h4><span>Parent</span>
+                    </div>
+                    <div class="testimonial">
+                        <i class="bi bi-quote"></i>
+                        <p>"The school keeps parents informed and helps us stay involved in our student’s education every
+                            step of the way."</p>
+                        <h4>— Mr. Chukwu</h4><span>Parent</span>
+                    </div>
+                    <div class="testimonial">
+                        <i class="bi bi-quote"></i>
+                        <p>"I passed WAEC and NECO with confidence because of the extra tutorials and exam preparation at
+                            school."</p>
+                        <h4>— Blessing</h4><span>Alumnus</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== CONTACT ===== -->
+        <section id="contact">
+            <div class="container">
+                <div>
+                    <div>
+                        <h2 class="section-title" style="text-align:left;">Contact Us</h2>
+                        <p style="color:rgba(255,255,255,0.8);">Visit our campus or reach out for inquiries about admissions,
+                            exams, and school fees.</p>
+                        <div class="contact-info" style="margin-top:1.8rem;">
+                            <p><i class="bi bi-geo-alt"></i> Plot 80, Zone c, Kuelu Area, Iyana Abgala, Ibadan.</p>
+                            <p><i class="bi bi-telephone"></i> +234 802 345 6789</p>
+                            <p><i class="bi bi-envelope"></i> admissions@positivechangess.edu.ng</p>
+                        </div>
+                        <div class="social-icons">
+                            <i class="bi bi-facebook"></i>
+                            <i class="bi bi-instagram"></i>
+                            <i class="bi bi-whatsapp"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <h3>Send a Message</h3>
+                        <form>
+                            <div class="form-group"><input type="text" placeholder="Your Name"></div>
+                            <div class="form-group"><input type="email" placeholder="Email Address"></div>
+                            <div class="form-group"><textarea rows="3" placeholder="Question about registration or exams"></textarea></div>
+                            <button class="btn btn-primary">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>Positive Change Secondary School</h4>
+                    <p>Excellence. Character. Success.</p>
+                    <p>WAEC &amp; NECO Registered Center</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <a href="#classes">Classes (JSS1-SS3)</a>
+                    <a href="#exams">WAEC/NECO Info</a>
+                    <a href="#register">Register Online</a>
+                    <a href="student potal signin.html">Student Portal</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Resources</h4>
+                    <a href="academic calender.html">Academic Calendar</a>
+                    <a href="#">Fee Structure</a>
+                    <a href="school-form.html">School Forms</a>
+                    <a href="past questions.html">Past Questions</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Support</h4>
+                    <a href="addmission help.html">Admissions Help</a>
+                    <a href="#">Exam Registration Guide</a>
+                    <a href="#">Parent-Teacher Meeting</a>
+                    <a href="host page.html">Pot</a>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2026 Positive Change Secondary School. Preparing students for WAEC, NECO, and life.</p>
+            </div>
         </div>
-      </div>
-    </section>
-  </main>
+    </footer>
 
-  <footer>
-    <div class="container">
-      <div class="footer-grid">
-        <div class="footer-col">
-          <h4>Positive Change Secondary School</h4>
-          <p>Excellence. Character. Success.</p>
-          <p>WAEC & NECO Registered Center</p>
-        </div>
-        <div class="footer-col">
-          <h4>Quick Links</h4>
-          <a href="#classes">Classes (JSS1-SS3)</a>
-          <a href="#exams">WAEC/NECO Info</a>
-          <a href="#register">Register Online</a>
-          <a href="student potal signin.html">Student Portal</a>
-        </div>
-        <div class="footer-col">
-          <h4>Resources</h4>
-          <a href="academic calender.html">Academic Calendar</a>
-          <a href="#">Fee Structure</a>
-          <a href="school-form.html">school Forms</a>
-          <a href="past questions.html">Past Questions</a>
-        </div>
-        <div class="footer-col">
-          <h4>Support</h4>
-          <a href="addmission help.html">Admissions Help</a>
-          <a href="#">Exam Registration Guide</a>
-          <a href="#">Parent-Teacher Meeting</a>
-          <a href="host page.html">pot</a>
-        </div>
-      </div>
-      <div class="copyright">
-        <p>&copy; 2026 Positive Change Secondary School. Preparing students for WAEC, NECO, and life.</p>
-      </div>
-    </div>
-  </footer>
+    <!-- ===== SCRIPTS ===== -->
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
+        import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js";
 
-  <script type="module">
-    // Import the functions you need from the SDKs you need
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
-    import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js";
-    // TODO: Add SDKs for Firebase products that you want to use
-    // https://firebase.google.com/docs/web/setup#available-libraries
-
-    // Your web app's Firebase configuration
-    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-    const firebaseConfig = {
-      apiKey: "AIzaSyDmvmqTgjhbtgLxrbvgmT3LQgEsNoj3x_g",
-      authDomain: "positivechangecollege-4d2cb.firebaseapp.com",
-      projectId: "positivechangecollege-4d2cb",
-      storageBucket: "positivechangecollege-4d2cb.firebasestorage.app",
-      messagingSenderId: "847572892577",
-      appId: "1:847572892577:web:1f6184c056ca46cf3ce9e0",
-      measurementId: "G-CVGTLPDR5M"
-    };
-
-    // Initialize Firebase
-    let db = null;
-    try {
-      const app = initializeApp(firebaseConfig);
-      db = getFirestore(app);
-      console.log('Firebase initialized successfully');
-    } catch (error) {
-      console.error('Firebase initialization failed:', error);
-    }
-
-    const signupForm = document.getElementById("registrationForm");
-    const regSuccessModal = document.getElementById('regSuccessModal');
-    const regModalClose = regSuccessModal?.querySelector('.modal-close');
-
-    function showModal() {
-      if (!regSuccessModal) return;
-      regSuccessModal.classList.add('show');
-      regSuccessModal.setAttribute('aria-hidden', 'false');
-    }
-
-    function hideModal() {
-      if (!regSuccessModal) return;
-      regSuccessModal.classList.remove('show');
-      regSuccessModal.setAttribute('aria-hidden', 'true');
-    }
-
-    if (signupForm) {
-      signupForm.addEventListener("submit", async (e) => {
-        e.preventDefault();
-
-        if (!db) {
-          alert('Registration service is unavailable. Please try again later.');
-          return;
-        }
-
-        if (!signupForm.checkValidity()) {
-          signupForm.reportValidity();
-          return;
-        }
-
-        const registrationData = {
-          fullName: signupForm.querySelector('[name="studentName"]')?.value.trim() || '',
-          dateOfBirth: signupForm.querySelector('[name="studentDob"]')?.value || '',
-          studentClass: signupForm.querySelector('[name="studentClass"]')?.value || '',
-          registrationType: signupForm.querySelector('[name="registrationType"]')?.value || '',
-          parentEmail: signupForm.querySelector('[name="parentEmail"]')?.value.trim() || '',
-          parentPhone: signupForm.querySelector('[name="parentPhone"]')?.value.trim() || '',
-          previousSchool: signupForm.querySelector('[name="previousSchool"]')?.value.trim() || '',
-          agreedToTerms: signupForm.querySelector('[name="agreeTerms"]')?.checked || false,
-          createdAt: serverTimestamp()
+        const firebaseConfig = {
+            apiKey: "AIzaSyDmvmqTgjhbtgLxrbvgmT3LQgEsNoj3x_g",
+            authDomain: "positivechangecollege-4d2cb.firebaseapp.com",
+            projectId: "positivechangecollege-4d2cb",
+            storageBucket: "positivechangecollege-4d2cb.firebasestorage.app",
+            messagingSenderId: "847572892577",
+            appId: "1:847572892577:web:1f6184c056ca46cf3ce9e0",
+            measurementId: "G-CVGTLPDR5M"
         };
 
-        const redirectData = {
-          fullName: registrationData.fullName,
-          dateOfBirth: registrationData.dateOfBirth,
-          studentClass: registrationData.studentClass,
-          registrationType: registrationData.registrationType,
-          parentEmail: registrationData.parentEmail,
-          parentPhone: registrationData.parentPhone,
-          previousSchool: registrationData.previousSchool,
-          agreedToTerms: registrationData.agreedToTerms,
-          createdAt: Date.now()
-        };
-
-        localStorage.setItem('pccRegistration', JSON.stringify({
-          fullName: redirectData.fullName,
-          studentClass: redirectData.studentClass,
-          registrationType: redirectData.registrationType,
-          phone: redirectData.parentPhone,
-          email: redirectData.parentEmail
-        }));
-        localStorage.setItem('registrationRedirectData', JSON.stringify(redirectData));
-
-        const isExamRegistration = /WAEC|NECO/.test(registrationData.registrationType);
-        if (isExamRegistration) {
-          localStorage.setItem('lastWaecRedirectData', JSON.stringify(redirectData));
-        } else {
-          localStorage.setItem('schoolFormRedirectData', JSON.stringify(redirectData));
-        }
-
+        let db = null;
         try {
-          await addDoc(collection(db, "pcc-students"), registrationData);
+            const app = initializeApp(firebaseConfig);
+            db = getFirestore(app);
+            console.log('Firebase initialized successfully');
         } catch (error) {
-          console.error("Firestore save failed:", error);
-          alert(error.message);
+            console.error('Firebase initialization failed:', error);
         }
 
-        const redirectUrl = isExamRegistration ? 'waec and neco.html' : 'school-form.html';
-        window.location.href = redirectUrl;
+        // ===== REGISTRATION FORM =====
+        const signupForm = document.getElementById("registrationForm");
+        const regSuccessModal = document.getElementById('regSuccessModal');
+        const regModalClose = regSuccessModal?.querySelector('.modal-close');
 
-      });
-    }
-
-    regModalClose?.addEventListener('click', hideModal);
-    regSuccessModal?.addEventListener('click', function (ev) {
-      if (ev.target === regSuccessModal) hideModal();
-    });
-
-
-    // Portal Login Scripts
-    (function () {
-      // Password Show/Hide Toggle
-      const pwdToggles = document.querySelectorAll('.pwd-toggle');
-
-      pwdToggles.forEach(button => {
-        button.addEventListener('click', function (e) {
-          e.preventDefault();
-          const targetId = this.getAttribute('data-target');
-          const inputField = document.getElementById(targetId);
-          const icon = this.querySelector('i');
-
-          if (inputField.type === 'password') {
-            inputField.type = 'text';
-            icon.classList.remove('bi-eye');
-            icon.classList.add('bi-eye-slash');
-          } else {
-            inputField.type = 'password';
-            icon.classList.remove('bi-eye-slash');
-            icon.classList.add('bi-eye');
-          }
-        });
-      });
-
-
-
-
-
-
-
-// 💳 ADD PAYMENT
-async function addPayment() {
-    try {
-        await addDoc(collection(db, "payments"), {
-            studentName: "John Doe", // you can replace later with login user
-            description: "School Fee Payment",
-            amount: 200000,
-            status: "Pending",
-            date: new Date().toISOString().split("T")[0]
-        });
-
-        alert("Payment added!");
-        loadPayments();
-
-    } catch (error) {
-        console.log(error);
-        alert("Error adding payment");
-    }
-}
-
-
-
-// 📥 LOAD PAYMENTS
-async function loadPayments() {
-    const snapshot = await getDocs(collection(db, "payments"));
-
-    const tableBody = document.getElementById("paymentTableBody");
-    tableBody.innerHTML = "";
-
-    let totalPaid = 0;
-    let totalOutstanding = 0;
-
-    snapshot.forEach((doc) => {
-        const data = doc.data();
-
-        if (data.status === "Paid") {
-            totalPaid += Number(data.amount);
-        } else {
-            totalOutstanding += Number(data.amount);
+        function showModal() {
+            if (!regSuccessModal) return;
+            regSuccessModal.classList.add('show');
+            regSuccessModal.setAttribute('aria-hidden', 'false');
         }
 
-        tableBody.innerHTML += `
-            <tr>
-                <td>${data.date}</td>
-                <td>${data.description}</td>
-                <td>₦${data.amount}</td>
-                <td><span class="badge ${data.status.toLowerCase()}">${data.status}</span></td>
-            </tr>
-        `;
-    });
+        function hideModal() {
+            if (!regSuccessModal) return;
+            regSuccessModal.classList.remove('show');
+            regSuccessModal.setAttribute('aria-hidden', 'true');
+        }
 
-    // update summary
-    document.getElementById("totalFees").innerText = `₦${totalPaid + totalOutstanding}`;
-    document.getElementById("paidAmount").innerText = `₦${totalPaid}`;
-    document.getElementById("outstandingAmount").innerText = `₦${totalOutstanding}`;
-}
+        if (signupForm) {
+            signupForm.addEventListener("submit", async (e) => {
+                e.preventDefault();
 
+                if (!db) {
+                    alert('Registration service is unavailable. Please try again later.');
+                    return;
+                }
 
+                if (!signupForm.checkValidity()) {
+                    signupForm.reportValidity();
+                    return;
+                }
 
-// 🚀 make functions global (IMPORTANT)
-window.addPayment = addPayment;
-window.loadPayments = loadPayments;
+                const registrationData = {
+                    fullName: signupForm.querySelector('[name="studentName"]')?.value.trim() || '',
+                    dateOfBirth: signupForm.querySelector('[name="studentDob"]')?.value || '',
+                    studentClass: signupForm.querySelector('[name="studentClass"]')?.value || '',
+                    registrationType: signupForm.querySelector('[name="registrationType"]')?.value || '',
+                    parentEmail: signupForm.querySelector('[name="parentEmail"]')?.value.trim() || '',
+                    parentPhone: signupForm.querySelector('[name="parentPhone"]')?.value.trim() || '',
+                    previousSchool: signupForm.querySelector('[name="previousSchool"]')?.value.trim() || '',
+                    agreedToTerms: signupForm.querySelector('[name="agreeTerms"]')?.checked || false,
+                    createdAt: serverTimestamp()
+                };
 
+                const redirectData = {
+                    fullName: registrationData.fullName,
+                    dateOfBirth: registrationData.dateOfBirth,
+                    studentClass: registrationData.studentClass,
+                    registrationType: registrationData.registrationType,
+                    parentEmail: registrationData.parentEmail,
+                    parentPhone: registrationData.parentPhone,
+                    previousSchool: registrationData.previousSchool,
+                    agreedToTerms: registrationData.agreedToTerms,
+                    createdAt: Date.now()
+                };
 
+                localStorage.setItem('pccRegistration', JSON.stringify({
+                    fullName: redirectData.fullName,
+                    studentClass: redirectData.studentClass,
+                    registrationType: redirectData.registrationType,
+                    phone: redirectData.parentPhone,
+                    email: redirectData.parentEmail
+                }));
+                localStorage.setItem('registrationRedirectData', JSON.stringify(redirectData));
 
-// auto load
-window.onload = loadPayments;
+                const isExamRegistration = /WAEC|NECO/.test(registrationData.registrationType);
+                if (isExamRegistration) {
+                    localStorage.setItem('lastWaecRedirectData', JSON.stringify(redirectData));
+                } else {
+                    localStorage.setItem('schoolFormRedirectData', JSON.stringify(redirectData));
+                }
 
+                try {
+                    await addDoc(collection(db, "pcc-students"), registrationData);
+                } catch (error) {
+                    console.error("Firestore save failed:", error);
+                    alert(error.message);
+                }
 
+                const redirectUrl = isExamRegistration ? 'waec and neco.html' : 'school-form.html';
+                window.location.href = redirectUrl;
+            });
+        }
 
-
-      // Form Submissions
-      const studentForm = document.getElementById('studentLoginForm');
-      const parentForm = document.getElementById('parentLoginForm');
-      const welcomeModal = document.getElementById('welcomeModal');
-      const welcomeMessage = document.getElementById('welcomeMessage');
-      const modalClose = welcomeModal?.querySelector('.modal-close');
-
-      function showWelcomeModal(userType) {
-        if (!welcomeModal) return;
-        const greeting = userType === 'student' ? 'Student' : 'Parent';
-        welcomeMessage.textContent = `Welcome ${greeting}! You have successfully logged in. Redirecting to your dashboard...`;
-        welcomeModal.classList.add('show');
-        welcomeModal.setAttribute('aria-hidden', 'false');
-
-        setTimeout(() => {
-          welcomeModal.classList.remove('show');
-          welcomeModal.setAttribute('aria-hidden', 'true');
-        }, 4000);
-      }
-
-      function hideWelcomeModal() {
-        if (!welcomeModal) return;
-        welcomeModal.classList.remove('show');
-        welcomeModal.setAttribute('aria-hidden', 'true');
-      }
-
-      if (studentForm) {
-        studentForm.addEventListener('submit', function (e) {
-          e.preventDefault();
-          const studentID = document.getElementById('studentID').value;
-          const password = document.getElementById('studentPassword').value;
-
-          if (studentID && password) {
-            showWelcomeModal('student');
-            this.reset();
-          }
+        regModalClose?.addEventListener('click', hideModal);
+        regSuccessModal?.addEventListener('click', function (ev) {
+            if (ev.target === regSuccessModal) hideModal();
         });
-      }
 
-      if (parentForm) {
-        parentForm.addEventListener('submit', function (e) {
-          e.preventDefault();
-          const parentEmail = document.getElementById('parentPortalEmail').value;
-          const password = document.getElementById('parentPassword').value;
+        // ===== NAV TOGGLE =====
+        const navToggle = document.querySelector('.nav-toggle');
+        const navLinks = document.querySelector('.nav-links');
 
-          if (parentEmail && password) {
-            showWelcomeModal('parent');
-            this.reset();
-          }
+        if (navToggle && navLinks) {
+            navToggle.addEventListener('click', function () {
+                const isOpen = navLinks.classList.toggle('show');
+                this.setAttribute('aria-expanded', String(isOpen));
+                this.innerHTML = isOpen ? '<i class="bi bi-x-lg"></i>' : '<i class="bi bi-list"></i>';
+            });
+
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', function () {
+                    if (navLinks.classList.contains('show')) {
+                        navLinks.classList.remove('show');
+                        navToggle.setAttribute('aria-expanded', 'false');
+                        navToggle.innerHTML = '<i class="bi bi-list"></i>';
+                    }
+                });
+            });
+        }
+
+        // ===== WELCOME MODAL =====
+        const welcomeModal = document.getElementById('welcomeModal');
+        const welcomeMessage = document.getElementById('welcomeMessage');
+        const modalClose = welcomeModal?.querySelector('.modal-close');
+
+        function showWelcomeModal(userType) {
+            if (!welcomeModal) return;
+            const greeting = userType === 'student' ? 'Student' : 'Parent';
+            welcomeMessage.textContent = `Welcome ${greeting}! You have successfully logged in. Redirecting to your dashboard...`;
+            welcomeModal.classList.add('show');
+            welcomeModal.setAttribute('aria-hidden', 'false');
+
+            setTimeout(() => {
+                welcomeModal.classList.remove('show');
+                welcomeModal.setAttribute('aria-hidden', 'true');
+            }, 4000);
+        }
+
+        function hideWelcomeModal() {
+            if (!welcomeModal) return;
+            welcomeModal.classList.remove('show');
+            welcomeModal.setAttribute('aria-hidden', 'true');
+        }
+
+        modalClose?.addEventListener('click', hideWelcomeModal);
+        welcomeModal?.addEventListener('click', function (ev) {
+            if (ev.target === welcomeModal) hideWelcomeModal();
         });
-      }
 
-      const studentSignupForm = document.getElementById('studentSignupForm');
-      const parentSignupForm = document.getElementById('parentSignupForm');
-      const navToggle = document.querySelector('.nav-toggle');
-      const navLinks = document.querySelector('.nav-links');
+        // ===== PORTAL LOGIN FORMS =====
+        const studentForm = document.getElementById('studentLoginForm');
+        const parentForm = document.getElementById('parentLoginForm');
 
-      if (navToggle && navLinks) {
-        navToggle.addEventListener('click', function () {
-          const isOpen = navLinks.classList.toggle('show');
-          this.setAttribute('aria-expanded', String(isOpen));
-          this.innerHTML = isOpen ? '<i class="bi bi-x-lg"></i>' : '<i class="bi bi-list"></i>';
+        if (studentForm) {
+            studentForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+                const studentID = document.getElementById('studentID').value;
+                const password = document.getElementById('studentPassword').value;
+                if (studentID && password) {
+                    showWelcomeModal('student');
+                    this.reset();
+                }
+            });
+        }
+
+        if (parentForm) {
+            parentForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+                const parentEmail = document.getElementById('parentPortalEmail').value;
+                const password = document.getElementById('parentPassword').value;
+                if (parentEmail && password) {
+                    showWelcomeModal('parent');
+                    this.reset();
+                }
+            });
+        }
+
+        // ===== SIGNUP FORMS =====
+        const studentSignupForm = document.getElementById('studentSignupForm');
+        const parentSignupForm = document.getElementById('parentSignupForm');
+
+        if (studentSignupForm) {
+            studentSignupForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+                const id = document.getElementById('studentSignupID').value.trim();
+                const password = document.getElementById('studentSignupPassword').value;
+                const confirm = document.getElementById('studentSignupConfirm').value;
+
+                if (!id || !password || !confirm) {
+                    alert('Please fill all student account fields.');
+                    return;
+                }
+                if (password !== confirm) {
+                    alert('Passwords do not match.');
+                    return;
+                }
+                alert('Student account created successfully! Please log in using your new credentials.');
+                this.reset();
+            });
+        }
+
+        if (parentSignupForm) {
+            parentSignupForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+                const email = document.getElementById('parentSignupEmail').value.trim();
+                const password = document.getElementById('parentSignupPassword').value;
+                const confirm = document.getElementById('parentSignupConfirm').value;
+
+                if (!email || !password || !confirm) {
+                    alert('Please fill all parent account fields.');
+                    return;
+                }
+                if (password !== confirm) {
+                    alert('Passwords do not match.');
+                    return;
+                }
+                alert('Parent account created successfully! Please log in using your new credentials.');
+                this.reset();
+            });
+        }
+
+        // ===== PASSWORD TOGGLE (if present) =====
+        document.querySelectorAll('.pwd-toggle').forEach(button => {
+            button.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('data-target');
+                const inputField = document.getElementById(targetId);
+                const icon = this.querySelector('i');
+                if (!inputField) return;
+
+                if (inputField.type === 'password') {
+                    inputField.type = 'text';
+                    icon.classList.remove('bi-eye');
+                    icon.classList.add('bi-eye-slash');
+                } else {
+                    inputField.type = 'password';
+                    icon.classList.remove('bi-eye-slash');
+                    icon.classList.add('bi-eye');
+                }
+            });
         });
-      }
 
-      document.querySelectorAll('.nav-links a').forEach(link => {
-        link.addEventListener('click', function () {
-          if (navLinks && navLinks.classList.contains('show')) {
-            navLinks.classList.remove('show');
-            navToggle?.setAttribute('aria-expanded', 'false');
-            if (navToggle) navToggle.innerHTML = '<i class="bi bi-list"></i>';
-          }
-        });
-      });
+        // ===== PAYMENT (legacy support) =====
+        async function addPayment() {
+            try {
+                await addDoc(collection(db, "payments"), {
+                    studentName: "John Doe",
+                    description: "School Fee Payment",
+                    amount: 200000,
+                    status: "Pending",
+                    date: new Date().toISOString().split("T")[0]
+                });
+                alert("Payment added!");
+                loadPayments();
+            } catch (error) {
+                console.log(error);
+                alert("Error adding payment");
+            }
+        }
 
-      if (studentSignupForm) {
-        studentSignupForm.addEventListener('submit', function (e) {
-          e.preventDefault();
-          const id = document.getElementById('studentSignupID').value.trim();
-          const password = document.getElementById('studentSignupPassword').value;
-          const confirm = document.getElementById('studentSignupConfirm').value;
+        async function loadPayments() {
+            // This is a placeholder — you can implement full payment loading if needed.
+            console.log("Payments loaded (placeholder)");
+        }
 
-          if (!id || !password || !confirm) {
-            alert('Please fill all student account fields.');
-            return;
-          }
+        window.addPayment = addPayment;
+        window.loadPayments = loadPayments;
+    </script>
 
-          if (password !== confirm) {
-            alert('Passwords do not match.');
-            return;
-          }
-
-          alert('Student account created successfully! Please log in using your new credentials.');
-          this.reset();
-        });
-      }
-
-      if (parentSignupForm) {
-        parentSignupForm.addEventListener('submit', function (e) {
-          e.preventDefault();
-          const email = document.getElementById('parentSignupEmail').value.trim();
-          const password = document.getElementById('parentSignupPassword').value;
-          const confirm = document.getElementById('parentSignupConfirm').value;
-
-          if (!email || !password || !confirm) {
-            alert('Please fill all parent account fields.');
-            return;
-          }
-
-          if (password !== confirm) {
-            alert('Passwords do not match.');
-            return;
-          }
-
-          alert('Parent account created successfully! Please log in using your new credentials.');
-          this.reset();
-        });
-      }
-
-      modalClose?.addEventListener('click', hideWelcomeModal);
-      welcomeModal?.addEventListener('click', function (ev) {
-        if (ev.target === welcomeModal) hideWelcomeModal();
-      });
-    })();
-
-
-
-
-
-  </script>
 </body>
 
 </html>
