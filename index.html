@@ -1814,7 +1814,16 @@
 </head>
 
 <body>
-
+ <script>
+        // Prevent browser from restoring scroll position
+        if ('scrollRestoration' in history) {
+            history.scrollRestoration = 'manual';
+        }
+        // Force scroll to top on page load
+        window.addEventListener('load', function() {
+            window.scrollTo(0, 0);
+        });
+    </script>g
     <!-- ===== NAVBAR ===== -->
     <nav class="navbar">
         <div class="container">
