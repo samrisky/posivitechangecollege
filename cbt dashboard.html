@@ -48,8 +48,8 @@
         /* ─────────── SIDEBAR ─────────── */
         .sidebar {
             width: 260px;
-            background:#00ffc3;
-            color: rgba(2, 12, 27, 0.98) ;
+            background: #00ffc3;
+            color: rgba(2, 12, 27, 0.98);
             padding: 28px 20px;
             display: flex;
             flex-direction: column;
@@ -74,7 +74,7 @@
 
         .sidebar .brand i {
             font-size: 34px;
-            color:  rgba(2, 12, 27, 0.98);
+            color: rgba(2, 12, 27, 0.98);
         }
 
         .sidebar .brand h2 {
@@ -106,7 +106,7 @@
             gap: 14px;
             padding: 12px 16px;
             border-radius: 10px;
-            color:  rgba(2, 12, 27, 0.98);
+            color: rgba(2, 12, 27, 0.98);
             font-weight: 500;
             font-size: 15px;
             cursor: pointer;
@@ -126,7 +126,7 @@
 
         .sidebar .nav label:hover,
         .sidebar .nav a:hover {
-            background:  rgba(2, 12, 27, 0.98);
+            background: rgba(2, 12, 27, 0.98);
             color: white;
         }
 
@@ -142,7 +142,7 @@
             gap: 14px;
             padding: 10px 16px;
             border-radius: 10px;
-            color:  rgba(2, 12, 27, 0.98);
+            color: rgba(2, 12, 27, 0.98);
             text-decoration: none;
             font-size: 14px;
             transition: 0.25s;
@@ -160,7 +160,7 @@
             background: transparent;
         }
         .sidebar::-webkit-scrollbar-thumb {
-            background:#00ffc3 ;
+            background: #00ffc3;
             border-radius: 10px;
         }
 
@@ -374,7 +374,7 @@
             padding: 2px 10px;
             border-radius: 20px;
             margin-top: 8px;
-        }                                                           
+        }
         .stat-change.up {
             background: #e3f7ec;
             color: #1d8b4f;
@@ -520,7 +520,7 @@
             justify-content: center;
             gap: 10px;
             padding: 14px 20px;
-            background:rgba(10, 25, 47, 0.98) ;
+            background: rgba(10, 25, 47, 0.98);
             border-top: 1px solid #eef3f8;
         }
 
@@ -614,7 +614,6 @@
             width: 42px;
             height: 42px;
             border-radius: 12px;
-            /* background: ; */
             color: rgba(10, 25, 47, 0.98);
             display: flex;
             align-items: center;
@@ -669,7 +668,7 @@
 
         .quick-actions a {
             background: #e3edfb;
-            color:rgba(10, 25, 47, 0.98);
+            color: rgba(10, 25, 47, 0.98);
             padding: 10px 20px;
             border-radius: 30px;
             text-decoration: none;
@@ -1026,7 +1025,7 @@
         .subject-grid input[type="checkbox"] {
             width: 16px;
             height: 16px;
-            accent-color:  #00ffc3 ;
+            accent-color: #00ffc3;
             cursor: pointer;
         }
 
@@ -1037,12 +1036,12 @@
 
         .subject-limit-msg {
             font-size: 13px;
-            color:  rgba(10, 25, 47, 0.98)  ;
+            color: rgba(10, 25, 47, 0.98);
             margin-top: 4px;
         }
 
         .success-message {
-            background:  rgba(10, 25, 47, 0.98);
+            background: rgba(10, 25, 47, 0.98);
             color: white;
             padding: 12px 18px;
             border-radius: 12px;
@@ -1077,7 +1076,7 @@
 
         .login-card .login-header i {
             font-size: 48px;
-            color:#00ffc3;
+            color: #00ffc3;
             background: rgba(10, 25, 47, 0.98);
             padding: 16px;
             border-radius: 50%;
@@ -1775,12 +1774,13 @@
 <body>
 
     <!-- ─── PAGE NAV RADIO BUTTONS ─── -->
-    <input type="radio" name="page" id="page-dashboard" class="page-radio" />
+    <!-- DASHBOARD IS CHECKED BY DEFAULT (NOT LOGIN) -->
+    <input type="radio" name="page" id="page-dashboard" class="page-radio" checked />
     <input type="radio" name="page" id="page-mytests" class="page-radio" />
     <input type="radio" name="page" id="page-students" class="page-radio" />
     <input type="radio" name="page" id="page-register" class="page-radio" />
     <input type="radio" name="page" id="page-exam" class="page-radio" />
-    <input type="radio" name="page" id="page-login" class="page-radio" checked />
+    <input type="radio" name="page" id="page-login" class="page-radio" />
 
     <!-- ─── MOBILE OVERLAY ─── -->
     <input type="checkbox" id="sidebar-toggle" style="display:none;" />
@@ -1840,44 +1840,7 @@
         <main class="main-content">
 
             <!-- ════════════════════════════════════ -->
-            <!-- LOGIN PAGE -->
-            <!-- ════════════════════════════════════ -->
-            <section id="login-page" class="page">
-                <div class="login-container">
-                    <div class="login-card">
-                        <div class="login-header">
-                            <i class="fas fa-graduation-cap"></i>
-                            <h2>Student Login</h2>
-                            <p>Enter your credentials to access the CBT exam</p>
-                        </div>
-
-                        <div class="login-error" id="loginError">
-                            <i class="fas fa-exclamation-circle"></i> Invalid email or password.
-                        </div>
-
-                        <form id="loginForm">
-                            <div class="form-group">
-                                <label for="loginEmail">Email Address</label>
-                                <input type="email" id="loginEmail" placeholder="student@positive.edu" required />
-                            </div>
-                            <div class="form-group">
-                                <label for="loginPassword">Password</label>
-                                <input type="password" id="loginPassword" placeholder="Enter your password" required />
-                            </div>
-                            <button type="submit" class="btn-primary">
-                                <i class="fas fa-sign-in-alt"></i> Login
-                            </button>
-                        </form>
-
-                        <div class="register-link">
-                            Don't have an account? <a href="#" onclick="document.getElementById('page-register').checked = true; return false;">Register here</a>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- ════════════════════════════════════ -->
-            <!-- DASHBOARD PAGE -->
+            <!-- DASHBOARD PAGE (DEFAULT) -->
             <!-- ════════════════════════════════════ -->
             <section id="dashboard-page" class="page">
                 <div class="topbar">
@@ -1886,7 +1849,7 @@
                             <label for="sidebar-toggle" class="hamburger" style="cursor:pointer;">
                                 <i class="fas fa-bars"></i>
                             </label>
-                            Good Morning, Dr. Adanna 👋
+                            Good Morning, <span id="dashboardUserName">Dr. Adanna</span> 👋
                         </h1>
                         <p>Here's what's happening with your CBT platform today.</p>
                     </div>
@@ -1896,9 +1859,9 @@
                             <span class="badge">3</span>
                         </div>
                         <div class="profile">
-                            <img src="https://ui-avatars.com/api/?name=Adanna+Okafor&background=0b2a4a&color=ffc857&size=44" alt="Profile" />
+                            <img id="profileAvatar" src="https://ui-avatars.com/api/?name=Dr.+Adanna&background=0b2a4a&color=ffc857&size=44" alt="Profile" />
                             <div>
-                                <div class="name">Dr. Adanna O.</div>
+                                <div class="name" id="profileName">Dr. Adanna O.</div>
                                 <div class="role">Admin</div>
                             </div>
                         </div>
@@ -2040,6 +2003,43 @@
 
                 <div class="border-top">
                     &copy; 2026 Positive Change College · CBT Dashboard v2.0
+                </div>
+            </section>
+
+            <!-- ════════════════════════════════════ -->
+            <!-- LOGIN PAGE -->
+            <!-- ════════════════════════════════════ -->
+            <section id="login-page" class="page">
+                <div class="login-container">
+                    <div class="login-card">
+                        <div class="login-header">
+                            <i class="fas fa-graduation-cap"></i>
+                            <h2>Student Login</h2>
+                            <p>Enter your credentials to access the CBT exam</p>
+                        </div>
+
+                        <div class="login-error" id="loginError">
+                            <i class="fas fa-exclamation-circle"></i> Invalid email or password.
+                        </div>
+
+                        <form id="loginForm">
+                            <div class="form-group">
+                                <label for="loginEmail">Email Address</label>
+                                <input type="email" id="loginEmail" placeholder="student@positive.edu" required />
+                            </div>
+                            <div class="form-group">
+                                <label for="loginPassword">Password</label>
+                                <input type="password" id="loginPassword" placeholder="Enter your password" required />
+                            </div>
+                            <button type="submit" class="btn-primary">
+                                <i class="fas fa-sign-in-alt"></i> Login
+                            </button>
+                        </form>
+
+                        <div class="register-link">
+                            Don't have an account? <a href="#" onclick="document.getElementById('page-register').checked = true; return false;">Register here</a>
+                        </div>
+                    </div>
                 </div>
             </section>
 
@@ -2364,11 +2364,10 @@
         const overlay = document.getElementById('overlay');
 
         // ─── GLOBAL STATE ─────────────────────────────────────────────
-        let loggedInUser = null; // Will store { name, email, subjects, ... }
+        let loggedInUser = null;
 
         // ─── UI HELPERS ───────────────────────────────────────────────
         function updateUIForLogin() {
-            // Hide admin/student links, show student links
             document.getElementById('navDashboard').style.display = 'none';
             document.getElementById('navMyTests').style.display = 'none';
             document.getElementById('navStudents').style.display = 'none';
@@ -2379,7 +2378,6 @@
             document.getElementById('navLogout').classList.remove('hidden');
             document.getElementById('footerLogout').style.display = 'flex';
 
-            // Close mobile sidebar
             sidebar.classList.remove('open');
             overlay.classList.remove('show');
         }
@@ -2395,7 +2393,6 @@
             document.getElementById('navLogout').classList.add('hidden');
             document.getElementById('footerLogout').style.display = 'none';
 
-            // Close mobile sidebar
             sidebar.classList.remove('open');
             overlay.classList.remove('show');
         }
@@ -2417,13 +2414,6 @@
             }
         }
 
-        window.addEventListener('DOMContentLoaded', function() {
-            const storedName = localStorage.getItem('cbtUserName');
-            if (storedName) {
-                setDashboardUser(storedName);
-            }
-        });
-
         // ─── LOGIN FUNCTION ──────────────────────────────────────────
         window.loginStudent = async function(email, password) {
             try {
@@ -2436,9 +2426,8 @@
                     return false;
                 }
 
-                // Login successful
                 const docData = snapshot.docs[0].data();
-                const displayName = docData.name || localStorage.getItem('cbtUserName') || email;
+                const displayName = docData.name || email;
                 loggedInUser = {
                     id: snapshot.docs[0].id,
                     name: displayName,
@@ -2446,21 +2435,16 @@
                     subjects: docData.subjects || []
                 };
 
-                localStorage.setItem('cbtUserName', displayName);
                 document.getElementById('loginError').classList.remove('show');
                 updateUIForLogin();
                 setDashboardUser(displayName);
 
-                // Switch to exam page
                 document.getElementById('page-exam').checked = true;
 
-                // Populate exam user info
                 document.getElementById('examStudentName').textContent = loggedInUser.name;
                 document.getElementById('examStudentEmail').textContent = loggedInUser.email;
 
-                // Initialize exam if not already
                 if (typeof initExam === 'function') {
-                    // Reset exam state if already taken
                     if (state && state.isSubmitted) {
                         resetExam();
                     } else {
@@ -2481,19 +2465,19 @@
         window.logoutStudent = function() {
             loggedInUser = null;
             updateUIForLogout();
-            document.getElementById('page-login').checked = true;
-            // Reset exam if needed
+            document.getElementById('page-dashboard').checked = true;
             if (typeof resetExam === 'function') {
                 resetExam();
             }
-            // Reset timer etc.
             if (state) {
-                state.isSubmitted = true; // Prevent auto-submit
+                state.isSubmitted = true;
                 stopTimer();
                 state.timer = 20 * 60;
                 updateTimerDisplay();
                 document.getElementById('examTimer').classList.remove('warning');
             }
+            // Reset dashboard name to default
+            setDashboardUser('Dr. Adanna');
         };
 
         // ─── REGISTER STUDENT (Admin) ─────────────────────────────────
@@ -2505,13 +2489,14 @@
         const studentTotalLabel = document.getElementById('studentTotalLabel');
         const studentCountDisplay = document.getElementById('studentCountDisplay');
 
-        // Load students from Firebase
         async function loadStudents() {
             try {
                 const studentsRef = collection(db, 'students');
                 const snapshot = await getDocs(studentsRef);
                 studentGrid.innerHTML = '';
                 let count = 0;
+                let lastStudentName = null;
+
                 snapshot.forEach(doc => {
                     const data = doc.data();
                     const card = document.createElement('div');
@@ -2533,16 +2518,23 @@
                     `;
                     studentGrid.appendChild(card);
                     count++;
+                    lastStudentName = data.name;
                 });
+
                 const totalText = count + ' total';
                 if (studentTotalLabel) studentTotalLabel.textContent = totalText;
                 if (studentCountDisplay) studentCountDisplay.textContent = count;
+
+                // Show the last registered student's name on dashboard
+                if (lastStudentName) {
+                    setDashboardUser(lastStudentName);
+                }
+
             } catch (error) {
                 console.error('Error loading students:', error);
             }
         }
 
-        // Subject check logic
         subjectChecks.forEach(function(cb) {
             cb.addEventListener('change', function() {
                 const checked = document.querySelectorAll('.subject-check:checked');
@@ -2585,7 +2577,7 @@
                 await addDoc(collection(db, 'students'), {
                     name: name,
                     email: email,
-                    password: password, // In production, hash this!
+                    password: password,
                     subjects: subjects,
                     createdAt: serverTimestamp()
                 });
@@ -2602,7 +2594,6 @@
                 subjectMsg.textContent = 'Select 4 subjects.';
                 subjectMsg.style.color = '#5e6f8d';
 
-                // Reload students list
                 loadStudents();
             } catch (error) {
                 console.error('Registration error:', error);
@@ -2698,7 +2689,6 @@
             startTime: null,
         };
 
-        // DOM refs for exam
         const qNumber = document.getElementById('qNumber');
         const qText = document.getElementById('qText');
         const optionsContainer = document.getElementById('optionsContainer');
@@ -2925,7 +2915,6 @@
                 });
                 firebaseStatus.innerHTML =
                     `<i class="fas fa-check-circle" style="color:#1d8b4f;"></i> ✅ Result saved to Firebase (ID: ${docRef.id})`;
-                console.log('Firebase: Exam result saved with ID:', docRef.id);
             } catch (error) {
                 console.error('Firebase error:', error);
                 firebaseStatus.innerHTML =
@@ -2961,9 +2950,7 @@
             document.querySelector('.exam-container').scrollIntoView({ behavior: 'smooth' });
         };
 
-        // ─── EXAM INIT ──────────────────────────────────────────────────
         function initExam() {
-            // Check if user is logged in
             if (!loggedInUser) {
                 document.getElementById('page-login').checked = true;
                 return;
@@ -2993,7 +2980,6 @@
             }
         });
 
-        // ─── PAGE NAVIGATION PROTECTION ──────────────────────────────
         const examRadio = document.getElementById('page-exam');
         examRadio.addEventListener('change', function() {
             if (this.checked) {
@@ -3002,7 +2988,6 @@
                     alert('Please login first to access the exam.');
                     return;
                 }
-                // If already submitted, reset
                 if (state.isSubmitted) {
                     resetExam();
                 } else {
@@ -3013,21 +2998,14 @@
                     updateProgress();
                     renderDots();
                 }
-                // Update user info
                 document.getElementById('examStudentName').textContent = loggedInUser.name;
                 document.getElementById('examStudentEmail').textContent = loggedInUser.email;
             }
         });
 
         // ─── INIT ON LOAD ──────────────────────────────────────────────
-        // Load students from Firebase
         loadStudents();
 
-        // Check if user is already logged in (session persistence)
-        // For simplicity, we don't persist session across page reloads.
-        // User must login again.
-
-        // If login page is checked, ensure timer is stopped if running.
         const loginRadio = document.getElementById('page-login');
         loginRadio.addEventListener('change', function() {
             if (this.checked) {
