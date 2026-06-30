@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Library – Positive Change College</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <style>
+        /* ─── Reset & Base ─── */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body {
+            background: radial-gradient(circle at 10% 20%, rgba(10,25,47,0.98), rgba(2,12,27,1));
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 30px 20px;
+        }
+        .library-wrapper {
+            max-width: 1000px;
+            width: 100%;
+            background: rgba(0, 255, 195, 0.04);
+            border-radius: 30px;
+            padding: 35px 40px 45px;
+            backdrop-filter: blur(2px);
+            border: 1px solid rgba(0, 255, 195, 0.08);
+        }
+
+        /* ─── Header ─── */
+        .library-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 12px;
+        }
+        .library-header h1 {
+            font-size: 30px;
+            font-weight: 700;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+        .library-header h1 i {
+            color: #00ffc3;
+        }
+        .class-badge {
+            background: #00ffc3;
+            color: rgba(2,12,27,0.98);
+            padding: 8px 24px;
+            border-radius: 40px;
+            font-weight: 700;
+            font-size: 16px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .class-badge i {
+            font-size: 18px;
+        }
+        .subtitle {
+            color: rgba(255,255,255,0.4);
+            font-size: 14px;
+            margin-bottom: 28px;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+            padding-bottom: 14px;
+        }
+
+        /* ─── Subject Grid ─── */
+        .subject-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 18px;
+            margin-top: 6px;
+        }
+        .subject-card {
+            background: #00ffc3;
+            border-radius: 18px;
+            padding: 22px 18px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.25s, box-shadow 0.25s;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+            text-decoration: none;
+            color: rgba(2,12,27,0.98);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+        .subject-card:hover {
+            transform: translateY(-6px) scale(1.02);
+            box-shadow: 0 12px 32px rgba(0,0,0,0.20);
+        }
+        .subject-card .icon {
+            font-size: 36px;
+            color: rgba(2,12,27,0.7);
+            margin-bottom: 4px;
+        }
+        .subject-card .name {
+            font-size: 17px;
+            font-weight: 700;
+        }
+        .subject-card .hint {
+            font-size: 12px;
+            color: rgba(2,12,27,0.5);
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .subject-card .hint i {
+            font-size: 11px;
+        }
+
+        /* ─── No subjects ─── */
+        .no-subjects {
+            grid-column: 1 / -1;
+            text-align: center;
+            color: rgba(255,255,255,0.3);
+            font-size: 18px;
+            padding: 50px 0;
+        }
+
+        /* ─── Responsive ─── */
+        @media (max-width: 640px) {
+            .library-wrapper { padding: 20px 16px; }
+            .library-header h1 { font-size: 22px; }
+            .class-badge { font-size: 13px; padding: 6px 16px; }
+            .subject-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 14px; }
+            .subject-card { padding: 16px 12px; }
+            .subject-card .icon { font-size: 28px; }
+            .subject-card .name { font-size: 14px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="library-wrapper">
+
+    <!-- Header -->
+    <div class="library-header">
+        <h1><i class="fas fa-book-open"></i> Library</h1>
+        <div class="class-badge" id="classBadge">
+            <i class="fas fa-graduation-cap"></i>
+            <span id="classNameDisplay">Loading...</span>
+        </div>
+    </div>
+    <div class="subtitle">
+        <i class="fas fa-arrow-right" style="color:#00ffc3; margin-right:8px;"></i>
+        Select a subject below to find textbooks and learning resources online.
+    </div>
+
+    <!-- Subject Grid -->
+    <div class="subject-grid" id="subjectGrid">
+        <!-- Subjects will be rendered here -->
+        <div class="no-subjects">
+            <i class="fas fa-spinner fa-spin"></i> Loading your subjects...
+        </div>
+    </div>
+
+</div>
+
+<script>
+    // ─── SUBJECTS PER CLASS ──────────────────────────────────────────
+    const subjectData = {
+        // Junior Secondary School
+        'JSS1': [
+            'Mathematics', 'English', 'Basic Science', 'Social Studies',
+            'Agricultural Science', 'Home Economics', 'Civic Education',
+            'Computer Studies', 'Business Studies', 'French'
+        ],
+        'JSS2': [
+            'Mathematics', 'English', 'Basic Science', 'Social Studies',
+            'Agricultural Science', 'Home Economics', 'Civic Education',
+            'Computer Studies', 'Business Studies', 'French'
+        ],
+        'JSS3': [
+            'Mathematics', 'English', 'Basic Science', 'Social Studies',
+            'Agricultural Science', 'Home Economics', 'Civic Education',
+            'Computer Studies', 'Business Studies', 'French'
+        ],
+        // Senior Secondary School
+        'SS1': [
+            'Mathematics', 'English', 'Physics', 'Chemistry', 'Biology',
+            'History', 'Geography', 'Literature', 'Economics',
+            'Government', 'Christian Religious Studies', 'Islamic Studies'
+        ],
+        'SS2': [
+            'Mathematics', 'English', 'Physics', 'Chemistry', 'Biology',
+            'History', 'Geography', 'Literature', 'Economics',
+            'Government', 'Christian Religious Studies', 'Islamic Studies'
+        ],
+        'SS3': [
+            'Mathematics', 'English', 'Physics', 'Chemistry', 'Biology',
+            'History', 'Geography', 'Literature', 'Economics',
+            'Government', 'Christian Religious Studies', 'Islamic Studies'
+        ]
+    };
+
+    // ─── CLASS ICON MAP ─────────────────────────────────────────────
+    const subjectIcons = {
+        'Mathematics': 'fa-calculator',
+        'English': 'fa-book',
+        'Basic Science': 'fa-flask',
+        'Social Studies': 'fa-globe',
+        'Agricultural Science': 'fa-seedling',
+        'Home Economics': 'fa-utensils',
+        'Civic Education': 'fa-handshake',
+        'Computer Studies': 'fa-laptop-code',
+        'Business Studies': 'fa-chart-line',
+        'French': 'fa-language',
+        'Physics': 'fa-atom',
+        'Chemistry': 'fa-vial',
+        'Biology': 'fa-dna',
+        'History': 'fa-landmark',
+        'Geography': 'fa-map',
+        'Literature': 'fa-feather-alt',
+        'Economics': 'fa-coins',
+        'Government': 'fa-gavel',
+        'Christian Religious Studies': 'fa-cross',
+        'Islamic Studies': 'fa-mosque'
+    };
+
+    // ─── GET STUDENT CLASS ──────────────────────────────────────────
+    // In a real app, this would come from the logged-in user's data.
+    // For demo, we check sessionStorage, then URL param, then default to SS1.
+    function getStudentClass() {
+        // Option 1: from sessionStorage (set during login)
+        const stored = sessionStorage.getItem('studentClass');
+        if (stored && subjectData[stored]) return stored;
+
+        // Option 2: from URL query parameter (for demo/testing)
+        const params = new URLSearchParams(window.location.search);
+        const paramClass = params.get('class');
+        if (paramClass && subjectData[paramClass]) return paramClass;
+
+        // Option 3: default
+        return 'SS1';
+    }
+
+    // ─── RENDER SUBJECTS ─────────────────────────────────────────────
+    function renderSubjects() {
+        const className = getStudentClass();
+        const subjects = subjectData[className] || [];
+
+        // Update badge
+        document.getElementById('classNameDisplay').textContent = className;
+
+        const grid = document.getElementById('subjectGrid');
+
+        if (subjects.length === 0) {
+            grid.innerHTML = `<div class="no-subjects">No subjects available for ${className}.</div>`;
+            return;
+        }
+
+        let html = '';
+        subjects.forEach(subject => {
+            const icon = subjectIcons[subject] || 'fa-book-open';
+            // Google search URL
+            const searchQuery = encodeURIComponent(`${subject} textbook ${className} PDF`);
+            const googleUrl = `https://www.google.com/search?q=${searchQuery}`;
+
+            html += `
+                <a href="${googleUrl}" target="_blank" class="subject-card">
+                    <div class="icon"><i class="fas ${icon}"></i></div>
+                    <div class="name">${subject}</div>
+                    <div class="hint">
+                        <i class="fas fa-external-link-alt"></i> Search online
+                    </div>
+                </a>
+            `;
+        });
+
+        grid.innerHTML = html;
+    }.
+    
+
+    // ─── RUN ──────────────────────────────────────────────────────────
+    document.addEventListener('DOMContentLoaded', renderSubjects);
+
+    // ─── For integration: expose function to update class dynamically ──
+    window.updateStudentClass = function(newClass) {
+        if (subjectData[newClass]) {
+            sessionStorage.setItem('studentClass', newClass);
+            renderSubjects();
+        }
+    };
+</script>
+
+</body>
+</html>

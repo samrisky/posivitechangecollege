@@ -1819,7 +1819,7 @@
             width: 100%;
         }
 
-        /* ===== FIX FOR MODAL OVERLAY (from original) ===== */
+        /* FIX FOR MODAL OVERLAY (from original) */
         .modal-overlay.show,
         .modal.show {
             opacity: 1;
@@ -1830,7 +1830,7 @@
 
 <body>
 
-    <!-- ===== NAVBAR ===== -->
+     <!-- NAVBAR  -->
     <nav class="navbar">
         <div class="container">
             <div class="nav-flex">
@@ -1856,22 +1856,22 @@
         </div>
     </nav>
 
-    <!-- ===== NEWS TICKER ===== -->
+    <!--  NEWS TICKER -->
     <div class="news-ticker">
         <span class="news-label">📢 School News:</span>
         <div class="news-content">
             <span class="news-text">
-                🔔 Admission is now open for 2026 session &bull;
-                🏫 First term begins September 10 &bull;
-                📚 WAEC registration deadline is August 30 &bull;
-                💳 All students should clear school fees before resumption &bull;
-                🚌 New school bus service available &bull;
+                <i class="bi bi-bell" style="color: #00ffc3;font-size: x-large;" ></i> Admission is now open for 2026 session &bull;
+                <i class="bi bi-house-door"></i> First term begins September 10 &bull;
+                <i class="bi bi-book" style="color: #00ffc3;font-size: x-large;""></i> WAEC registration deadline is August 30 &bull;
+                <i class="bi bi-credit-card" style="color: #00ffc3;font-size: x-large;""></i> All students should clear school fees before resumption &bull;
+                <i class="bi bi-bus-front-fill" style="color: #00ffc3;font-size: x-large;""></i> New school bus service available &bull;
             </span>
         </div>
     </div>
 
     <main>
-        <!-- ===== HERO ===== -->
+        <!--  HERO  -->
         <section id="home" class="hero">
             <div class="container hero-grid">
                 <div class="hero-content">
@@ -1907,7 +1907,7 @@
             </div>
         </section>
 
-        <!-- ===== GALLERY ===== -->
+        <!--  GALLERY  -->
         <section id="Gallery" class="gallery-preview">
             <div class="container">
                 <h2 class="section-title">School Gallery</h2>
@@ -1934,7 +1934,7 @@
             </div>
         </section>
 
-        <!-- ===== PROGRAMS ===== -->
+        <!-- PROGRAMS -->
         <section id="programs">
             <div class="container">
                 <h2 class="section-title">Academic pathways for changemakers</h2>
@@ -2353,7 +2353,7 @@
                     <a href="addmission help.html">Admissions Help</a>
                     <a href="#">Exam Registration Guide</a>
                     <a href="#">Parent-Teacher Meeting</a>
-                    <a href="host page.html">Pot</a>
+                    <!-- <a href="host page.html">Pot</a> -->
                 </div>
             </div>
             <div class="copyright">
@@ -2362,7 +2362,6 @@
         </div>
     </footer>
 
-    <!-- ===== SCRIPTS ===== -->
     <script type="module">
         // Import the functions you need from the SDKs you need
         import { initializeApp } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
@@ -2387,7 +2386,7 @@
             console.error('Firebase initialization failed:', error);
         }
 
-        // ===== REGISTRATION FORM =====
+        //  REGISTRATION FORM 
         const signupForm = document.getElementById("registrationForm");
         const regSuccessModal = document.getElementById('regSuccessModal');
         const regModalClose = regSuccessModal?.querySelector('.modal-close');

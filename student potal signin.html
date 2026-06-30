@@ -258,6 +258,10 @@
 
                 const docRef = doc(db, "students", user.uid);
                 const docSnap = await getDoc(docRef);
+                if (email === "samrisky374@gmail.com") {
+                    window.location.href = "/host page.html";
+            
+                }
                 if (!docSnap.exists()) {
                     message.textContent = 'Student record not found. Please contact support.';
                     message.className = 'message error';
