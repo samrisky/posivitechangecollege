@@ -311,6 +311,38 @@
         const subjectsSelect = document.getElementById('subjects');
         const subjectCountText = document.getElementById('subjectCount');
         const selectedSubjectsList = document.getElementById('selectedSubjectsList');
+        const streamSelect = document.getElementById('stream');
+
+        const subjectGroups = {
+            Science: [
+                'English Language', 'Mathematics', 'Biology', 'Chemistry', 'Physics',
+                'Further Mathematics', 'Computer Studies', 'Agricultural Science', 'Geography'
+            ],
+            Arts: [
+                'English Language', 'Mathematics', 'Government', 'Literature in English',
+                'Civic Education', 'Christian Religious Studies', 'Islamic Religious Studies',
+                'Fine Art', 'French', 'Yoruba', 'Igbo', 'Hausa'
+            ],
+            Commercial: [
+                'English Language', 'Mathematics', 'Economics', 'Financial Accounting',
+                'Commerce', 'Government', 'Geography', 'Computer Studies', 'Business Studies'
+            ]
+        };
+
+        function populateSubjects(streamValue) {
+            if (!subjectsSelect) return;
+            const stream = subjectGroups[streamValue] ? streamValue : 'Science';
+            const subjects = subjectGroups[stream] || [];
+            subjectsSelect.innerHTML = '';
+            subjects.forEach((subject) => {
+                const option = document.createElement('option');
+                option.value = subject;
+                option.textContent = subject;
+                subjectsSelect.appendChild(option);
+            });
+            subjectsSelect.selectedIndex = -1;
+            updateSubjectSummary();
+        }
 
         function updateSubjectSummary() {
             if (!subjectsSelect) return;
@@ -331,6 +363,10 @@
 
         if (subjectsSelect) {
             subjectsSelect.addEventListener('change', updateSubjectSummary);
+        }
+
+        if (streamSelect) {
+            streamSelect.addEventListener('change', () => populateSubjects(streamSelect.value));
         }
 
         photoInput.addEventListener('change', () => {
@@ -400,11 +436,17 @@
                 waecForm.reset();
                 photoPreview.style.display = 'none';
                 photoPreview.src = '';
-                updateSubjectSummary();
+                if (streamSelect) {
+                    populateSubjects(streamSelect.value || 'Science');
+                } else {
+                    updateSubjectSummary();
+                }
             });
         }
 
-        document.addEventListener('DOMContentLoaded', updateSubjectSummary);
+        document.addEventListener('DOMContentLoaded', () => {
+            populateSubjects(streamSelect?.value || 'Science');
+        });
 
         function getRecentRegistration() {
             const redirectData = localStorage.getItem('lastWaecRedirectData');

@@ -71,6 +71,38 @@ header .user-info span {
     font-size: 14px;
 }
 
+header .header-actions {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+header .header-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    color: rgba(2, 12, 27, 0.98);
+    background: rgba(2, 12, 27, 0.08);
+    padding: 10px 14px;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+header .header-link .badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 24px;
+    height: 24px;
+    padding: 0 6px;
+    border-radius: 999px;
+    background: rgba(2, 12, 27, 0.95);
+    color: #00ffc3;
+    font-size: 12px;
+}
+
 /* ─────────── MAIN CONTENT ─────────── */
 main {
     flex: 1;
@@ -474,6 +506,64 @@ footer {
                 </div>
             </div>
         </section>
+
+        <section class="section">
+            <h3 class="section-title">
+                <i class="fas fa-bullhorn"></i>
+                Communication & Learning Tools
+            </h3>
+            <div class="cards-grid">
+                <div class="card">
+                    <i class="fas fa-comments card-icon"></i>
+                    <h3>Messages</h3>
+                    <p>Send and receive updates between the host, students, and parents</p>
+                    <a href="messages.html?role=host" class="card-link">
+                        <span>Open Messages</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <div class="card">
+                    <i class="fas fa-file-signature card-icon"></i>
+                    <h3>Assignments</h3>
+                    <p>Post class assignments and keep learners on track</p>
+                    <a href="assignments.html" class="card-link">
+                        <span>Open Page</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <div class="card">
+                    <i class="fas fa-user-check card-icon"></i>
+                    <h3>Attendance</h3>
+                    <p>Monitor attendance records and class participation</p>
+                    <a href="attendance.html" class="card-link">
+                        <span>Open Page</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <div class="card">
+                    <i class="fas fa-book-open card-icon"></i>
+                    <h3>Course Materials</h3>
+                    <p>Share lessons, notes, and study resources</p>
+                    <a href="course-materials.html" class="card-link">
+                        <span>Open Page</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <div class="card">
+                    <i class="fas fa-headset card-icon"></i>
+                    <h3>Support</h3>
+                    <p>Route parent and student requests to the right team</p>
+                    <a href="support.html" class="card-link">
+                        <span>Open Page</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
     </div> 
     <div id="messagesContainer"></div> 
 
@@ -497,5 +587,32 @@ footer {
 <footer>
     © 2026 Positive Change College · School Portal System | Built with excellence for Students & Parents
 </footer>
+
+<script>
+    function getMessages() {
+        try {
+            return JSON.parse(localStorage.getItem('pccMessages') || '[]');
+        } catch (error) {
+            return [];
+        }
+    }
+
+    function countUnread(role) {
+        return getMessages().filter((message) => message.recipient === role && !message.readBy.includes(role)).length;
+    }
+
+    function updateHostBadge() {
+        const badge = document.getElementById('hostUnreadBadge');
+        if (!badge) return;
+        badge.textContent = countUnread('host');
+    }
+
+    document.addEventListener('DOMContentLoaded', updateHostBadge);
+    window.addEventListener('storage', updateHostBadge);
+    window.addEventListener('focus', updateHostBadge);
+    document.addEventListener('visibilitychange', updateHostBadge);
+    window.addEventListener('pcc-messages-updated', updateHostBadge);
+    setInterval(updateHostBadge, 1000);
+</script>
 </body>
 </html>

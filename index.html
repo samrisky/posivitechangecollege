@@ -1805,7 +1805,7 @@
             }
         }
 
-        /* ===== UTILITY ===== */
+        /*  UTILITY */
         img {
             max-width: 100%;
             height: auto;
@@ -1965,7 +1965,7 @@
             </div>
         </section>
 
-        <!-- ===== CLASSES ===== -->
+         <!-- CLASSES -->
         <section id="classes" class="classes">
             <div class="container">
                 <h2 class="section-title">Our Classes</h2>
@@ -2006,7 +2006,7 @@
             </div>
         </section>
 
-        <!-- ===== CAMPUS ===== -->
+         <!-- CAMPUS  -->
         <section id="campus">
             <div class="container">
                 <h2 class="section-title">Why Choose Our School</h2>
@@ -2032,7 +2032,7 @@
             </div>
         </section>
 
-        <!-- ===== ABOUT ===== -->
+        <!-- ABOUT  -->
         <section id="about">
             <div class="container about-wrap">
                 <div class="about-text">
@@ -2070,7 +2070,7 @@
             </div>
         </section>
 
-        <!-- ===== WAEC / NECO ===== -->
+        <!-- WAEC / NECO  -->
         <section id="exams" class="exam-section">
             <div class="container">
                 <h2 class="section-title">WAEC &amp; NECO Excellence</h2>
@@ -2108,7 +2108,7 @@
             </div>
         </section>
 
-        <!-- ===== REGISTRATION ===== -->
+         <!-- REGISTRATION  -->
         <section id="register" class="registration-section">
             <div class="container registration-grid">
                 <div class="reg-info">
@@ -2138,12 +2138,12 @@
                             <div class="form-group">
                                 <select id="studentClass" name="studentClass" required>
                                     <option value="">Select Class</option>
-                                    <option>JSS 1</option>
-                                    <option>JSS 2</option>
-                                    <option>JSS 3</option>
-                                    <option>SS 1</option>
-                                    <option>SS 2</option>
-                                    <option>SS 3</option>
+                                    <option value="JSS1">JSS 1</option>
+                                    <option value="JSS2">JSS 2</option>
+                                    <option value="JSS3">JSS 3</option>
+                                    <option value="SS1">SS 1</option>
+                                    <option value="SS2">SS 2</option>
+                                    <option value="SS3">SS 3</option>
                                 </select>
                             </div>
                             <div class="form-group">
@@ -2193,7 +2193,7 @@
             </div>
         </section>
 
-        <!-- ===== PORTAL ===== -->
+         <!-- PORTAL  -->
         <section id="portal" class="portal-section">
             <div class="container">
                 <h2 class="section-title">Student &amp; Parent Portal</h2>
@@ -2218,8 +2218,9 @@
                         <i class="bi bi-download"></i>
                         <h3>Resources</h3>
                         <p>Download past WAEC/NECO questions, class notes, and exam syllabi.</p>
+                        <a href="past questions.html">
                         <button class="btn btn-success"><i class="bi bi-download"></i> Download Past Questions</button>
-                    </div>
+                   </a> </div>
                 </div>
                 <div class="portal-create-grid">
                     <div class="portal-card">
@@ -2239,7 +2240,7 @@
                 </div>
             </div>
 
-            <!-- ===== CTA ===== -->
+            <!-- CTA  -->
             <div class="container" id="cbt">
                 <div class="cta-section">
                     <h2>C.B.T</h2>
@@ -2262,7 +2263,7 @@
             </div>
         </section>
 
-        <!-- ===== TESTIMONIALS ===== -->
+         <!-- TESTIMONIALS -->
         <section id="testimonials">
             <div class="container">
                 <h2 class="section-title">School Voices, Real Impact</h2>
@@ -2291,7 +2292,7 @@
             </div>
         </section>
 
-        <!-- ===== CONTACT ===== -->
+         <!-- CONTACT  -->
         <section id="contact">
             <div class="container">
                 <div>
@@ -2307,6 +2308,7 @@
                         <div class="social-icons">
                             <i class="bi bi-facebook"></i>
                             <i class="bi bi-instagram"></i>
+                            <a href="https://wa.me/2349031420433?text=hello%20i%20found%20your%20website!" target="-blank"></a>
                             <i class="bi bi-whatsapp"></i>
                         </div>
                     </div>
@@ -2325,7 +2327,7 @@
         </section>
     </main>
 
-    <!-- ===== FOOTER ===== -->
+     <!-- FOOTER  -->
     <footer>
         <div class="container">
             <div class="footer-grid">
@@ -2496,7 +2498,7 @@
             });
         }
 
-        // ===== WELCOME MODAL =====
+        // WELCOME MODAL 
         const welcomeModal = document.getElementById('welcomeModal');
         const welcomeMessage = document.getElementById('welcomeMessage');
         const modalClose = welcomeModal?.querySelector('.modal-close');
@@ -2525,7 +2527,7 @@
             if (ev.target === welcomeModal) hideWelcomeModal();
         });
 
-        // ===== PORTAL LOGIN FORMS =====
+        //  PORTAL LOGIN FORMS 
         const studentForm = document.getElementById('studentLoginForm');
         const parentForm = document.getElementById('parentLoginForm');
 
@@ -2553,7 +2555,7 @@
             });
         }
 
-        // ===== SIGNUP FORMS =====
+        //  SIGNUP FORMS 
         const studentSignupForm = document.getElementById('studentSignupForm');
         const parentSignupForm = document.getElementById('parentSignupForm');
 
@@ -2597,7 +2599,7 @@
             });
         }
 
-        // ===== PASSWORD TOGGLE (if present) =====
+        //  PASSWORD TOGGLE (if present)
         document.querySelectorAll('.pwd-toggle').forEach(button => {
             button.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -2618,7 +2620,7 @@
             });
         });
 
-        // ===== PAYMENT (legacy support) =====
+        //  PAYMENT (legacy support)
         async function addPayment() {
             try {
                 await addDoc(collection(db, "payments"), {

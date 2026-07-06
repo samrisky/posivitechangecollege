@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Support | Positive Change College</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <style>
+    :root {
+      --bg: radial-gradient(circle at 10% 20%, rgba(10, 25, 47, 0.98), rgba(2, 12, 27, 1));
+      --card: rgba(0, 255, 195, 0.08);
+      --border: rgba(0, 255, 195, 0.20);
+      --accent: #00ffc3;
+      --text: #f6fcff;
+      --muted: rgba(246, 252, 255, 0.72);
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    .page {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 24px 18px 48px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 20px;
+      margin-bottom: 16px;
+      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.22);
+      backdrop-filter: blur(2px);
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.2s;
+    }
+    a:hover {
+      color: #66ffd6;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    input, textarea {
+      padding: 12px 13px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: rgba(0, 255, 195, 0.04);
+      color: var(--text);
+      font-size: 0.95rem;
+    }
+
+    button {
+      padding: 12px 14px;
+      border: none;
+      border-radius: 12px;
+      background: var(--accent);
+      color: #07211d;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    button:hover {
+      background: #66ffd6;
+    }
+
+    .note {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="card">
+      <h1><i class="fas fa-headset"></i> Support Center</h1>
+      <p>Share concerns, request help, and the school team will respond quickly.</p>
+      <a href="studient potal.html"><i class="fas fa-arrow-left"></i> Back to portal</a>
+    </div>
+
+    <div class="card">
+      <form id="supportForm">
+        <input type="text" id="name" placeholder="Your name" required />
+        <input type="email" id="email" placeholder="Email" required />
+        <textarea id="message" placeholder="How can we help?" required></textarea>
+        <button type="submit">Send Request</button>
+        <div class="note" id="feedback"></div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('supportForm').addEventListener('submit', (event) => {
+      event.preventDefault();
+      const requests = JSON.parse(localStorage.getItem('pccSupport') || '[]');
+      requests.push({
+        name: document.getElementById('name').value.trim(),
+        email: document.getElementById('email').value.trim(),
+        message: document.getElementById('message').value.trim(),
+        timestamp: new Date().toISOString()
+      });
+      localStorage.setItem('pccSupport', JSON.stringify(requests));
+      document.getElementById('feedback').textContent = 'Your support request has been logged.';
+      event.target.reset();
+    });
+  </script>
+</body>
+</html>

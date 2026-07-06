@@ -4,21 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admission · Positive Change College</title>
-    <!-- Font Awesome 6 (Free) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         /* ============================================================
-                   ROOT VARIABLES & RESET
-                   ============================================================ */
+           ROOT VARIABLES & RESET — unified teal theme
+           ============================================================ */
         :root {
+            /* exact background as requested */
             --bg-primary: radial-gradient(circle at 10% 20%, rgba(10, 25, 47, 0.98), rgba(2, 12, 27, 1));
-            --bg-card: rgba(255, 255, 255, 0.04);
-            --border-glass: rgba(255, 255, 255, 0.08);
+            /* card bg with teal tint */
+            --bg-card: rgba(0, 255, 195, 0.08);
+            /* border with teal tint */
+            --border-glass: rgba(0, 255, 195, 0.20);
             --accent: #00ffc3;
-            --accent-glow: rgba(0, 255, 195, 0.25);
-            --text-primary: #ffffff;
-            --text-secondary: rgba(255, 255, 255, 0.6);
-            --text-muted: rgba(255, 255, 255, 0.3);
+            --accent-glow: rgba(0, 255, 195, 0.28);
+            --text-primary: #f6fcff;
+            --text-secondary: rgba(246, 252, 255, 0.72);
+            --text-muted: rgba(246, 252, 255, 0.35);
             --radius-lg: 1.75rem;
             --radius-md: 1.25rem;
             --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -42,7 +44,6 @@
             justify-content: center;
         }
 
-        /* Scrollbar Styling */
         ::-webkit-scrollbar {
             width: 8px;
         }
@@ -56,8 +57,8 @@
         }
 
         /* ============================================================
-                   LAYOUT CONTAINER
-                   ============================================================ */
+           LAYOUT CONTAINER
+           ============================================================ */
         .app-wrapper {
             max-width: 1440px;
             width: 100%;
@@ -72,8 +73,8 @@
         }
 
         /* ============================================================
-                   HEADER
-                   ============================================================ */
+           HEADER
+           ============================================================ */
         .site-header {
             display: flex;
             flex-wrap: wrap;
@@ -134,8 +135,8 @@
         }
 
         /* ============================================================
-                   BUTTONS
-                   ============================================================ */
+           BUTTONS
+           ============================================================ */
         .btn {
             display: inline-flex;
             align-items: center;
@@ -160,12 +161,12 @@
             box-shadow: 0 8px 30px var(--accent-glow);
         }
         .btn-secondary {
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(0, 255, 195, 0.06);
             color: var(--text-primary);
             border: 1px solid var(--border-glass);
         }
         .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(0, 255, 195, 0.14);
             transform: translateY(-3px);
         }
         .btn-sm {
@@ -174,8 +175,8 @@
         }
 
         /* ============================================================
-                   HERO SECTION
-                   ============================================================ */
+           HERO SECTION
+           ============================================================ */
         .hero-section {
             text-align: center;
             padding: 1rem 0 2.5rem;
@@ -209,8 +210,8 @@
         }
 
         /* ============================================================
-                   SECTION TITLES
-                   ============================================================ */
+           SECTION TITLES
+           ============================================================ */
         .section-title {
             font-size: 1.5rem;
             font-weight: 700;
@@ -225,8 +226,8 @@
         }
 
         /* ============================================================
-                   CARDS & GRID
-                   ============================================================ */
+           CARDS & GRID
+           ============================================================ */
         .grid-2col {
             display: grid;
             grid-template-columns: 2fr 1fr;
@@ -235,7 +236,7 @@
         }
 
         .card {
-            background: rgba(2, 12, 27, 0.5);
+            background: rgba(0, 255, 195, 0.04);
             backdrop-filter: blur(4px);
             -webkit-backdrop-filter: blur(4px);
             border: 1px solid var(--border-glass);
@@ -244,13 +245,13 @@
             transition: var(--transition);
         }
         .card:hover {
-            border-color: rgba(0, 255, 195, 0.2);
+            border-color: rgba(0, 255, 195, 0.3);
             box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
         }
 
         /* ============================================================
-                   APPLICATION STEPS (Checklist)
-                   ============================================================ */
+           APPLICATION STEPS (Checklist)
+           ============================================================ */
         .step-item {
             display: flex;
             align-items: center;
@@ -303,7 +304,7 @@
         /* Progress Bar */
         .progress-wrapper {
             margin-top: 1.5rem;
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(0, 255, 195, 0.06);
             border-radius: 100px;
             height: 6px;
             overflow: hidden;
@@ -324,8 +325,8 @@
         }
 
         /* ============================================================
-                   DEADLINES
-                   ============================================================ */
+           DEADLINES
+           ============================================================ */
         .deadline-item {
             display: flex;
             justify-content: space-between;
@@ -346,8 +347,8 @@
         }
 
         /* ============================================================
-                   FAQ (Accordion)
-                   ============================================================ */
+           FAQ (Accordion)
+           ============================================================ */
         .faq-item {
             border-bottom: 1px solid var(--border-glass);
             padding: 0.3rem 0;
@@ -389,8 +390,8 @@
         }
 
         /* ============================================================
-                   CONTACT FORM & INFO
-                   ============================================================ */
+           CONTACT FORM & INFO
+           ============================================================ */
         .contact-wrapper {
             display: grid;
             grid-template-columns: 2fr 1fr;
@@ -416,7 +417,7 @@
             padding: 0.7rem 1rem;
             border-radius: 10px;
             border: 1px solid var(--border-glass);
-            background: rgba(0, 0, 0, 0.3);
+            background: rgba(0, 255, 195, 0.04);
             color: var(--text-primary);
             font-family: inherit;
             font-size: 0.95rem;
@@ -434,7 +435,7 @@
         }
 
         .contact-info-card {
-            background: rgba(2, 12, 27, 0.5);
+            background: rgba(0, 255, 195, 0.04);
             border: 1px solid var(--border-glass);
             border-radius: var(--radius-md);
             padding: 1.75rem;
@@ -459,8 +460,8 @@
         }
 
         /* ============================================================
-                   FOOTER
-                   ============================================================ */
+           FOOTER
+           ============================================================ */
         .site-footer {
             margin-top: 2.5rem;
             padding-top: 1.5rem;
@@ -486,8 +487,8 @@
         }
 
         /* ============================================================
-                   TOAST (Minimal JS Alert Replacement)
-                   ============================================================ */
+           TOAST
+           ============================================================ */
         .toast {
             position: fixed;
             bottom: 2rem;
@@ -512,8 +513,8 @@
         }
 
         /* ============================================================
-                   RESPONSIVE
-                   ============================================================ */
+           RESPONSIVE
+           ============================================================ */
         @media (max-width: 992px) {
             .app-wrapper {
                 padding: 1.5rem;
@@ -812,13 +813,12 @@
     <div class="toast" id="toast"></div>
 
     <!-- ============================================================
-    MINIMAL JAVASCRIPT (No long code, no tuition fee)
+    MINIMAL JAVASCRIPT
     ============================================================ -->
     <script>
         (function() {
             'use strict';
 
-            // --- DOM refs ---
             const steps = document.querySelectorAll('.step-item');
             const progressBar = document.getElementById('progressBar');
             const progressLabel = document.getElementById('progressLabel');
@@ -827,7 +827,6 @@
             const toast = document.getElementById('toast');
             let toastTimer = null;
 
-            // --- Toast helper ---
             function showToast(msg) {
                 toast.textContent = msg;
                 toast.classList.add('show');
@@ -835,7 +834,6 @@
                 toastTimer = setTimeout(() => toast.classList.remove('show'), 3000);
             }
 
-            // --- Update progress ---
             function updateProgress() {
                 const total = steps.length;
                 const done = document.querySelectorAll('.step-item.completed').length;
@@ -845,10 +843,8 @@
                 progressPercent.textContent = pct + '%';
             }
 
-            // --- Toggle step completion ---
             steps.forEach(item => {
                 item.addEventListener('click', function(e) {
-                    // Prevent toggling if clicking the reset button inside (though reset is outside)
                     this.classList.toggle('completed');
                     updateProgress();
                     const stepName = this.querySelector('h4')?.textContent || 'Step';
@@ -857,14 +853,12 @@
                 });
             });
 
-            // --- Reset checklist ---
             resetBtn.addEventListener('click', function() {
                 steps.forEach(step => step.classList.remove('completed'));
                 updateProgress();
                 showToast('🔄 Checklist has been reset.');
             });
 
-            // --- Form submission ---
             const form = document.getElementById('contactForm');
             form.addEventListener('submit', function(e) {
                 e.preventDefault();
@@ -881,12 +875,10 @@
                 form.reset();
             });
 
-            // --- FAQ Accordion (Toggle active class) ---
             const faqItems = document.querySelectorAll('.faq-item');
             faqItems.forEach(item => {
                 const question = item.querySelector('.faq-question');
                 question.addEventListener('click', function() {
-                    // Close others
                     faqItems.forEach(other => {
                         if (other !== item) other.classList.remove('active');
                     });
@@ -894,10 +886,8 @@
                 });
             });
 
-            // --- Init progress on load ---
             updateProgress();
 
-            // --- Welcome toast ---
             setTimeout(() => {
                 showToast('🎓 Welcome! Click any checklist item to track your progress.');
             }, 600);

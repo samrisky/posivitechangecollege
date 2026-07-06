@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Messages | Positive Change College</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <style>
+    :root {
+      color-scheme: dark;
+      /* exact background as requested */
+      --bg: radial-gradient(circle at 10% 20%, rgba(10, 25, 47, 0.98), rgba(2, 12, 27, 1));
+      /* card bg with teal tint */
+      --panel: rgba(0, 255, 195, 0.08);
+      /* stronger teal for unread messages */
+      --panel-strong: rgba(0, 255, 195, 0.18);
+      /* border with teal tint */
+      --line: rgba(0, 255, 195, 0.20);
+      /* accent color */
+      --accent: #00ffc3;
+      --text: #f5fbff;
+      --muted: rgba(245, 251, 255, 0.72);
+      --danger: #ff6b6b;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.2s;
+    }
+    a:hover {
+      color: #66ffd6;
+    }
+
+    .page {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 24px 18px 48px;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 18px;
+      padding: 16px 20px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: var(--panel);
+      backdrop-filter: blur(16px);
+    }
+
+    .topbar h1 {
+      margin: 0;
+      font-size: 1.3rem;
+    }
+
+    .topbar .meta {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 28px;
+      height: 28px;
+      padding: 0 8px;
+      border-radius: 999px;
+      background: var(--accent);
+      color: #07211d;
+      font-weight: 800;
+      margin-left: 8px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1.02fr 0.98fr;
+      gap: 18px;
+    }
+
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 18px;
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.25);
+      backdrop-filter: blur(14px);
+    }
+
+    .card h2 {
+      margin-top: 0;
+      font-size: 1.1rem;
+    }
+
+    .message-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      max-height: 480px;
+      overflow: auto;
+      padding-right: 4px;
+    }
+
+    .message-item {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 12px;
+      background: rgba(0, 255, 195, 0.04);
+    }
+
+    .message-item.unread {
+      border-color: var(--accent);
+      background: var(--panel-strong);
+    }
+
+    .message-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.9rem;
+      margin-bottom: 6px;
+    }
+
+    .message-body {
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .empty {
+      padding: 16px;
+      border: 1px dashed var(--line);
+      border-radius: 12px;
+      color: var(--muted);
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    label {
+      font-size: 0.92rem;
+      color: var(--muted);
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      padding: 12px 13px;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      background: rgba(0, 255, 195, 0.04);
+      color: var(--text);
+      font-size: 0.95rem;
+    }
+
+    textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    button {
+      padding: 12px 14px;
+      border: none;
+      border-radius: 12px;
+      background: var(--accent);
+      color: #07211d;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    button:hover {
+      background: #66ffd6;
+    }
+
+    .helper {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 830px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <div class="topbar">
+      <div>
+        <h1><i class="fas fa-comments"></i> Messaging Center</h1>
+        <div class="meta" id="roleTitle">Host conversations</div>
+      </div>
+      <div>
+        <a href="studient potal.html" style="margin-right:10px;"><i class="fas fa-arrow-left"></i> Back</a>
+        <span class="badge" id="unreadBadge">0</span>
+      </div>
+    </div>
+
+    <div class="grid">
+      <section class="card">
+        <h2><i class="fas fa-inbox"></i> Conversation History</h2>
+        <div id="messageList" class="message-list"></div>
+      </section>
+
+      <section class="card">
+        <h2><i class="fas fa-paper-plane"></i> Send a Message</h2>
+        <form id="messageForm">
+          <label for="recipient">Send to</label>
+          <select id="recipient" name="recipient"></select>
+
+          <label for="content">Message</label>
+          <textarea id="content" name="content" placeholder="Type your message here..." required></textarea>
+
+          <button type="submit">Send Message</button>
+          <div class="helper" id="formFeedback"></div>
+        </form>
+      </section>
+    </div>
+  </div>
+
+  <script>
+    const role = new URLSearchParams(window.location.search).get('role') || 'student';
+    const safeRole = ['host', 'student', 'parent'].includes(role) ? role : 'student';
+    const roleTitle = document.getElementById('roleTitle');
+    const recipientSelect = document.getElementById('recipient');
+    const messageList = document.getElementById('messageList');
+    const formFeedback = document.getElementById('formFeedback');
+    const unreadBadge = document.getElementById('unreadBadge');
+    const STORAGE_KEY = 'pccMessages';
+
+    const labels = {
+      host: 'Host conversations',
+      student: 'Student conversations',
+      parent: 'Parent conversations'
+    };
+
+    roleTitle.textContent = labels[safeRole] || 'Conversations';
+
+    function loadMessages() {
+      try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'); }
+      catch (error) { return []; }
+    }
+
+    function saveMessages(messages) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(messages));
+    }
+
+    function markAsRead() {
+      const messages = loadMessages();
+      const updated = messages.map((message) => {
+        if (message.recipient === safeRole && !message.readBy.includes(safeRole)) {
+          return { ...message, readBy: [...message.readBy, safeRole] };
+        }
+        return message;
+      });
+      saveMessages(updated);
+    }
+
+    function getVisibleMessages() {
+      const messages = loadMessages();
+      if (safeRole === 'host') {
+        return messages.filter((message) => message.sender === 'host' || message.recipient === 'host');
+      }
+      return messages.filter((message) => message.sender === safeRole || message.recipient === safeRole || message.recipient === 'host' || message.sender === 'host');
+    }
+
+    function renderMessages() {
+      const messages = getVisibleMessages().sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+      if (!messages.length) {
+        messageList.innerHTML = '<div class="empty">No messages yet. Start a conversation below.</div>';
+        unreadBadge.textContent = '0';
+        return;
+      }
+      messageList.innerHTML = messages.map((message) => {
+        const isUnread = message.recipient === safeRole && !message.readBy.includes(safeRole);
+        const senderLabel = message.sender === 'host' ? 'Host' : message.sender.charAt(0).toUpperCase() + message.sender.slice(1);
+        const time = new Date(message.timestamp).toLocaleString();
+        return `
+          <div class="message-item ${isUnread ? 'unread' : ''}">
+            <div class="message-head">
+              <strong>${senderLabel}</strong>
+              <span>${time}</span>
+            </div>
+            <div class="message-body">${message.content}</div>
+          </div>
+        `;
+      }).join('');
+      const unreadCount = messages.filter((message) => message.recipient === safeRole && !message.readBy.includes(safeRole)).length;
+      unreadBadge.textContent = unreadCount;
+    }
+
+    function populateRecipientOptions() {
+      if (safeRole === 'host') {
+        recipientSelect.innerHTML = `
+          <option value="student">Student</option>
+          <option value="parent">Parent</option>
+        `;
+      } else {
+        recipientSelect.innerHTML = '<option value="host">Host</option>';
+      }
+    }
+
+    document.getElementById('messageForm').addEventListener('submit', (event) => {
+      event.preventDefault();
+      const content = document.getElementById('content').value.trim();
+      if (!content) return;
+      const messages = loadMessages();
+      const newMessage = {
+        id: Date.now().toString(),
+        sender: safeRole,
+        recipient: recipientSelect.value,
+        content,
+        timestamp: new Date().toISOString(),
+        readBy: [safeRole]
+      };
+      messages.push(newMessage);
+      saveMessages(messages);
+      window.dispatchEvent(new Event('pcc-messages-updated'));
+      document.getElementById('content').value = '';
+      formFeedback.textContent = 'Message sent.';
+      renderMessages();
+    });
+
+    markAsRead();
+    populateRecipientOptions();
+    renderMessages();
+  </script>
+</body>
+
+</html>

@@ -90,6 +90,20 @@
             margin-bottom: 18px;
             text-align: left;
         }
+        .password-field {
+            position: relative;
+        }
+        .toggle-password {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: transparent;
+            border: none;
+            color: rgba(255, 255, 255, 0.7);
+            cursor: pointer;
+            font-size: 14px;
+        }
         .input-box label {
             display: block;
             margin-bottom: 6px;
@@ -109,6 +123,9 @@
             color: #fff;
             font-size: 15px;
             transition: 0.3s;
+        }
+        .password-field input {
+            padding-right: 46px;
         }
         .input-box input::placeholder {
             color: rgba(255, 255, 255, 0.2);
@@ -195,7 +212,7 @@
         <!-- ─── TITLE ─── -->
         <div class="logo-text">
             <h1>Positive Change <span>College</span></h1>
-            <p>Student Portal · School Management System</p>
+            <p>Student Portal · Sign in</p>
         </div>
 
         <form id="loginForm">
@@ -205,7 +222,12 @@
             </div>
             <div class="input-box">
                 <label>Password</label>
-                <input type="password" id="password" placeholder="Enter your password" required />
+                <div class="password-field">
+                    <input type="password" id="password" placeholder="Enter your password" required />
+                    <button type="button" class="toggle-password" data-target="password" aria-label="Show password">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                </div>
             </div>
             <button type="submit" class="btn-primary">Sign In</button>
             <div class="message" id="message"></div>
@@ -215,6 +237,23 @@
             No account? <a href="studentsignup.html">Create Account</a>
         </div>
     </div>
+
+    <script>
+        document.querySelectorAll('.toggle-password').forEach((button) => {
+            button.addEventListener('click', () => {
+                const input = document.getElementById(button.dataset.target);
+                if (!input) return;
+                const icon = button.querySelector('i');
+                if (input.type === 'password') {
+                    input.type = 'text';
+                    icon.className = 'fas fa-eye-slash';
+                } else {
+                    input.type = 'password';
+                    icon.className = 'fas fa-eye';
+                }
+            });
+        });
+    </script>
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";

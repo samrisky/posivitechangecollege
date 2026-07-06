@@ -18,7 +18,6 @@
         }
 
         header {
-            /* background: linear-gradient(95deg, #00ffc3, #00b38f); */
             padding: 20px 28px;
             border-bottom: 3px solid #00ffc3;
             backdrop-filter: blur(10px);
@@ -69,20 +68,21 @@
 
         .topbar button,
         .topbar a {
-            /* border: 1px solid #dce5ef; */
-            /* background: #ffffff; */
             color: #00ffc3;
             border-radius: 999px;
             padding: 10px 18px;
             text-decoration: none;
             font-weight: 600;
             cursor: pointer;
+            background: transparent;
+            border: 1px solid rgba(0, 255, 195, 0.2);
+            transition: all 0.2s ease;
         }
 
         .topbar button:hover,
         .topbar a:hover {
-            background: #e8f1fa;
-            color: rgba(10, 25, 47);
+            background: rgba(0, 255, 195, 0.15);
+            color: #66ffd6;
         }
 
         .layout {
@@ -95,8 +95,8 @@
         }
 
         .sidebar {
-            background: #00ffc3;
-            /* border: 1px solid #dce5ef; */
+            background: rgba(0, 255, 195, 0.08);
+            border: 1px solid rgba(0, 255, 195, 0.2);
             border-radius: 24px;
             padding: 28px;
             display: grid;
@@ -105,12 +105,21 @@
             top: 96px;
             align-self: start;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            backdrop-filter: blur(8px);
         }
 
         .sidebar h2 {
             margin: 0 0 14px;
             font-size: 1.1rem;
-            color: rgba(10, 25, 47, 0.98);
+            color: #00ffc3;
+        }
+
+        .sidebar p {
+            color: rgba(246, 252, 255, 0.8);
+            margin: 6px 0;
+        }
+        .sidebar p strong {
+            color: #f6fcff;
         }
 
         .nav-links {
@@ -130,8 +139,8 @@
 
         .nav-links a.active,
         .nav-links a:hover {
-            background: #e8f1fa;
-            border-color: #dce5ef;
+            background: rgba(0, 255, 195, 0.12);
+            border-color: rgba(0, 255, 195, 0.3);
         }
 
         .panel {
@@ -146,28 +155,31 @@
             align-items: center;
             padding: 28px 32px;
             border-radius: 28px;
-            background: #00ffc3;
-            /* border: 1px solid #dce5ef; */
+            background: rgba(0, 255, 195, 0.08);
+            border: 1px solid rgba(0, 255, 195, 0.2);
+            backdrop-filter: blur(4px);
         }
 
         .welcome h2 {
             margin: 0 0 8px;
             font-size: 2rem;
+            color: #f6fcff;
         }
 
         .welcome p {
             margin: 0;
-            color: rgba(10, 25, 47, 0.98);
+            color: rgba(246, 252, 255, 0.72);
         }
 
         .avatar {
             width: 96px;
             height: 96px;
             border-radius: 24px;
-            background: white;
+            background: rgba(0, 255, 195, 0.15);
+            border: 2px solid #00ffc3;
             display: grid;
             place-items: center;
-            color: rgba(10, 25, 47, 0.98);
+            color: #00ffc3;
             font-size: 2.5rem;
             font-weight: 700;
         }
@@ -181,76 +193,78 @@
         .stat-card {
             padding: 22px;
             border-radius: 24px;
-            background: #00ffc3;
-            /* border: 1px solid #dce5ef; */
+            background: rgba(0, 255, 195, 0.06);
+            border: 1px solid rgba(0, 255, 195, 0.15);
+            backdrop-filter: blur(4px);
         }
 
         .stat-card strong {
             display: block;
             font-size: 2rem;
             margin-bottom: 8px;
-            color: rgba(10, 25, 47, 0.98);
+            color: #00ffc3;
         }
 
         .stat-card span {
-            color: rgba(10, 25, 47, 0.98);
+            color: rgba(246, 252, 255, 0.7);
         }
 
         .schedule,
         .grades,
         .announcements {
-            background: #00ffc3;
-            /* border: 1px solid #dce5ef; */
+            background: rgba(0, 255, 195, 0.06);
+            border: 1px solid rgba(0, 255, 195, 0.15);
             border-radius: 28px;
             overflow: hidden;
+            backdrop-filter: blur(4px);
         }
 
         .section-header {
-            background: #00ffc3;
+            background: rgba(0, 255, 195, 0.04);
             padding: 24px 28px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            /* border-bottom: 1px solid #dce5ef; */
+            border-bottom: 1px solid rgba(0, 255, 195, 0.1);
         }
 
         .section-header h3 {
             margin: 0;
             font-size: 1.2rem;
-
-
+            color: #f6fcff;
         }
 
         .section-header a {
-            color: rgba(10, 25, 47, 0.98);
+            color: #00ffc3;
             text-decoration: none;
             font-weight: 600;
+        }
+        .section-header a:hover {
+            color: #66ffd6;
         }
 
         .schedule table {
             width: 100%;
             border-collapse: collapse;
-
         }
 
         .schedule th,
         .schedule td {
             padding: 18px 24px;
             text-align: left;
-
-            /* border-bottom: 1px solid #dce5ef; */
+            border-bottom: 1px solid rgba(0, 255, 195, 0.08);
+            color: rgba(246, 252, 255, 0.8);
         }
 
         .schedule th {
-            color: rgba(10, 25, 47, 0.98);
-            font-size: 0.95rem;
+            color: #00ffc3;
+            font-size: 0.85rem;
             text-transform: uppercase;
             letter-spacing: 0.08em;
-
         }
 
-        .ttb {
-            color: #00ffc3;
+        .ttb td {
+            color: rgba(246, 252, 255, 0.85);
         }
 
         .grades-list,
@@ -266,7 +280,7 @@
             grid-template-columns: 1fr auto;
             gap: 16px;
             padding: 18px 0;
-            border-bottom: 1px solid rgba(10, 25, 47, 0.98);
+            border-bottom: 1px solid rgba(0, 255, 195, 0.08);
         }
 
         .grades-list li:last-child,
@@ -276,48 +290,24 @@
 
         .grades-subject {
             font-weight: 700;
-            color: rgba(10, 25, 47, 0.9);
+            color: #f6fcff;
         }
 
         .grades-score {
             font-size: 1.1rem;
-            color: rgba(10, 25, 47, 0.98);
+            color: #00ffc3;
         }
 
         .announcement-title {
             margin: 0 0 6px;
             font-size: 1rem;
-            color: rgba(10, 25, 47, 0.98);
+            color: #f6fcff;
         }
 
         .announcement-meta {
             margin: 0;
-            color: rgba(10, 25, 47, 0.98);
-            font-size: 0.95rem;
-        }
-
-        .quick-links {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 16px;
-        }
-
-        .quick-link {
-            background: #e8f1fa;
-            padding: 18px 22px;
-            border-radius: 20px;
-            border: 1px solid #dce5ef;
-            text-decoration: none;
-            color: #1a2736;
-            display: inline-flex;
-            justify-content: space-between;
-            align-items: center;
-            font-weight: 600;
-        }
-
-        .quick-link span {
-            color: #5e6c7d;
-            font-size: 0.95rem;
+            color: rgba(246, 252, 255, 0.6);
+            font-size: 0.85rem;
         }
 
         .quick-links-expanded {
@@ -327,22 +317,22 @@
         }
 
         .quick-link-item {
-            background: rgba(10, 25, 47, 0.98);
-            /* border: 2px solid #dce5ef; */
+            background: rgba(0, 255, 195, 0.06);
+            border: 1px solid rgba(0, 255, 195, 0.15);
             padding: 16px;
             border-radius: 16px;
             text-decoration: none;
-            color: #00ffc3;
+            color: #f6fcff;
             text-align: center;
             font-weight: 600;
             transition: all 0.2s ease;
             cursor: pointer;
+            display: block;
         }
 
         .quick-link-item:hover {
-            border-color: rgba(10, 25, 47, 0.98);
-            background: #00ffc3;
-            color: rgba(10, 25, 47, 0.98);
+            border-color: #00ffc3;
+            background: rgba(0, 255, 195, 0.12);
             transform: translateY(-2px);
         }
 
@@ -353,28 +343,30 @@
         }
 
         .quick-link-item .label {
-            font-size: 0.95rem;
+            font-size: 0.75rem;
             display: block;
-            color: white;
-            margin-top: 6px;
+            color: rgba(246, 252, 255, 0.6);
+            margin-top: 4px;
         }
 
         .payment-section {
-            background: #00ffc3;
-            /* border: 1px solid #dce5ef; */
+            background: rgba(0, 255, 195, 0.06);
+            border: 1px solid rgba(0, 255, 195, 0.15);
             border-radius: 28px;
             overflow: hidden;
+            backdrop-filter: blur(4px);
         }
 
         .payment-header {
-            background: rgba(10, 25, 47, 0.98);
-            color: white;
-            padding: 28px;
+            background: rgba(0, 255, 195, 0.04);
+            padding: 24px 28px;
+            border-bottom: 1px solid rgba(0, 255, 195, 0.1);
         }
 
         .payment-header h3 {
             margin: 0 0 20px;
             font-size: 1.3rem;
+            color: #f6fcff;
         }
 
         .payment-status-grid {
@@ -391,11 +383,12 @@
             font-size: 1.8rem;
             font-weight: 700;
             margin: 0 0 6px;
+            color: #00ffc3;
         }
 
         .payment-status-label {
-            font-size: 0.95rem;
-            opacity: 0.9;
+            font-size: 0.9rem;
+            color: rgba(246, 252, 255, 0.6);
         }
 
         .payment-content {
@@ -410,28 +403,32 @@
         }
 
         .payment-btn {
-            background: rgba(10, 25, 47, 0.98);
-            color: white;
+            background: #00ffc3;
+            color: #0a192f;
             border: none;
             padding: 14px 20px;
             border-radius: 12px;
-            font-weight: 600;
+            font-weight: 700;
             cursor: pointer;
-            transition: background 0.2s ease;
+            transition: all 0.2s ease;
+            font-size: 0.95rem;
         }
 
         .payment-btn:hover {
-            background: red;
+            background: #66ffd6;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 255, 195, 0.3);
         }
 
         .payment-btn.secondary {
-            background: rgba(10, 25, 47, 0.98);
+            background: transparent;
             color: #00ffc3;
-            border: 1px solid;
+            border: 1px solid rgba(0, 255, 195, 0.3);
         }
 
         .payment-btn.secondary:hover {
-            background: red;
+            background: rgba(0, 255, 195, 0.1);
+            border-color: #00ffc3;
         }
 
         .payment-table {
@@ -440,20 +437,19 @@
         }
 
         .payment-table th {
-            background: rgba(10, 25, 47, 0.98);
             padding: 14px;
             text-align: left;
             color: #00ffc3;
-
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             text-transform: uppercase;
             letter-spacing: 0.08em;
-            /* border-bottom: 1px solid #dce5ef; */
+            border-bottom: 1px solid rgba(0, 255, 195, 0.1);
         }
 
         .payment-table td {
             padding: 16px 14px;
-            border-bottom: 1px solid rgba(10, 25, 47, 0.98);
+            border-bottom: 1px solid rgba(0, 255, 195, 0.06);
+            color: rgba(246, 252, 255, 0.8);
         }
 
         .payment-table tr:last-child td {
@@ -464,50 +460,239 @@
             display: inline-block;
             padding: 6px 12px;
             border-radius: 12px;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             font-weight: 600;
         }
 
         .badge.paid {
-            background: #d4edda;
-            color: rgba(10, 25, 47, 0.98);
+            background: rgba(0, 255, 195, 0.15);
+            color: #00ffc3;
         }
 
         .badge.pending {
-            background: #fff3cd;
-            color: rgba(10, 25, 47, 0.98);
+            background: rgba(255, 193, 7, 0.15);
+            color: #ffc107;
         }
 
         .badge.overdue {
-            background: #f8d7da;
-            color: #721c24;
+            background: rgba(255, 107, 107, 0.15);
+            color: #ff6b6b;
         }
 
-        .performance-graph {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
-            gap: 12px;
-            margin-top: 16px;
-        }
-
-        .graph-bar {
+        /* ============================================================
+           PAYMENT MODAL - fully styled with teal theme
+           ============================================================ */
+        .payment-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(2, 12, 27, 0.85);
+            backdrop-filter: blur(12px);
             display: flex;
-            flex-direction: column;
             align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.35s ease, transform 0.35s ease;
+            padding: 20px;
         }
 
-        .bar {
+        .payment-modal.open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .payment-modal-card {
+            background: radial-gradient(circle at 20% 30%, rgba(10, 25, 47, 0.98), rgba(2, 12, 27, 1));
+            border: 1px solid rgba(0, 255, 195, 0.25);
+            border-radius: 28px;
+            max-width: 560px;
             width: 100%;
-            height: 120px;
-            /* background: red; */
-            border-radius: 8px 8px 0 0;
-            margin-bottom: 8px;
+            padding: 32px 36px 28px;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8), 0 0 40px rgba(0, 255, 195, 0.05);
+            transform: scale(0.95) translateY(10px);
+            transition: transform 0.35s ease, opacity 0.35s ease;
+            position: relative;
         }
 
-        .bar-label {
+        .payment-modal.open .payment-modal-card {
+            transform: scale(1) translateY(0);
+        }
+
+        .payment-modal-close {
+            position: absolute;
+            top: 14px;
+            right: 18px;
+            background: none;
+            border: none;
+            color: rgba(246, 252, 255, 0.4);
+            font-size: 1.8rem;
+            cursor: pointer;
+            transition: color 0.2s ease;
+            line-height: 1;
+        }
+
+        .payment-modal-close:hover {
+            color: #f6fcff;
+        }
+
+        .payment-modal-eyebrow {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: rgba(0, 255, 195, 0.6);
+            margin: 0 0 4px;
+        }
+
+        .payment-modal-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #f6fcff;
+            margin: 0 0 8px;
+        }
+
+        .payment-modal-card>p {
+            color: rgba(246, 252, 255, 0.6);
+            margin: 0 0 24px;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .payment-modal-details {
+            background: rgba(0, 255, 195, 0.04);
+            border: 1px solid rgba(0, 255, 195, 0.12);
+            border-radius: 16px;
+            padding: 18px 20px;
+            display: grid;
+            gap: 10px;
+            margin-bottom: 24px;
+        }
+
+        .payment-modal-details>div {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 6px 0;
+            border-bottom: 1px solid rgba(0, 255, 195, 0.06);
+        }
+
+        .payment-modal-details>div:last-child {
+            border-bottom: none;
+        }
+
+        .payment-modal-details span {
+            color: rgba(246, 252, 255, 0.5);
             font-size: 0.85rem;
-            color: #5e6c7d;
-            text-align: center;
+        }
+
+        .payment-modal-details strong {
+            color: #f6fcff;
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-align: right;
+        }
+
+        .payment-modal-details strong#paymentReference {
+            color: #00ffc3;
+            font-family: 'Courier New', monospace;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .payment-modal-history-list {
+            background: rgba(0, 255, 195, 0.04);
+            border: 1px solid rgba(0, 255, 195, 0.12);
+            border-radius: 16px;
+            padding: 4px 0;
+            margin-bottom: 24px;
+            max-height: 240px;
+            overflow-y: auto;
+        }
+
+        .payment-modal-history-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 18px;
+            border-bottom: 1px solid rgba(0, 255, 195, 0.06);
+            color: rgba(246, 252, 255, 0.8);
+            font-size: 0.9rem;
+        }
+
+        .payment-modal-history-item:last-child {
+            border-bottom: none;
+        }
+
+        .payment-modal-history-item .h-date {
+            color: rgba(246, 252, 255, 0.5);
+            font-size: 0.8rem;
+        }
+
+        .payment-modal-history-item .h-amount {
+            font-weight: 700;
+            color: #00ffc3;
+        }
+
+        .payment-modal-history-item .h-status {
+            font-size: 0.75rem;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+
+        .payment-modal-history-item .h-status.paid {
+            background: rgba(0, 255, 195, 0.12);
+            color: #00ffc3;
+        }
+
+        .payment-modal-history-item .h-status.pending {
+            background: rgba(255, 193, 7, 0.12);
+            color: #ffc107;
+        }
+
+        .payment-modal-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .payment-modal-hint {
+            color: rgba(246, 252, 255, 0.4);
+            font-size: 0.8rem;
+        }
+
+        .payment-modal-actions .payment-btn {
+            padding: 10px 28px;
+            font-size: 0.9rem;
+            min-width: 100px;
+        }
+
+        @media (max-width: 768px) {
+            .payment-modal-card {
+                padding: 24px 20px;
+            }
+            .payment-modal-details>div {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 2px;
+                padding: 8px 0;
+            }
+            .payment-modal-details strong {
+                text-align: left;
+            }
+            .payment-modal-history-item {
+                flex-wrap: wrap;
+                gap: 6px;
+            }
+            .payment-modal-actions {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .payment-modal-actions .payment-btn {
+                width: 100%;
+            }
         }
 
         @media (max-width: 1200px) {
@@ -515,7 +700,6 @@
                 grid-template-columns: 300px minmax(0, 1fr);
                 gap: 20px;
             }
-
             .sidebar {
                 padding: 24px;
             }
@@ -527,7 +711,6 @@
                 gap: 20px;
                 margin: 20px auto 40px;
             }
-
             .sidebar {
                 position: relative;
                 top: auto;
@@ -535,15 +718,12 @@
                 grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
                 gap: 16px;
             }
-
             .welcome {
                 grid-template-columns: 1fr;
             }
-
             .welcome h2 {
                 font-size: 1.5rem;
             }
-
             .avatar {
                 width: 80px;
                 height: 80px;
@@ -556,63 +736,48 @@
                 padding: 0 16px;
                 margin: 16px auto 30px;
             }
-
             header {
                 padding: 16px;
                 flex-direction: column;
                 gap: 12px;
                 align-items: flex-start;
             }
-
             .topbar {
                 width: 100%;
                 justify-content: space-between;
+                flex-wrap: wrap;
             }
-
             .sidebar {
                 grid-template-columns: 1fr;
             }
-
             .stats-grid {
                 grid-template-columns: repeat(2, minmax(0, 1fr));
             }
-
             .quick-links-expanded {
                 grid-template-columns: repeat(3, minmax(0, 1fr));
             }
-
             .payment-status-grid {
                 grid-template-columns: 1fr;
                 text-align: center;
             }
-
             .payment-actions {
                 grid-template-columns: 1fr;
             }
-
-            .performance-graph {
-                grid-template-columns: repeat(3, minmax(0, 1fr));
-            }
-
             .section-header {
                 flex-direction: column;
                 gap: 12px;
             }
-
             .welcome {
                 padding: 20px;
             }
-
             .welcome h2 {
                 font-size: 1.4rem;
             }
-
             .avatar {
                 width: 75px;
                 height: 75px;
                 font-size: 1.9rem;
             }
-
             .brand-text p {
                 display: none;
             }
@@ -623,127 +788,87 @@
                 padding: 0 12px;
                 gap: 16px;
             }
-
             header {
                 padding: 12px;
                 flex-direction: column;
                 gap: 10px;
             }
-
             .brand-logo {
                 width: 36px;
                 height: 36px;
                 font-size: 0.9rem;
             }
-
             .brand-text h1 {
                 font-size: 1rem;
             }
-
             .topbar button,
             .topbar a {
                 padding: 8px 14px;
-                font-size: 0.9rem;
+                font-size: 0.85rem;
             }
-
             .sidebar {
                 padding: 20px;
                 gap: 16px;
             }
-
             .sidebar h2 {
                 font-size: 1rem;
             }
-
             .stats-grid {
                 grid-template-columns: 1fr;
                 gap: 16px;
             }
-
             .quick-links-expanded {
                 grid-template-columns: repeat(2, minmax(0, 1fr));
                 gap: 10px;
             }
-
             .quick-link-item {
                 padding: 14px;
                 font-size: 0.9rem;
             }
-
             .quick-link-item .icon {
                 font-size: 1.5rem;
                 margin-bottom: 4px;
             }
-
             .welcome {
                 padding: 18px;
                 border-radius: 16px;
                 grid-template-columns: 1fr;
             }
-
             .welcome h2 {
                 font-size: 1.3rem;
                 margin-bottom: 6px;
             }
-
             .welcome p {
                 font-size: 0.95rem;
             }
-
             .avatar {
                 width: 70px;
                 height: 70px;
                 font-size: 1.8rem;
             }
-
             .stat-card {
                 padding: 18px;
             }
-
-            .performance-graph {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-                gap: 10px;
-            }
-
-            .bar {
-                height: 100px;
-            }
-
-            .payment-section {
-                border-radius: 20px;
-            }
-
             .payment-header {
                 padding: 18px;
             }
-
             .payment-header h3 {
                 font-size: 1.1rem;
                 margin-bottom: 14px;
             }
-
             .payment-status-amount {
                 font-size: 1.5rem;
-                margin-bottom: 4px;
             }
-
-            .payment-status-label {
-                font-size: 0.9rem;
-            }
-
             .payment-content {
                 padding: 18px;
             }
-
             .payment-btn {
                 padding: 12px 16px;
                 font-size: 0.9rem;
             }
-
             .payment-table {
                 font-size: 0.8rem;
             }
-
             .payment-table th,
             .payment-table td {
                 padding: 10px 8px;
@@ -756,217 +881,173 @@
                 margin: 12px auto 24px;
                 gap: 12px;
             }
-
             header {
                 padding: 10px;
                 gap: 8px;
             }
-
             .brand {
                 gap: 10px;
             }
-
             .brand-logo {
                 width: 32px;
                 height: 32px;
                 font-size: 0.8rem;
             }
-
             .brand-text h1 {
                 font-size: 0.95rem;
             }
-
             .topbar {
                 width: 100%;
                 gap: 8px;
                 flex-wrap: wrap;
             }
-
             .topbar button,
             .topbar a {
                 padding: 6px 12px;
-                font-size: 0.85rem;
+                font-size: 0.8rem;
                 flex: 1;
-                min-width: 100px;
+                min-width: 80px;
             }
-
             .sidebar {
                 padding: 16px;
                 gap: 12px;
             }
-
             .sidebar h2 {
                 font-size: 0.95rem;
                 margin-bottom: 10px;
             }
-
             .sidebar p {
-                font-size: 0.9rem;
-                margin: 6px 0;
+                font-size: 0.85rem;
+                margin: 4px 0;
             }
-
             .stats-grid {
                 gap: 12px;
             }
-
             .stat-card {
                 padding: 16px;
                 border-radius: 16px;
             }
-
             .stat-card strong {
                 font-size: 1.6rem;
                 margin-bottom: 6px;
             }
-
             .stat-card span {
                 font-size: 0.85rem;
             }
-
             .quick-links-expanded {
                 grid-template-columns: repeat(2, minmax(0, 1fr));
                 gap: 8px;
             }
-
             .quick-link-item {
                 padding: 10px;
                 font-size: 0.8rem;
                 border-radius: 12px;
             }
-
             .quick-link-item .icon {
                 font-size: 1.3rem;
                 margin-bottom: 2px;
             }
-
             .quick-link-item .label {
-                font-size: 0.75rem;
+                font-size: 0.7rem;
                 margin-top: 2px;
             }
-
             .welcome {
                 padding: 16px;
                 border-radius: 14px;
                 gap: 12px;
             }
-
             .welcome p:first-child {
-                font-size: 0.75rem;
+                font-size: 0.7rem;
             }
-
             .welcome h2 {
                 font-size: 1.2rem;
                 margin-bottom: 4px;
             }
-
             .welcome>div:first-child>p:last-child {
                 font-size: 0.85rem;
                 line-height: 1.4;
             }
-
             .avatar {
                 width: 60px;
                 height: 60px;
                 font-size: 1.6rem;
                 flex-shrink: 0;
             }
-
             .schedule,
             .grades,
             .announcements,
             .payment-section {
                 border-radius: 16px;
             }
-
             .section-header {
                 padding: 16px 20px;
                 flex-direction: column;
                 gap: 10px;
             }
-
             .section-header h3 {
                 font-size: 1rem;
             }
-
             .section-header a {
                 font-size: 0.85rem;
             }
-
             .schedule table,
             .payment-table {
                 font-size: 0.75rem;
             }
-
             .schedule th,
             .schedule td,
             .payment-table th,
             .payment-table td {
                 padding: 8px 6px;
             }
-
-            .performance-graph {
-                grid-template-columns: 1fr;
-                gap: 8px;
-            }
-
-            .bar {
-                height: 80px;
-                margin-bottom: 6px;
-            }
-
-            .bar-label {
-                font-size: 0.8rem;
-            }
-
             .payment-header {
                 padding: 16px;
             }
-
             .payment-header h3 {
                 font-size: 1rem;
                 margin-bottom: 12px;
             }
-
             .payment-status-grid {
                 gap: 12px;
             }
-
             .payment-status-amount {
                 font-size: 1.3rem;
             }
-
             .payment-status-label {
                 font-size: 0.8rem;
             }
-
             .payment-content {
                 padding: 14px;
             }
-
             .payment-actions {
                 gap: 10px;
                 margin-bottom: 16px;
             }
-
             .payment-btn {
                 padding: 10px 12px;
                 font-size: 0.85rem;
                 border-radius: 10px;
             }
-
             .badge {
                 padding: 4px 8px;
-                font-size: 0.75rem;
+                font-size: 0.7rem;
             }
-
-            /* .grades-list,
-            .announcements-list {
-                padding: 0 16px 16px;
+            .payment-modal-card {
+                padding: 20px 16px;
             }
-            .grades-list li,
-            .announcements-list li {
-                padding: 12px 0;
-            } */
+            .payment-modal-card h3 {
+                font-size: 1.2rem;
+            }
+            .payment-modal-details {
+                padding: 14px 16px;
+            }
+            .payment-modal-details strong {
+                font-size: 0.85rem;
+            }
+            .payment-modal-history-item {
+                font-size: 0.8rem;
+                padding: 10px 14px;
+            }
         }
     </style>
 </head>
@@ -985,9 +1066,7 @@
             <a href="#schedule">My Schedule</a>
             <a href="#grades">Grades</a>
             <button>Notifications</button>
-            <button class="logout-btn" onclick="logoutUser()">
-    Logout
-</button>
+            <button class="logout-btn" onclick="logoutUser()">Logout</button>
         </div>
     </header>
 
@@ -996,7 +1075,7 @@
             <div>
                 <h2>Student Info</h2>
                 <p><strong>Name:</strong> <span id="studentName"></span></p>
-                <p><strong>Class:</strong> Grade 11</p>
+                <p><strong>Class:</strong> <span id="studentClass"> </span></p>
                 <p><strong>Student ID:</strong> 2026-0409</p>
             </div>
             <div>
@@ -1007,37 +1086,36 @@
             <div>
                 <h2>Quick actions</h2>
                 <div class="quick-links-expanded">
-                    <div class="quick-link-item">
+                    <a href="assignments.html" class="quick-link-item">
                         <span class="icon">📝</span>
                         <span>Assignments</span>
                         <span class="label">7 pending</span>
-                    </div>
-                    <div class="quick-link-item">
+                    </a>
+                    <a href="messages.html" class="quick-link-item">
                         <span class="icon">💬</span>
                         <span>Messages</span>
                         <span class="label">3 unread</span>
-                    </div>
-<a href="library.html">
-                    <div class="quick-link-item">
+                    </a>
+                    <a href="library.html" class="quick-link-item">
                         <span class="icon">📚</span>
                         <span>Resources</span>
                         <span class="label">Library access</span>
-                    </div></a>
-                    <div class="quick-link-item">
+                    </a>
+                    <a href="attendance.html" class="quick-link-item">
                         <span class="icon">✓</span>
                         <span>Attendance</span>
                         <span class="label">94% present</span>
-                    </div>
-                    <div class="quick-link-item">
+                    </a>
+                    <a href="course-materials.html" class="quick-link-item">
                         <span class="icon">⬇️</span>
                         <span>Downloads</span>
                         <span class="label">Course materials</span>
-                    </div>
-                    <div class="quick-link-item">
+                    </a>
+                    <a href="support.html" class="quick-link-item">
                         <span class="icon">🎧</span>
                         <span>Support</span>
                         <span class="label">Help desk</span>
-                    </div>
+                    </a>
                 </div>
             </div>
         </aside>
@@ -1045,9 +1123,9 @@
         <section class="panel">
             <section class="welcome">
                 <div>
-                    <p
-                        style="margin:0; text-transform:uppercase; letter-spacing:0.18em; font-size:0.82rem; color:#ffb703; font-weight:700;">
-                        Good afternoon</p>
+                    <p style="margin:0; text-transform:uppercase; letter-spacing:0.18em; font-size:0.82rem; color:#66ffd6; font-weight:700;">
+                        Good afternoon
+                    </p>
                     <h2>Welcome <span id="welcomeName"></span>.</h2>
                     <p>Here's your daily snapshot: upcoming classes, latest grades, announcements, and school reminders.
                     </p>
@@ -1070,29 +1148,31 @@
                 </article>
             </div>
 
+            <!-- ============================================================
+            PAYMENT SECTION
+            ============================================================ -->
             <section class="payment-section" id="payments">
                 <div class="payment-header">
                     <h3>💳 Tuition & Payments</h3>
                     <div class="payment-status-grid">
                         <div class="payment-status-item">
-    <div class="payment-status-amount" id="totalFees">₦0</div>
-    <div class="payment-status-label">Total Fees</div>
-</div>
-
-<div class="payment-status-item">
-    <div class="payment-status-amount" id="totalPaid">₦0</div>
-    <div class="payment-status-label">Paid</div>
-</div>
-
-<div class="payment-status-item">
-    <div class="payment-status-amount" id="totalOutstanding">₦0</div>
-    <div class="payment-status-label">Outstanding</div>
-</div>
+                            <div class="payment-status-amount" id="totalFees">₦0</div>
+                            <div class="payment-status-label">Total Fees</div>
+                        </div>
+                        <div class="payment-status-item">
+                            <div class="payment-status-amount" id="totalPaid">₦0</div>
+                            <div class="payment-status-label">Paid</div>
+                        </div>
+                        <div class="payment-status-item">
+                            <div class="payment-status-amount" id="totalOutstanding">₦0</div>
+                            <div class="payment-status-label">Outstanding</div>
+                        </div>
+                    </div>
                 </div>
                 <div class="payment-content">
                     <div class="payment-actions">
-                        <button class="payment-btn">💳 Make Payment</button>
-                        <button class="payment-btn secondary">📄 Payment History</button>
+                        <button type="button" class="payment-btn" id="makePaymentBtn">💳 Make Payment</button>
+                        <button type="button" class="payment-btn secondary" id="paymentHistoryBtn">📄 Payment History</button>
                     </div>
                     <table class="payment-table">
                         <thead>
@@ -1103,315 +1183,392 @@
                                 <th>Status</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td>May 15, 2026</td>
-                                <td>Second Term Tuition</td>
-                                <td>₦350,000</td>
-                                <td><span class="badge paid">Paid</span></td>
-                            </tr>
-                            <tr>
-                                <td>Apr 10, 2026</td>
-                                <td>First Term Tuition</td>
-                                <td>₦300,000</td>
-                                <td><span class="badge paid">Paid</span></td>
-                            </tr>
-                            <tr>
-                                <td>Mar 01, 2026</td>
-                                <td>School Activity Fees</td>
-                                <td>₦50,000</td>
-                                <td><span class="badge paid">Paid</span></td>
-                            </tr>
-                            <tr>
-                                <td>June 30, 2026</td>
-                                <td>Third Term Tuition</td>
-                                <td>₦200,000</td>
-                                <td><span class="badge pending">Pending</span></td>
-                            </tr>
+                        <tbody id="paymentTableBody">
+                            <!-- populated by Firebase -->
                         </tbody>
                     </table>
                 </div>
             </section>
-            <div class="section-header">
-                <h3>Today’s schedule</h3>
-                <a href="#">View full timetable</a>
-            </div>
-            <table class="ttb">
-                <thead>
-                    <tr>
-                        <th>Time</th>
-                        <th>Subject</th>
-                        <th>Teacher</th>
-                        <th>Room</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>08:00 - 09:00</td>
-                        <td>Mathematics</td>
-                        <td>Mrs. Brown</td>
-                        <td>A101</td>
-                    </tr>
-                    <tr>
-                        <td>09:15 - 10:15</td>
-                        <td>English</td>
-                        <td>Mr. Daniels</td>
-                        <td>B204</td>
-                    </tr>
-                    <tr>
-                        <td>10:30 - 11:30</td>
-                        <td>Biology</td>
-                        <td>Dr. Okafor</td>
-                        <td>C303</td>
-                    </tr>
-                    <tr>
-                        <td>12:00 - 13:00</td>
-                        <td>History</td>
-                        <td>Mrs. Lewis</td>
-                        <td>D112</td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
 
-        <section class="grades" id="grades">
-            <div class="section-header">
-                <h3>Latest grades</h3>
-                <a href="#">See report card</a>
-            </div>
-            <ul class="grades-list">
-                <li>
-                    <div>
-                        <p class="grades-subject">Mathematics</p>
-                        <p>Average score: 94%</p>
-                    </div>
-                    <div class="grades-score">A</div>
-                </li>
-                <li>
-                    <div>
-                        <p class="grades-subject">English</p>
-                        <p>Average score: 88%</p>
-                    </div>
-                    <div class="grades-score">B+</div>
-                </li>
-                <li>
-                    <div>
-                        <p class="grades-subject">Biology</p>
-                        <p>Average score: 91%</p>
-                    </div>
-                    <div class="grades-score">A-</div>
-                </li>
-                <li>
-                    <div>
-                        <p class="grades-subject">History</p>
-                        <p>Average score: 89%</p>
-                    </div>
-                    <div class="grades-score">B+</div>
-                </li>
-            </ul>
-        </section>
-
-        <section class="announcements" id="messages">
-            <div class="section-header">
-                <h3>Announcements</h3>
-                <a href="#">All news</a>
-            </div>
-            <ul class="announcements-list">
-                <li>
-                    <div>
-                        <p class="announcement-title">Parent-teacher conference on Friday</p>
-                        <p class="announcement-meta">Posted 2 hours ago • Auditorium</p>
-                    </div>
-                    <span>!</span>
-                </li>
-                <li>
-                    <div>
-                        <p class="announcement-title">Math assignment due tomorrow</p>
-                        <p class="announcement-meta">Posted yesterday • Grade 11</p>
-                    </div>
-                    <span>!</span>
-                </li>
-                <li>
-                    <div>
-                        <p class="announcement-title">Library hours extended this week</p>
-                        <p class="announcement-meta">Posted 3 days ago • Library</p>
-                    </div>
-                    <span>!</span>
-                </li>
-            </ul>
-        </section>
-
-        <!-- <section class="grades" id="performance">
+            <!-- ============================================================
+            SCHEDULE
+            ============================================================ -->
+            <section class="schedule" id="schedule">
                 <div class="section-header">
-                    <h3>Performance Analytics</h3>
-                    <a href="#">Full analytics</a>
+                    <h3>Today's schedule</h3>
+                    <a href="#">View full timetable</a>
                 </div>
-                <div style="padding: 24px 28px;">
-                    <h4 style="margin-top: 0; color: #1f4e79;">Your Grade Progression</h4>
-                    <div class="performance-graph">
-                        <div class="graph-bar">
-                            <div class="bar" style="height: 80px;"></div>
-                            <div class="bar-label">Week 1</div>
-                        </div>
-                        <div class="graph-bar">
-                            <div class="bar" style="height: 85px;"></div>
-                            <div class="bar-label">Week 2</div>
-                        </div>
-                        <div class="graph-bar">
-                            <div class="bar" style="height: 88px;"></div>
-                            <div class="bar-label">Week 3</div>
-                        </div>
-                        <div class="graph-bar">
-                            <div class="bar" style="height: 92px;"></div>
-                            <div class="bar-label">Week 4</div>
-                        </div>
-                        <div class="graph-bar">
-                            <div class="bar" style="height: 90px;"></div>
-                            <div class="bar-label">Week 5</div>
-                        </div>
-                    </div>
+                <table class="ttb">
+                    <thead>
+                        <tr>
+                            <th>Time</th>
+                            <th>Subject</th>
+                            <th>Teacher</th>
+                            <th>Room</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>08:00 - 09:00</td>
+                            <td>Mathematics</td>
+                            <td>Mrs. Brown</td>
+                            <td>A101</td>
+                        </tr>
+                        <tr>
+                            <td>09:15 - 10:15</td>
+                            <td>English</td>
+                            <td>Mr. Daniels</td>
+                            <td>B204</td>
+                        </tr>
+                        <tr>
+                            <td>10:30 - 11:30</td>
+                            <td>Biology</td>
+                            <td>Dr. Okafor</td>
+                            <td>C303</td>
+                        </tr>
+                        <tr>
+                            <td>12:00 - 13:00</td>
+                            <td>History</td>
+                            <td>Mrs. Lewis</td>
+                            <td>D112</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- ============================================================
+            GRADES
+            ============================================================ -->
+            <section class="grades" id="grades">
+                <div class="section-header">
+                    <h3>Latest grades</h3>
+                    <a href="#">See report card</a>
                 </div>
-            </section> -->
+                <ul class="grades-list">
+                    <li>
+                        <div>
+                            <p class="grades-subject">Mathematics</p>
+                            <p style="margin:0; color:rgba(246,252,255,0.5); font-size:0.85rem;">Average score: 94%</p>
+                        </div>
+                        <div class="grades-score">A</div>
+                    </li>
+                    <li>
+                        <div>
+                            <p class="grades-subject">English</p>
+                            <p style="margin:0; color:rgba(246,252,255,0.5); font-size:0.85rem;">Average score: 88%</p>
+                        </div>
+                        <div class="grades-score">B+</div>
+                    </li>
+                    <li>
+                        <div>
+                            <p class="grades-subject">Biology</p>
+                            <p style="margin:0; color:rgba(246,252,255,0.5); font-size:0.85rem;">Average score: 91%</p>
+                        </div>
+                        <div class="grades-score">A-</div>
+                    </li>
+                    <li>
+                        <div>
+                            <p class="grades-subject">History</p>
+                            <p style="margin:0; color:rgba(246,252,255,0.5); font-size:0.85rem;">Average score: 89%</p>
+                        </div>
+                        <div class="grades-score">B+</div>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- ============================================================
+            ANNOUNCEMENTS
+            ============================================================ -->
+            <section class="announcements" id="messages">
+                <div class="section-header">
+                    <h3>Announcements</h3>
+                    <a href="#">All news</a>
+                </div>
+                <ul class="announcements-list">
+                    <li>
+                        <div>
+                            <p class="announcement-title">Parent-teacher conference on Friday</p>
+                            <p class="announcement-meta">Posted 2 hours ago • Auditorium</p>
+                        </div>
+                        <span style="color:#00ffc3;">!</span>
+                    </li>
+                    <li>
+                        <div>
+                            <p class="announcement-title">Math assignment due tomorrow</p>
+                            <p class="announcement-meta">Posted yesterday • SS2</p>
+                        </div>
+                        <span style="color:#00ffc3;">!</span>
+                    </li>
+                    <li>
+                        <div>
+                            <p class="announcement-title">Library hours extended this week</p>
+                            <p class="announcement-meta">Posted 3 days ago • Library</p>
+                        </div>
+                        <span style="color:#00ffc3;">!</span>
+                    </li>
+                </ul>
+            </section>
         </section>
     </main>
 
+    <!-- ============================================================
+    PAYMENT MODAL
+    ============================================================ -->
+    <div class="payment-modal" id="paymentModal" aria-hidden="true">
+        <div class="payment-modal-card" role="dialog" aria-modal="true" aria-labelledby="paymentModalTitle">
+            <button type="button" class="payment-modal-close" id="closePaymentModal" aria-label="Close">&times;</button>
+            <p class="payment-modal-eyebrow" id="paymentModalEyebrow">Student portal</p>
+            <h3 id="paymentModalTitle">Make payment</h3>
+            <p id="paymentModalBody">Transfer the amount due using the school account details below.</p>
 
-<script type="module">
+            <!-- Account details (shown for "Make Payment") -->
+            <div id="paymentAccountDetails" class="payment-modal-details">
+                <div><span>Account Name</span><strong>Positive Change College</strong></div>
+                <div><span>Bank</span><strong>Access Bank</strong></div>
+                <div><span>Account Number</span><strong>0012345678</strong></div>
+                <div><span>Branch</span><strong>Ibadan</strong></div>
+                <div><span>Reference</span><strong id="paymentReference">STUDENT-TUITION</strong></div>
+            </div>
 
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
-import {
-    getAuth,
-    onAuthStateChanged,
-    signOut
-} from "https://www.gstatic.com/firebasejs/12.13.0/firebase-auth.js";
+            <!-- History list (shown for "Payment History") -->
+            <div id="paymentHistoryList" class="payment-modal-history-list" style="display:none;">
+                <!-- populated by JavaScript -->
+            </div>
 
-import {
-    getFirestore,
-    doc,
-    getDoc,
-    collection,
-    query,
-    where,
-    onSnapshot
-} from "https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js";
+            <div class="payment-modal-actions">
+                <span class="payment-modal-hint" id="paymentModalHint">Payments usually reflect within 24 hours.</span>
+                <button type="button" class="payment-btn" id="dismissPaymentModal">Close</button>
+            </div>
+        </div>
+    </div>
 
-const firebaseConfig = {
-    apiKey: "AIzaSyDmvmqTgjhbtgLxrbvgmT3LQgEsNoj3x_g",
-    authDomain: "positivechangecollege-4d2cb.firebaseapp.com",
-    projectId: "positivechangecollege-4d2cb",
-    storageBucket: "positivechangecollege-4d2cb.firebasestorage.app",
-    messagingSenderId: "847572892577",
-    appId: "1:847572892577:web:1f6184c056ca46cf3ce9e0",
-    measurementId: "G-CVGTLPDR5M"
-};
+    <!-- ============================================================
+    FIREBASE + LOGIC
+    ============================================================ -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
+        import {
+            getAuth,
+            onAuthStateChanged,
+            signOut
+        } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-auth.js";
+        import {
+            getFirestore,
+            doc,
+            getDoc,
+            collection,
+            query,
+            where,
+            onSnapshot,
+            orderBy
+        } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js";
 
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db = getFirestore(app);
+        const firebaseConfig = {
+            apiKey: "AIzaSyDmvmqTgjhbtgLxrbvgmT3LQgEsNoj3x_g",
+            authDomain: "positivechangecollege-4d2cb.firebaseapp.com",
+            projectId: "positivechangecollege-4d2cb",
+            storageBucket: "positivechangecollege-4d2cb.firebasestorage.app",
+            messagingSenderId: "847572892577",
+            appId: "1:847572892577:web:1f6184c056ca46cf3ce9e0",
+            measurementId: "G-CVGTLPDR5M"
+        };
 
-// UI elements
-const welcomeName = document.getElementById("welcomeName");
-const studentName = document.getElementById("studentName");
-const avatar = document.getElementById("avatarInitial");
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
 
-// AUTH
-onAuthStateChanged(auth, async (user) => {
+        // DOM refs
+        const welcomeName = document.getElementById("welcomeName");
+        const studentName = document.getElementById("studentName");
+        const studentClass = document.getElementById("studentClass"); 
+        const avatar = document.getElementById("avatarInitial");
+        const paymentModal = document.getElementById("paymentModal");
+        const closePaymentModal = document.getElementById("closePaymentModal");
+        const dismissPaymentModal = document.getElementById("dismissPaymentModal");
+        const makePaymentBtn = document.getElementById("makePaymentBtn");
+        const paymentHistoryBtn = document.getElementById("paymentHistoryBtn");
+        const paymentModalTitle = document.getElementById("paymentModalTitle");
+        const paymentModalBody = document.getElementById("paymentModalBody");
+        const paymentModalEyebrow = document.getElementById("paymentModalEyebrow");
+        const paymentModalHint = document.getElementById("paymentModalHint");
+        const paymentReference = document.getElementById("paymentReference");
+        const paymentAccountDetails = document.getElementById("paymentAccountDetails");
+        const paymentHistoryList = document.getElementById("paymentHistoryList");
+        const paymentTableBody = document.getElementById("paymentTableBody");
 
-    if (!user) {
-        window.location.href = "signin.html";
-        return;
-    }
+        let currentStudentName = "";
+        let currentclassName = "";
+        let allPayments = [];
 
-    try {
+        // ---- MODAL CONTROLS ----
+        function openPaymentModal(mode) {
+            const studentDisplayName = (welcomeName?.textContent || "Student").trim() || "Student";
+            const ref = `${studentDisplayName.replace(/[^a-zA-Z0-9]/g, "").toUpperCase()}-TUITION`;
 
-        const docRef = doc(db, "students", user.uid);
-        const docSnap = await getDoc(docRef);
+            if (mode === "history") {
+                paymentModalTitle.textContent = "📄 Payment History";
+                paymentModalEyebrow.textContent = "Student portal • records";
+                paymentModalBody.textContent = "Here is a complete list of your past fee payments.";
+                paymentModalHint.textContent = "All payments are verified by the finance office.";
+                paymentAccountDetails.style.display = "none";
+                paymentHistoryList.style.display = "block";
+                // populate history
+                renderHistoryModal();
+            } else {
+                paymentModalTitle.textContent = "💳 Make Payment";
+                paymentModalEyebrow.textContent = "Student portal • tuition";
+                paymentModalBody.textContent = "Transfer the amount due using the school account details below and use your full name as the payment reference.";
+                paymentModalHint.textContent = "Payments usually reflect within 24 hours.";
+                paymentAccountDetails.style.display = "block";
+                paymentHistoryList.style.display = "none";
+                paymentReference.textContent = ref;
+            }
 
-        if (!docSnap.exists()) {
-            console.log("No student found");
-            return;
+            paymentModal.classList.add("open");
+            paymentModal.setAttribute("aria-hidden", "false");
         }
 
-        const student = docSnap.data();
-        const name = student.name || "Student";
+        function closePaymentModalNow() {
+            paymentModal.classList.remove("open");
+            paymentModal.setAttribute("aria-hidden", "true");
+        }
 
-        welcomeName.textContent = name;
-        studentName.textContent = name;
-        avatar.textContent = name.charAt(0).toUpperCase();
+        function renderHistoryModal() {
+            if (!paymentHistoryList) return;
+            if (!allPayments.length) {
+                paymentHistoryList.innerHTML = `<div style="padding:20px;text-align:center;color:rgba(246,252,255,0.4);">No payment records found.</div>`;
+                return;
+            }
+            let html = "";
+            const sorted = [...allPayments].sort((a, b) => {
+                const da = a.createdAt?.toDate?.() || new Date(0);
+                const db = b.createdAt?.toDate?.() || new Date(0);
+                return db - da;
+            });
+            sorted.forEach(p => {
+                const dateStr = p.createdAt?.toDate?.()?.toLocaleDateString() || "N/A";
+                const amt = p.amountPaid || 0;
+                const status = p.status || "Pending";
+                const statusClass = status.toLowerCase() === "paid" ? "paid" : "pending";
+                html += `
+                    <div class="payment-modal-history-item">
+                        <span class="h-date">${dateStr}</span>
+                        <span>${p.studentClass || "Tuition"}</span>
+                        <span class="h-amount">₦${amt.toLocaleString()}</span>
+                        <span class="h-status ${statusClass}">${status}</span>
+                    </div>
+                `;
+            });
+            paymentHistoryList.innerHTML = html;
+        }
 
-        // IMPORTANT FIX: pass name instead of uid
-        loadStudentPayments(name);
+        // ---- EVENT BINDINGS ----
+        if (makePaymentBtn) {
+            makePaymentBtn.addEventListener("click", () => openPaymentModal("payment"));
+        }
+        if (paymentHistoryBtn) {
+            paymentHistoryBtn.addEventListener("click", () => openPaymentModal("history"));
+        }
+        [closePaymentModal, dismissPaymentModal].forEach(btn => {
+            if (btn) btn.addEventListener("click", closePaymentModalNow);
+        });
+        if (paymentModal) {
+            paymentModal.addEventListener("click", (e) => {
+                if (e.target === paymentModal) closePaymentModalNow();
+            });
+        }
 
-    } catch (err) {
-        console.error("Error loading student:", err);
-    }
-});
-
-
-// 🔥 FIXED PAYMENT LOADER
-function loadStudentPayments(studentNameValue) {
-
-    const table = document.querySelector(".payment-table tbody");
-
-    if (!table) {
-        console.error("Payment table not found!");
-        return;
-    }
-
-    const q = query(
-        collection(db, "school-fees"),
-        where("name", "==", studentNameValue)
-    );
-
-    onSnapshot(q, (snap) => {
-
-        console.log("Payments found:", snap.size);
-
-        table.innerHTML = "";
-
-        let totalFees = 0;
-        let totalPaid = 0;
-        let totalOutstanding = 0;
-
-        snap.forEach((docSnap) => {
-
-            const x = docSnap.data();
-
-            const paid = Number(x.amountPaid || 0);
-            const balance = Number(x.balance || 0);
-
-            totalPaid += paid;
-            totalOutstanding += balance;
-            totalFees += paid + balance;
-
-            table.innerHTML += `
-                <tr>
-                    <td>${x.createdAt?.toDate?.().toLocaleDateString() || "N/A"}</td>
-                    <td>${x.studentClass || "Tuition"}</td>
-                    <td>₦${paid}</td>
-                    <td>
-                        <span class="badge ${x.status === "Paid" ? "paid" : "pending"}">
-                            ${x.status}
-                        </span>
-                    </td>
-                </tr>
-            `;
+        // ---- AUTH ----
+        onAuthStateChanged(auth, async (user) => {
+            if (!user) {
+                window.location.replace("student potal signin.html");
+                return;
+            }
+            try {
+                const docRef = doc(db, "students", user.uid);
+                const docSnap = await getDoc(docRef);
+                if (!docSnap.exists()) {
+                    console.log("No student found");
+                    return;
+                }
+                const student = docSnap.data();
+                const name = student.name || "Student";
+                currentStudentName = name;
+                welcomeName.textContent = name;
+                studentName.textContent = name;
+                avatar.textContent = name.charAt(0).toUpperCase();
+                loadStudentPayments(name);
+            } catch (err) {
+                console.error("Error loading student:", err);
+            }
         });
 
-        document.getElementById("totalFees").textContent = "₦" + totalFees;
-        document.getElementById("totalPaid").textContent = "₦" + totalPaid;
-        document.getElementById("totalOutstanding").textContent = "₦" + totalOutstanding;
-    });
-}
+        // ---- PAYMENT LOADER ----
+        function loadStudentPayments(studentNameValue) {
+            if (!paymentTableBody) return;
+            const q = query(
+                collection(db, "school-fees"),
+                where("name", "==", studentNameValue),
+                orderBy("createdAt", "desc")
+            );
 
+            onSnapshot(q, (snap) => {
+                paymentTableBody.innerHTML = "";
+                allPayments = [];
+                let totalFees = 0,
+                    totalPaid = 0,
+                    totalOutstanding = 0;
 
-// logout
-window.logoutUser = async () => {
-    await signOut(auth);
-    window.location.href = "signin.html";
-};
+                snap.forEach((docSnap) => {
+                    const p = docSnap.data();
+                    const paid = Number(p.amountPaid || 0);
+                    const balance = Number(p.balance || 0);
+                    allPayments.push(p);
+                    totalPaid += paid;
+                    totalOutstanding += balance;
+                    totalFees += paid + balance;
 
-</script>
+                    const dateStr = p.createdAt?.toDate?.()?.toLocaleDateString() || "N/A";
+                    const status = p.status || "Pending";
+                    const statusClass = status.toLowerCase() === "paid" ? "paid" : "pending";
+                    const desc = p.studentClass || "Tuition";
+
+                    paymentTableBody.innerHTML += `
+                        <tr>
+                            <td>${dateStr}</td>
+                            <td>${desc}</td>
+                            <td>₦${paid.toLocaleString()}</td>
+                            <td><span class="badge ${statusClass}">${status}</span></td>
+                        </tr>
+                    `;
+                });
+
+                document.getElementById("totalFees").textContent = "₦" + totalFees.toLocaleString();
+                document.getElementById("totalPaid").textContent = "₦" + totalPaid.toLocaleString();
+                document.getElementById("totalOutstanding").textContent = "₦" + totalOutstanding.toLocaleString();
+
+                // if history modal is open, refresh it
+                if (paymentHistoryList.style.display === "block") {
+                    renderHistoryModal();
+                }
+            }, (err) => {
+                console.error("Payment load error:", err);
+            });
+        }
+
+        // ---- LOGOUT ----
+        window.logoutUser = async () => {
+            try {
+                await signOut(auth);
+            } catch (error) {
+                console.error("Logout failed:", error);
+            } finally {
+                sessionStorage.clear();
+                localStorage.removeItem("studentAuth");
+                window.location.replace("student potal signin.html");
+            }
+        };
+    </script>
 </body>
 
 </html>
